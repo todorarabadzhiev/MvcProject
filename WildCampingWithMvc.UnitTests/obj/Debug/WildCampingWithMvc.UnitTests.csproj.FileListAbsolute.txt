@@ -14,7 +14,6 @@ C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWith
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\bin\Debug\WildCampingWithMvc.UnitTests.dll.config
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\bin\Debug\WildCampingWithMvc.UnitTests.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\bin\Debug\WildCampingWithMvc.UnitTests.pdb
-C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\bin\Debug\System.Web.Helpers.dll
@@ -54,3 +53,7 @@ C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWith
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\obj\Debug\WildCampingWithMvc.UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\obj\Debug\WildCampingWithMvc.UnitTests.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\obj\Debug\WildCampingWithMvc.UnitTests.pdb
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\bin\Debug\nunit.framework.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\bin\Debug\Telerik.JustMock.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\bin\Debug\nunit.framework.xml
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.UnitTests\bin\Debug\Telerik.JustMock.xml
