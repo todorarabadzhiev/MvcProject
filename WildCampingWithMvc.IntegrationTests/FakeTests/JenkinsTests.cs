@@ -1,10 +1,10 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace WildCampingWithMvc.IntegrationTests
+namespace WildCampingWithMvc.IntegrationTests.FakeTests
 {
     [TestFixture]
-    public class IntegrationTests
+    public class JenkinsTests
     {
         [Test]
         public void FakeIntegrationTest()
