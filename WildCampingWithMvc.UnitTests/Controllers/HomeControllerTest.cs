@@ -48,7 +48,7 @@ namespace WildCampingWithMvc.UnitTests.Controllers
             ViewResult result = controller.Contact() as ViewResult;
 
             // Assert
-            Assert.IsNotNull(null);
+            Assert.IsNotNull(result);
         }
     }
 }
