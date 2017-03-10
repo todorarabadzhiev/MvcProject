@@ -52,7 +52,7 @@ namespace WildCampingWithMvc.UnitTests.Controllers
         }
 
         [Test]
-        public void FaeTest()
+        public void FakeUnitTest()
         {
             //FAKE TEST
         }

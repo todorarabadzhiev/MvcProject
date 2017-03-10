@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WildCampingWithMvc", "WildC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WildCampingWithMvc.UnitTests", "WildCampingWithMvc.UnitTests\WildCampingWithMvc.UnitTests.csproj", "{202DE948-CFD5-4E2D-90EB-EAC72F62C658}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WildCampingWithMvc.IntegrationTests", "WildCampingWithMvc.IntegrationTests\WildCampingWithMvc.IntegrationTests.csproj", "{8869038A-BD97-4F52-93BB-5A1F7840BD7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{202DE948-CFD5-4E2D-90EB-EAC72F62C658}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{202DE948-CFD5-4E2D-90EB-EAC72F62C658}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{202DE948-CFD5-4E2D-90EB-EAC72F62C658}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8869038A-BD97-4F52-93BB-5A1F7840BD7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8869038A-BD97-4F52-93BB-5A1F7840BD7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8869038A-BD97-4F52-93BB-5A1F7840BD7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8869038A-BD97-4F52-93BB-5A1F7840BD7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
