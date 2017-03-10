@@ -50,5 +50,11 @@ namespace WildCampingWithMvc.UnitTests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
+
+        [Test]
+        public void FaeTest()
+        {
+            //FAKE TEST
+        }
     }
 }
