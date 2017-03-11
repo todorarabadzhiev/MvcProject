@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="bivacizadivaci" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Todor\\Documents\\Visual\ Studio\ 2015\\Projects\\MVC\\project\\WildCampingWithMvc\\WildCampingWithMvc\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Todor\\Documents\\Visual\ Studio\ 2015\\Projects\\MVC\\project\\WildCampingWithMvc\\WildCampingWithMvc\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Server=tcp:wild-camping-mvc-db-server.database.windows.net,1433;Initial Catalog=wild-camping-mvc-db;Persist Security Info=False;User ID=wild-camping-mvc-user;Password=BivaciZaDivaci1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Todor\\Documents\\Visual\ Studio\ 2015\\Projects\\MVC\\project\\WildCampingWithMvc\\WildCampingWithMvc\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

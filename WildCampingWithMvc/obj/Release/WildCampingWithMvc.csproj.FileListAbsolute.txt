@@ -79,3 +79,4 @@ C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWith
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\obj\Release\WildCampingWithMvc.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\obj\Release\WildCampingWithMvc.pdb
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\obj\Release\WildCampingWithMvc.csprojResolveAssemblyReference.cache
