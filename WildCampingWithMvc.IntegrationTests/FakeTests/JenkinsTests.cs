@@ -11,5 +11,11 @@ namespace WildCampingWithMvc.IntegrationTests.FakeTests
         {
             //FAKE INTEGRATION TEST
         }
+
+        [Test]
+        public void SecondFakeIntegrationTest()
+        {
+            //FAKE INTEGRATION TEST
+        }
     }
 }

@@ -56,5 +56,11 @@ namespace WildCampingWithMvc.UnitTests.Controllers
         {
             //FAKE TEST
         }
+
+        [Test]
+        public void SecondFakeUnitTest()
+        {
+            //FAKE TEST
+        }
     }
 }
