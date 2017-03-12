@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Auth.Helpers;
+using Auth.IdentityConfig;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using WildCampingWithMvc.Models;
 
 namespace WildCampingWithMvc.Controllers
@@ -372,18 +373,6 @@ namespace WildCampingWithMvc.Controllers
             }
             return false;
         }
-
-        public enum ManageMessageId
-        {
-            AddPhoneSuccess,
-            ChangePasswordSuccess,
-            SetTwoFactorSuccess,
-            SetPasswordSuccess,
-            RemoveLoginSuccess,
-            RemovePhoneSuccess,
-            Error
-        }
-
 #endregion
     }
 }

@@ -80,3 +80,10 @@ C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWith
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\obj\Debug\WildCampingWithMvc.csprojResolveAssemblyReference.cache
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\obj\Debug\WildCampingWithMvc.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\obj\Debug\WildCampingWithMvc.pdb
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\bin\Glimpse.Ado.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\bin\Glimpse.AspNet.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\bin\Glimpse.Core.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\bin\Glimpse.EF6.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\bin\Glimpse.Mvc5.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\bin\Auth.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc\bin\Auth.pdb
