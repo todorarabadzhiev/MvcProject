@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using WildCampingWithMvc.Models;
+using WildCampingWithMvc.Models.Account;
 
 namespace WildCampingWithMvc.Controllers
 {
@@ -155,7 +155,19 @@ namespace WildCampingWithMvc.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+
+                    // CUSTOM CODE BEGIN!!!!!!!!!!!
+
+                    // Add data to CampingUser
+                    string appUsertId = user.Id;
+                    string firstName = model.FirstName;
+                    string lastName = model.LastName;
+                    // Create CampingUser
+
+                    // COSTOM CODE END!!!!!!!!!!
+
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

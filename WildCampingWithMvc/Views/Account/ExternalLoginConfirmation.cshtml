@@ -1,6 +1,7 @@
-﻿@model WildCampingWithMvc.Models.ExternalLoginConfirmationViewModel
+﻿@model WildCampingWithMvc.Models.Account.ExternalLoginConfirmationViewModel
+@using WildCampingWithMvc.Utilities
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = Messages.TextRegister;
 }
 <h2>@ViewBag.Title.</h2>
 <h3>Associate your @ViewBag.LoginProvider account.</h3>
@@ -26,7 +27,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default" value=@Messages.TextRegister />
         </div>
     </div>
 }
