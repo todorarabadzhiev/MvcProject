@@ -1,0 +1,11 @@
+C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Db\bin\Debug\CampingDB.dll.config
+C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Db\bin\Debug\CampingDB.dll
+C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Db\bin\Debug\CampingDB.pdb
+C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Db\bin\Debug\EntityFramework.dll
+C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Db\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Db\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Db\bin\Debug\EntityFramework.xml
+C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Db\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Db\obj\Debug\WildCampingWithMvc.Db.csprojResolveAssemblyReference.cache
+C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Db\obj\Debug\CampingDB.dll
+C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Db\obj\Debug\CampingDB.pdb
