@@ -1,16 +1,17 @@
-﻿using Repositories;
+﻿using EFositories;
 using Services.Models;
 using System;
 using System.Collections.Generic;
+using WildCampingWithMvc.Db.Models;
 
 namespace Services.DataProviders
 {
     public class SiteCategoryDataProvider : ISiteCategoryDataProvider
     {
-        protected readonly ICampingDBRepository repository;
+        protected readonly IWildCampingEFository repository;
         protected readonly Func<IUnitOfWork> unitOfWork;
 
-        public SiteCategoryDataProvider(ICampingDBRepository repository, Func<IUnitOfWork> unitOfWork)
+        public SiteCategoryDataProvider(IWildCampingEFository repository, Func<IUnitOfWork> unitOfWork)
         {
             if (repository == null)
             {
@@ -26,7 +27,7 @@ namespace Services.DataProviders
         }
         public IEnumerable<ISiteCategory> GetAllSiteCategories()
         {
-            IGenericRepository<CampingDB.Models.SiteCategory> siteCategoryRepository =
+            IGenericEFository<DbSiteCategory> siteCategoryRepository =
                 this.repository.GetSiteCategoryRepository();
             var dbCategories = siteCategoryRepository.GetAll();
             if (dbCategories == null)
@@ -43,7 +44,7 @@ namespace Services.DataProviders
             return categories;
         }
 
-        private ISiteCategory ConvertToSiteCategory(CampingDB.Models.SiteCategory c)
+        private ISiteCategory ConvertToSiteCategory(DbSiteCategory c)
         {
             ISiteCategory category = new SiteCategory();
             category.Name = c.Name;

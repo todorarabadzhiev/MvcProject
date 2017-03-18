@@ -3,6 +3,8 @@ using Auth.IdentityConfig;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Ninject;
+using Services.DataProviders;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -21,11 +23,24 @@ namespace WildCampingWithMvc.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            this.UserManager = userManager;
+            this.SignInManager = signInManager;
         }
+
+        //public AccountController(
+        //    ApplicationUserManager userManager,
+        //    ApplicationSignInManager signInManager,
+        //    CampingUserDataProvider campingUserDataProvider)
+        //{
+        //    this.UserManager = userManager;
+        //    this.SignInManager = signInManager;
+        //    this.campingUserDataProvider = campingUserDataProvider;
+        //}
+
+        [Inject]
+        public ICampingUserDataProvider CampUserDataProvider { private get; set; }
 
         public ApplicationSignInManager SignInManager
         {
@@ -160,10 +175,12 @@ namespace WildCampingWithMvc.Controllers
                     // CUSTOM CODE BEGIN!!!!!!!!!!!
 
                     // Add data to CampingUser
-                    string appUsertId = user.Id;
+                    string appUserId = user.Id;
                     string firstName = model.FirstName;
                     string lastName = model.LastName;
+                    string userName = user.UserName;
                     // Create CampingUser
+                    this.CampUserDataProvider.AddCampingUser(appUserId, firstName, lastName, userName);
 
                     // COSTOM CODE END!!!!!!!!!!
 

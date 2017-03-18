@@ -1,21 +1,22 @@
-﻿using Repositories;
+﻿using EFositories;
 using Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WildCampingWithMvc.Db.Models;
 
 namespace Services.DataProviders
 {
     public class CampingPlaceDataProvider : ICampingPlaceDataProvider
     {
-        protected readonly ICampingDBRepository repository;
+        protected readonly IWildCampingEFository repository;
         protected readonly Func<IUnitOfWork> unitOfWork;
 
-        public CampingPlaceDataProvider(ICampingDBRepository repository, Func<IUnitOfWork> unitOfWork)
+        public CampingPlaceDataProvider(IWildCampingEFository repository, Func<IUnitOfWork> unitOfWork)
         {
             if (repository == null)
             {
-                throw new ArgumentNullException("CampingDBRepository");
+                throw new ArgumentNullException("WildCampingEFository");
             }
             if (unitOfWork == null)
             {
@@ -33,7 +34,7 @@ namespace Services.DataProviders
                 return null;
             }
 
-            IGenericRepository<CampingDB.Models.CampingPlace> capmingPlaceRepository =
+            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
                 this.repository.GetCampingPlaceRepository();
             var places = new List<ICampingPlace>();
             var dbPlaces = capmingPlaceRepository.GetAll(p => (!p.IsDeleted) && (p.AddedBy.UserName == userName));
@@ -52,11 +53,11 @@ namespace Services.DataProviders
                 return null;
             }
 
-            IGenericRepository<CampingDB.Models.CampingPlace> capmingPlaceRepository =
+            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
                 this.repository.GetCampingPlaceRepository();
             var places = new List<ICampingPlace>();
             var dbPlaces = capmingPlaceRepository.GetAll(p => (!p.IsDeleted) &&
-            (p.SiteCategories.FirstOrDefault(s => s.Name == categoryName) != null));
+            (p.DbSiteCategories.FirstOrDefault(s => s.Name == categoryName) != null));
             foreach (var p in dbPlaces)
             {
                 places.Add(ConvertToPlace(p));
@@ -93,7 +94,7 @@ namespace Services.DataProviders
                 throw new ArgumentException("CampingPlace ImageFiles Names vs Data");
             }
 
-            IGenericRepository<CampingDB.Models.CampingPlace> capmingPlaceRepository =
+            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
                 this.repository.GetCampingPlaceRepository();
             ICampingPlace newCampingPlace = new CampingPlace();
             newCampingPlace.Name = name;
@@ -106,8 +107,8 @@ namespace Services.DataProviders
 
             using (var uw = this.unitOfWork())
             {
-                CampingDB.Models.CampingPlace dbCampingPlace = ConvertFromPlace(newCampingPlace);
-                dbCampingPlace.ImageFiles = GetImageFiles(imageFileNames, imageFilesData);
+                DbCampingPlace dbCampingPlace = ConvertFromPlace(newCampingPlace);
+                dbCampingPlace.DbImageFiles = GetImageFiles(imageFileNames, imageFilesData);
                 capmingPlaceRepository.Add(dbCampingPlace);
                 uw.Commit();
             }
@@ -115,7 +116,7 @@ namespace Services.DataProviders
 
         public void DeleteCampingPlace(Guid id)
         {
-            IGenericRepository<CampingDB.Models.CampingPlace> capmingPlaceRepository =
+            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
                 this.repository.GetCampingPlaceRepository();
             var dbPlace = capmingPlaceRepository.GetById(id);
             if (dbPlace != null)
@@ -130,7 +131,7 @@ namespace Services.DataProviders
 
         public IEnumerable<ICampingPlace> GetCampingPlaceById(Guid id)
         {
-            IGenericRepository<CampingDB.Models.CampingPlace> capmingPlaceRepository =
+            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
                 this.repository.GetCampingPlaceRepository();
             var dbPlace = capmingPlaceRepository.GetById(id);
             if (dbPlace == null || dbPlace.IsDeleted)
@@ -151,7 +152,7 @@ namespace Services.DataProviders
                 return (null);
             }
 
-            IGenericRepository<CampingDB.Models.CampingPlace> capmingPlaceRepository =
+            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
                 this.repository.GetCampingPlaceRepository();
             var places = new List<ICampingPlace>();
             var dbPlaces = capmingPlaceRepository.GetAll(p => !p.IsDeleted, p => p.AddedOn);
@@ -177,7 +178,7 @@ namespace Services.DataProviders
 
         public IEnumerable<ICampingPlace> GetAllCampingPlaces()
         {
-            IGenericRepository<CampingDB.Models.CampingPlace> capmingPlaceRepository =
+            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
                 this.repository.GetCampingPlaceRepository();
             var dbPlaces = capmingPlaceRepository.GetAll(p => !p.IsDeleted);
             if (dbPlaces == null)
@@ -194,17 +195,17 @@ namespace Services.DataProviders
             return places;
         }
 
-        private ICollection<CampingDB.Models.ImageFile> GetImageFiles(IList<string> imageFileNames, IList<byte[]> imageFilesData)
+        private ICollection<DbImageFile> GetImageFiles(IList<string> imageFileNames, IList<byte[]> imageFilesData)
         {
             if (imageFileNames == null || imageFilesData == null)
             {
                 return null;
             }
 
-            ICollection<CampingDB.Models.ImageFile> dbFiles = new List<CampingDB.Models.ImageFile>();
+            ICollection<DbImageFile> dbFiles = new List<DbImageFile>();
             for (int i = 0; i < imageFileNames.Count; i++)
             {
-                CampingDB.Models.ImageFile dbFile = new CampingDB.Models.ImageFile();
+                DbImageFile dbFile = new DbImageFile();
                 dbFile.FileName = imageFileNames[i];
                 dbFile.Data = imageFilesData[i];
 
@@ -214,9 +215,9 @@ namespace Services.DataProviders
             return dbFiles;
         }
 
-        private CampingDB.Models.CampingPlace ConvertFromPlace(ICampingPlace p)
+        private DbCampingPlace ConvertFromPlace(ICampingPlace p)
         {
-            CampingDB.Models.CampingPlace place = new CampingDB.Models.CampingPlace();
+            DbCampingPlace place = new DbCampingPlace();
             place.Name = p.Name;
             place.Description = p.Description;
             place.GoogleMapsUrl = p.GoogleMapsUrl;
@@ -224,21 +225,21 @@ namespace Services.DataProviders
             place.AddedOn = DateTime.Now;
             place.IsDeleted = p.IsDeleted;
 
-            IGenericRepository<CampingDB.Models.CampingUser> campingUserRepository =
+            IGenericEFository<DbCampingUser> campingUserRepository =
                 this.repository.GetCampingUserRepository();
             place.AddedBy = campingUserRepository.GetAll(u => u.UserName == p.AddedBy).FirstOrDefault();
 
-            IGenericRepository<CampingDB.Models.Sightseeing> sightseeingRepository =
+            IGenericEFository<DbSightseeing> sightseeingRepository =
                 this.repository.GetSightseeingRepository();
-            IGenericRepository<CampingDB.Models.SiteCategory> siteCategoryRepository =
+            IGenericEFository<DbSiteCategory> siteCategoryRepository =
                 this.repository.GetSiteCategoryRepository();
-            place.Sightseeings = sightseeingRepository.GetAll(s => p.SightseeingNames.Contains(s.Name)).ToList();
-            place.SiteCategories = siteCategoryRepository.GetAll(s => p.SiteCategoriesNames.Contains(s.Name)).ToList();
+            place.DbSightseeings = sightseeingRepository.GetAll(s => p.SightseeingNames.Contains(s.Name)).ToList();
+            place.DbSiteCategories = siteCategoryRepository.GetAll(s => p.SiteCategoriesNames.Contains(s.Name)).ToList();
 
             return place;
         }
 
-        private ICampingPlace ConvertToPlace(CampingDB.Models.CampingPlace p)
+        private ICampingPlace ConvertToPlace(DbCampingPlace p)
         {
             ICampingPlace place = new CampingPlace();
             place.Name = p.Name;
@@ -252,7 +253,7 @@ namespace Services.DataProviders
 
             List<Guid> sightseeingIds = new List<Guid>();
             List<string> sightseeingNames = new List<string>();
-            foreach (var s in p.Sightseeings)
+            foreach (var s in p.DbSightseeings)
             {
                 sightseeingIds.Add(s.Id);
                 sightseeingNames.Add(s.Name);
@@ -263,7 +264,7 @@ namespace Services.DataProviders
 
             List<Guid> siteCategoriesIds = new List<Guid>();
             List<string> siteCategoriesNames = new List<string>();
-            foreach (var c in p.SiteCategories)
+            foreach (var c in p.DbSiteCategories)
             {
                 siteCategoriesIds.Add(c.Id);
                 siteCategoriesNames.Add(c.Name);
@@ -275,12 +276,12 @@ namespace Services.DataProviders
             List<string> imgFileNames = new List<string>();
             List<byte[]> imgFilesData = new List<byte[]>();
             var imgRepository = repository.GetImageFileRepository();
-            var dbImages = imgRepository.GetAll(img => img.CampingPlaceId == p.Id);
+            var dbImages = imgRepository.GetAll(img => img.DbCampingPlaceId == p.Id);
             List<IImageFile> imageFiles = new List<IImageFile>();
             foreach (var dbImg in dbImages)
             {
                 IImageFile img = new ImageFile();
-                img.CampingPlaceId = dbImg.CampingPlaceId;
+                img.CampingPlaceId = dbImg.DbCampingPlaceId;
                 img.Data = dbImg.Data;
                 img.FileName = dbImg.FileName;
                 imageFiles.Add(img);

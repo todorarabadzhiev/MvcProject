@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CampingDB")]
+[assembly: AssemblyTitle("WildCampingWithMvc.Db")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CampingDB")]
+[assembly: AssemblyProduct("WildCampingWithMvc.Db")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("706bf628-6205-4bc2-bf0d-fc67d94e81f1")]
+[assembly: Guid("1cb889e6-5a5b-4e9f-8f05-ed720857b875")]
 
 // Version information for an assembly consists of the following four values:
 //

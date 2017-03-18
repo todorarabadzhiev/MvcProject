@@ -1,17 +1,38 @@
-﻿using System;
+﻿using Ninject;
+using Services.DataProviders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WildCampingWithMvc.Models.Home;
 
 namespace WildCampingWithMvc.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private const int CountOfLastPlaces = 6;
+        private readonly ICampingPlaceDataProvider campPlaceDataProvider;
+
+
+        public HomeController(ICampingPlaceDataProvider campPlaceDataProvider)
         {
-            return View();
+            this.campPlaceDataProvider = campPlaceDataProvider;
         }
+
+        public ActionResult Index(IndexViewModel model)
+        {
+            var places = this.campPlaceDataProvider.GetLatestCampingPlaces(CountOfLastPlaces);
+
+            model.LastCampingPlaces = places;
+
+            return View(model);
+        }
+
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
 
         public ActionResult About()
         {

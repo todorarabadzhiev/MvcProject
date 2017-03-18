@@ -21,9 +21,7 @@ C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWith
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\System.Web.Mvc.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.Owin.Security.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Owin.dll
-C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.Owin.Security.Cookies.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\EntityFramework.dll
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
@@ -39,8 +37,6 @@ C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWith
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\System.Web.Mvc.xml
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.Owin.Security.xml
-C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\EntityFramework.xml
 C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
@@ -102,3 +98,16 @@ C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.Integration
 C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.IntegrationTests\obj\Debug\WildCampingWithMvc.IntegrationTests.csprojResolveAssemblyReference.cache
 C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.IntegrationTests\obj\Debug\WildCampingWithMvc.IntegrationTests.dll
 C:\Users\Todor\Documents\Telerik\temp\Mvc\project\WildCampingWithMvc.IntegrationTests\obj\Debug\WildCampingWithMvc.IntegrationTests.pdb
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Auth.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Auth.pdb
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Services.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\EFositories.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\WildCampingWithMvc.Db.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Services.pdb
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\EFositories.pdb
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\WildCampingWithMvc.Db.pdb
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\WebActivatorEx.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Ninject.Web.Common.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Ninject.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Ninject.Web.Common.xml
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\WildCampingWithMvc.IntegrationTests\bin\Debug\Ninject.xml

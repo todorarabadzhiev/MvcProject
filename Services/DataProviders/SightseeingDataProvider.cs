@@ -1,20 +1,21 @@
-﻿using Repositories;
+﻿using EFositories;
 using Services.Models;
 using System;
 using System.Collections.Generic;
+using WildCampingWithMvc.Db.Models;
 
 namespace Services.DataProviders
 {
     public class SightseeingDataProvider : ISightseeingDataProvider
     {
-        protected readonly ICampingDBRepository repository;
+        protected readonly IWildCampingEFository repository;
         protected readonly Func<IUnitOfWork> unitOfWork;
 
-        public SightseeingDataProvider(ICampingDBRepository repository, Func<IUnitOfWork> unitOfWork)
+        public SightseeingDataProvider(IWildCampingEFository repository, Func<IUnitOfWork> unitOfWork)
         {
             if (repository == null)
             {
-                throw new ArgumentNullException("CampingDBRepository");
+                throw new ArgumentNullException("WildCampingEFository");
             }
             if (unitOfWork == null)
             {
@@ -27,7 +28,7 @@ namespace Services.DataProviders
 
         public IEnumerable<ISightseeing> GetAllSightseeings()
         {
-            IGenericRepository<CampingDB.Models.Sightseeing> sightseeingRepository =
+            IGenericEFository<DbSightseeing> sightseeingRepository =
                 this.repository.GetSightseeingRepository();
             var dbSightseeings = sightseeingRepository.GetAll();
             if (dbSightseeings == null)
@@ -44,7 +45,7 @@ namespace Services.DataProviders
             return sightseeings;
         }
 
-        private ISightseeing ConvertToSightseeeing(CampingDB.Models.Sightseeing s)
+        private ISightseeing ConvertToSightseeeing(DbSightseeing s)
         {
             ISightseeing sightseeing = new Sightseeing();
             sightseeing.Name = s.Name;

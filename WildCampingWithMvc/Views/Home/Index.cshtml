@@ -1,4 +1,6 @@
-﻿@{
+﻿@using WildCampingWithMvc.Utilities
+@model WildCampingWithMvc.Models.Home.IndexViewModel
+@{
     ViewBag.Title = "Начало";
 }
 
@@ -12,11 +14,15 @@
 
 <div>
     <h2 class="text-center">Последни споделени местенца</h2>
-    @for (int i = 0; i < 6; i++)
+
+    @foreach (var m in Model.LastCampingPlaces)
     {
+        string imgSource = Utilities.ConvertToImage(m.ImageFiles[0].Data);
+        string url = string.Format("user/campingplacedetails?id={0}", m.Id);
+
         <div class="col-md-4 text-center">
-            <img src='https://media-cdn.tripadvisor.com/media/photo-s/05/a2/f0/c3/apolonia-palace.jpg' width=200 /><br />
-            <a href='#'>Name</a>
+            <img src='@imgSource' width=200 /><br />
+            <a href=@url>@m.Name</a>
         </div>
     }
 </div>

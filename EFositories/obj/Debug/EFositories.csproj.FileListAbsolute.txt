@@ -1,0 +1,12 @@
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\bin\Debug\EFositories.dll.config
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\bin\Debug\EFositories.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\bin\Debug\EFositories.pdb
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\bin\Debug\EntityFramework.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\bin\Debug\WildCampingWithMvc.Db.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\bin\Debug\WildCampingWithMvc.Db.pdb
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\bin\Debug\EntityFramework.xml
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\obj\Debug\EFositories.csprojResolveAssemblyReference.cache
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\obj\Debug\EFositories.dll
+C:\Users\Todor\Documents\Visual Studio 2015\Projects\MVC\project\WildCampingWithMvc\EFositories\obj\Debug\EFositories.pdb

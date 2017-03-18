@@ -1,20 +1,21 @@
-﻿using Repositories;
+﻿using EFositories;
 using Services.Models;
 using System;
 using System.Collections.Generic;
+using WildCampingWithMvc.Db.Models;
 
 namespace Services.DataProviders
 {
     public class CampingUserDataProvider : ICampingUserDataProvider
     {
-        protected readonly ICampingDBRepository repository;
+        protected readonly IWildCampingEFository repository;
         protected readonly Func<IUnitOfWork> unitOfWork;
 
-        public CampingUserDataProvider(ICampingDBRepository repository, Func<IUnitOfWork> unitOfWork)
+        public CampingUserDataProvider(IWildCampingEFository repository, Func<IUnitOfWork> unitOfWork)
         {
             if (repository == null)
             {
-                throw new ArgumentNullException("CampingDBRepository");
+                throw new ArgumentNullException("WildCampingEFository");
             }
             if (unitOfWork == null)
             {
@@ -48,7 +49,7 @@ namespace Services.DataProviders
                 throw new ArgumentNullException("ApplicationUserId");
             }
 
-            IGenericRepository<CampingDB.Models.CampingUser> capmingUserRepository =
+            IGenericEFository<DbCampingUser> capmingUserRepository =
                 this.repository.GetCampingUserRepository();
             ICampingUser newCampingUser = new CampingUser();
             newCampingUser.ApplicationUserId = appUserId;
@@ -58,7 +59,7 @@ namespace Services.DataProviders
 
             using (var uw = this.unitOfWork())
             {
-                CampingDB.Models.CampingUser dbCampingUser = ConvertFromUser(newCampingUser);
+                DbCampingUser dbCampingUser = ConvertFromUser(newCampingUser);
                 capmingUserRepository.Add(dbCampingUser);
                 uw.Commit();
             }
@@ -66,7 +67,7 @@ namespace Services.DataProviders
 
         public IEnumerable<ICampingUser> GetAllCampingUsers()
         {
-            IGenericRepository<CampingDB.Models.CampingUser> capmingUserRepository =
+            IGenericEFository<DbCampingUser> capmingUserRepository =
                 this.repository.GetCampingUserRepository();
             var dbUsers = capmingUserRepository.GetAll();
             if (dbUsers == null)
@@ -84,7 +85,7 @@ namespace Services.DataProviders
             return users;
         }
 
-        private ICampingUser ConvertToUser(CampingDB.Models.CampingUser dbUser)
+        private ICampingUser ConvertToUser(DbCampingUser dbUser)
         {
             ICampingUser user = new CampingUser();
             user.ApplicationUserId = dbUser.ApplicationUserId;
@@ -99,9 +100,9 @@ namespace Services.DataProviders
             return user;
         }
 
-        private CampingDB.Models.CampingUser ConvertFromUser(ICampingUser campUser)
+        private DbCampingUser ConvertFromUser(ICampingUser campUser)
         {
-            CampingDB.Models.CampingUser user = new CampingDB.Models.CampingUser();
+            DbCampingUser user = new DbCampingUser();
             user.ApplicationUserId = campUser.ApplicationUserId;
             user.FirstName = campUser.FirstName;
             user.LastName = campUser.LastName;
