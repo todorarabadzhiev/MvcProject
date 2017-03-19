@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace WildCampingWithMvc.Utilities
+namespace CommonUtilities.Utilities
 {
     public static class Utilities
     {
+        public const string DbConnectionName = "DefaultConnection";
         public static string ConvertToImage(byte[] fileData)
         {
             if (fileData == null)

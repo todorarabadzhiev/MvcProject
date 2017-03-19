@@ -93,6 +93,10 @@
       <Project>{8ECBDE3B-6D73-4FA1-BB4E-C7E57551B952}</Project>
       <Name>Auth</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CommonUtilities\CommonUtilities.csproj">
+      <Project>{19AB8972-33E5-437F-88B2-48EA4730595F}</Project>
+      <Name>CommonUtilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using CommonUtilities.Utilities;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using WildCampingWithMvc.Db.Models;
 
@@ -7,7 +8,7 @@ namespace WildCampingWithMvc.Db
     public class WildCampingWithMvcDbContext : DbContext
     {
         public WildCampingWithMvcDbContext()
-            : base("DefaultConnection")
+            : base(Utilities.DbConnectionName)
         {
         }
 

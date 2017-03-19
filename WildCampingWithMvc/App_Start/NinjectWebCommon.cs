@@ -1,19 +1,15 @@
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject;
+using Ninject.Web.Common;
+using WildCampingWithMvc.App_Start.NinjectModules;
+using System;
+using System.Web;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WildCampingWithMvc.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WildCampingWithMvc.App_Start.NinjectWebCommon), "Stop")]
 
 namespace WildCampingWithMvc.App_Start
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
-    using NinjectModules;
-    using Ninject.Extensions.Conventions;
-    using System.IO;
-    using System.Reflection;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -70,7 +66,7 @@ namespace WildCampingWithMvc.App_Start
             //    .SelectAllClasses()
             //    .BindDefaultInterfaces());
 
-            kernel.Load(new CampingNinjectModule());
+            kernel.Load(new ServicesNinjectModule());
             kernel.Load(new DBNinjectModule());
         }        
     }

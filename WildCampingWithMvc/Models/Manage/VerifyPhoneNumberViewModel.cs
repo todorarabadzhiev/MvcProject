@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WildCampingWithMvc.Utilities;
+using CommonUtilities.Utilities;
 
 namespace WildCampingWithMvc.Models.Manage
 {

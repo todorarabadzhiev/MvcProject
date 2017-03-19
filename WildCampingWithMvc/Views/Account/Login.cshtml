@@ -1,7 +1,7 @@
 ﻿@using WildCampingWithMvc.Models.Account
 @model LoginViewModel
 @{
-    ViewBag.Title = "Влез";
+    ViewBag.Title = Messages.TextEnter;
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("Регистрирай се като нов потребител", "Register")
+                    @Html.ActionLink(Messages.TextRegisterAsNewUser, "Register")
                 </p>
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
