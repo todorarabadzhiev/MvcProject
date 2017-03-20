@@ -1,11 +1,12 @@
-﻿@model WildCampingWithMvc.Models.CampingPlace.AddCampingPlaceViewModel
+﻿@using Services.Models
+@model WildCampingWithMvc.Models.CampingPlace.AddCampingPlaceViewModel
 @{
     ViewBag.Title = Messages.TextAddCampingPlace;
 }
 
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("AddCampingPlace", "CampingPlace", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <h4>Добави местенце</h4>
@@ -35,11 +36,62 @@
             @Html.CheckBoxFor(m => m.HasWater, new { @class = "form-control" })
         </div>
     </div>
+
     <div class="form-group">
-        @Html.LabelFor(m => m.AddedBy, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.AddedBy, new { @class = "form-control" })
-        </div>
+        <h3>Категории</h3>
+        @*@for (int i = 0; i < this.ViewBag.AllSiteCategories.Count(); i++)
+            {
+                string categoryName = this.ViewBag.AllSiteCategories[i].Name;
+                @Html.LabelFor(m => m.SiteCategoryNames.Contains(categoryName), categoryName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.CheckBoxFor(m => m.SiteCategoryNames.Contains(categoryName), new { @class = "form-control" })
+                </div>
+            }*@
+        @foreach (var category in (IList<ISiteCategory>)this.Cache["AllSiteCategories"])
+        {
+            <span>
+                <label for="@category.Name" class="col-md-2 control-label">@category.Name</label>
+                @*<div class="col-md-10">
+                        <input type="checkbox" class="form-control" name="SiteCategoryNames" value="@category.Name"
+                                   checked='@(Model != null && Model.SiteCategoryNames != null && Model.SiteCategoryNames.ToList().Contains(category.Name) ? "checked" : "")' />
+                    </div>*@
+                <div class="col-md-10">
+                    @if (Model != null && Model.SiteCategoryNames != null && Model.SiteCategoryNames.ToList().Contains(category.Name))
+                    {
+                        <input type="checkbox" class="form-control" name="SiteCategoryNames" value="@category.Name"
+                               checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" class="form-control" name="SiteCategoryNames" value="@category.Name" />
+                    }
+                </div>
+            </span>
+        }
+    </div>
+    <div class="form-group">
+        <h3>Забележителности</h3>
+        @foreach (var sightseeing in (IList<ISightseeing>)this.Cache["AllSightseeings"])
+        {
+            <span>
+                <label for="@sightseeing.Name" class="col-md-2 control-label">@sightseeing.Name</label>
+                <div class="col-md-10">
+                    @if (Model != null && Model.SightseeingNames != null && Model.SightseeingNames.ToList().Contains(sightseeing.Name))
+                    {
+                        <input type="checkbox" class="form-control" name="SightseeingNames" value="@sightseeing.Name"
+                               checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" class="form-control" name="SightseeingNames" value="@sightseeing.Name" />
+                    }
+                </div>
+            </span>
+        }
+    </div>
+    <div class="form-group">
+        <input type="file" id="fileUpload" multiple />
+        <div id="image-holder"></div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -50,4 +102,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/custom-js-functions.js")
 }

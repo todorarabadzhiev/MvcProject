@@ -30,11 +30,20 @@
         public const string TextAddCampingPlace = "Добавяне на местенце";
         public const string TextDoNotRememberPassword = "Не си спомняте паролата?";
         public const string TextFailedLogIn = "Неуспешно влизане!";
+        public const string TextPlaceName = "Име на местенцето";
+        public const string TextAddedBy = "Добавено от {0}";
+        public const string TextDescription = "Кратко описание";
+        public const string TextAddImages = "Добави изображения";
+        public const string TextHasWater = "Има питейна вода";
+
 
         // Warnings
-        public const string WarnPasswordLength = "{0}та трябва да съдържа поне {2} символа.";
-        public const string WarnPasswordsDoNotMatch = "Двете пароли не съвпадат.";
+        public const string WarnPasswordLength = "{0}та трябва да съдържа поне {1} символа!";
+        public const string WarnPasswordsDoNotMatch = "Двете пароли не съвпадат!";
 
-        // Messages
+        // Errors
+        public const string ErrNameLength_2 = "Името трябва да съдържа поне 2 символа!";
+        public const string ErrNameIsRequired = "Името е задължително!";
+        public const string ErrAtLeasOneImageRequired = "Задължително е качването на поне едно изображение!";
     }
 }

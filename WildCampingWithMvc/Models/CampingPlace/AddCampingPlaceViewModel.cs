@@ -1,17 +1,30 @@
-﻿using System.Collections.Generic;
+﻿using CommonUtilities.Utilities;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace WildCampingWithMvc.Models.CampingPlace
 {
     public class AddCampingPlaceViewModel
     {
+        [Required(ErrorMessage = Messages.ErrNameIsRequired)]
+        [MinLength(2, ErrorMessage = Messages.ErrNameLength_2)]
+        [DisplayName(Messages.TextPlaceName)]
         public string Name { get; set; }
-        public string AddedBy { get; set; }
+
+        [DisplayName(Messages.TextDescription)]
         public string Description { get; set; }
         public string GoogleMapsUrl { get; set; }
+
+        [DisplayName(Messages.TextHasWater)]
         public bool HasWater { get; set; }
-        public IEnumerable<string> SightseeingNames { get; set; }
-        public IEnumerable<string> SiteCategoryNames { get; set; }
+        public IList<string> SightseeingNames { get; set; }
+        public IList<string> SiteCategoryNames { get; set; }
+
+        [Required(ErrorMessage = Messages.ErrAtLeasOneImageRequired)]
         public IList<string> ImageFileNames { get; set; }
-        public IList<byte[]> ImageFilesData { get; set; }
+
+        public IList<string> ImageFilesData { get; set; }
     }
 }
