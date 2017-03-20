@@ -18,11 +18,11 @@
     @foreach (var m in Model.LastCampingPlaces)
     {
         string imgSource = Utilities.ConvertToImage(m.ImageFiles[0].Data);
-        string url = string.Format("user/campingplacedetails?id={0}", m.Id);
+        string url = string.Format("campingplace/campingplacedetails/{0}", m.Id);
 
         <div class="col-md-4 text-center">
-            <img src='@imgSource' width=200 /><br />
-            <a href=@url>@m.Name</a>
+            <img src='@imgSource' class="image-200px" /><br />
+            <a href='@url'>@m.Name</a>
         </div>
     }
 </div>

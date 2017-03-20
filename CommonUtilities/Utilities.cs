@@ -17,5 +17,25 @@ namespace CommonUtilities.Utilities
 
             return imgSource;
         }
+
+        public static byte[] ConvertFromImage(string strData)
+        {
+            if (string.IsNullOrWhiteSpace(strData))
+            {
+                throw new ArgumentNullException("Base64String");
+            }
+
+            string strBase64 = "base64,";
+            string strItem = strData.Substring(strData.IndexOf(strBase64) + strBase64.Length);
+            try
+            {
+                byte[] imageData = Convert.FromBase64String(strItem);
+                return imageData;
+            }
+            catch (FormatException)
+            {
+                throw new FormatException("Base64String");
+            }
+        }
     }
 }

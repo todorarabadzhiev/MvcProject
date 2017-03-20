@@ -25,6 +25,7 @@ namespace Services.DataProviders
             this.repository = repository;
             this.unitOfWork = unitOfWork;
         }
+
         public IEnumerable<ISiteCategory> GetAllSiteCategories()
         {
             IGenericEFository<DbSiteCategory> siteCategoryRepository =
@@ -42,6 +43,21 @@ namespace Services.DataProviders
             }
 
             return categories;
+        }
+
+        public ISiteCategory GetSiteCategoryById(Guid id)
+        {
+            IGenericEFository<DbSiteCategory> siteCategoryRepository =
+                this.repository.GetSiteCategoryRepository();
+            DbSiteCategory dbCategory = siteCategoryRepository.GetById(id);
+            if (dbCategory == null)
+            {
+                return null;
+            }
+
+            ISiteCategory category = ConvertToSiteCategory(dbCategory);
+
+            return category;
         }
 
         private ISiteCategory ConvertToSiteCategory(DbSiteCategory c)

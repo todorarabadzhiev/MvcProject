@@ -7,6 +7,7 @@
         public const string TextHello = "Здрасти, ";
         public const string TextPassword = "Парола";
         public const string TextAdd = "Добави";
+        public const string TextEdit = "Редактирай";
         public const string TextEnter = "Влез";
         public const string TextLogOff = "Излез";
         public const string TextNewPassword = "Нова парола";
@@ -28,6 +29,7 @@
         public const string TextRememberMe = "Запомни ме?";
         public const string TextRememberBrowser = "Да запомня ли този браузър?";
         public const string TextAddCampingPlace = "Добавяне на местенце";
+        public const string TextEditCampingPlace = "Редактиране на местенце";
         public const string TextDoNotRememberPassword = "Не си спомняте паролата?";
         public const string TextFailedLogIn = "Неуспешно влизане!";
         public const string TextPlaceName = "Име на местенцето";
@@ -36,6 +38,7 @@
         public const string TextAddImages = "Добави изображения";
         public const string TextHasWater = "Има питейна вода";
         public const string TextGoogleMapsUrl = "Връзка към положение в Google maps"; 
+        public const string TextCampingPlaceDetails = "Подробна информация за \"{0}\""; 
 
 
         // Warnings

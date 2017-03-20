@@ -30,3 +30,25 @@ textarea {
     /*position: relative;*/
     padding: 5px;
 }
+
+.image-200px {
+    width: 200px;
+}
+
+.image-300px {
+    width: 300px;
+}
+
+.image-400px {
+    width: 400px;
+}
+
+.my-strong {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.my-red {
+    color: red;
+    text-decoration-line: underline;
+}

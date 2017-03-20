@@ -255,6 +255,7 @@
     <Compile Include="Models\Account\SendCodeViewModel.cs" />
     <Compile Include="Models\Account\VerifyCodeViewModel.cs" />
     <Compile Include="Models\CampingPlace\AddCampingPlaceViewModel.cs" />
+    <Compile Include="Models\CampingPlace\CampingPlaceDetailsViewModel.cs" />
     <Compile Include="Models\Home\IndexViewModel.cs" />
     <Compile Include="Models\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="Models\Manage\ChangePasswordViewModel.cs" />
@@ -331,6 +332,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\CampingPlace\AddCampingPlace.cshtml" />
+    <Content Include="Views\CampingPlace\EditCampingPlace.cshtml" />
+    <Content Include="Views\CampingPlace\CampingPlaceDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

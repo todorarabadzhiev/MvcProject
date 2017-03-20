@@ -45,6 +45,21 @@ namespace Services.DataProviders
             return sightseeings;
         }
 
+        public ISightseeing GetSightseeingById(Guid id)
+        {
+            IGenericEFository<DbSightseeing> sightseeingRepository =
+                this.repository.GetSightseeingRepository();
+            DbSightseeing dbSightseeing = sightseeingRepository.GetById(id);
+            if (dbSightseeing == null)
+            {
+                return null;
+            }
+
+            ISightseeing sightseeing = ConvertToSightseeeing(dbSightseeing);
+
+            return sightseeing;
+        }
+
         private ISightseeing ConvertToSightseeeing(DbSightseeing s)
         {
             ISightseeing sightseeing = new Sightseeing();

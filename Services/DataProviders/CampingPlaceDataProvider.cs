@@ -259,7 +259,7 @@ namespace Services.DataProviders
                 sightseeingNames.Add(s.Name);
             }
 
-            place.SiteCategoriesIds = sightseeingIds;
+            place.SightseeingIds = sightseeingIds;
             place.SightseeingNames = sightseeingNames;
 
             List<Guid> siteCategoriesIds = new List<Guid>();
