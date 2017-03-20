@@ -4,11 +4,7 @@
         var countFiles = $(this)[0].files.length;
         var entireUrl = $(this)[0].value;
         var extn = entireUrl.substring(entireUrl.lastIndexOf('.') + 1).toLowerCase();
-        var firstFileUrl = entireUrl.substring(0, entireUrl.indexOf(','));
-        var path = firstFileUrl.substring(0, firstFileUrl.lastIndexOf('\\') + 1);
-
         var image_holder = $("#image-holder");
-        var file_upload = $("#fileUpload");
 
         if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
             if (typeof (FileReader) != "undefined") {
@@ -39,7 +35,7 @@
 
                         $("<a>", {
                             "href": "#",
-                            "class": "btn btn-default",
+                            "class": "btn btn-small",
                             "text": "Изтрий"
                         }).on("click", function () {
 

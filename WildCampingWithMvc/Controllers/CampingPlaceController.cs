@@ -76,6 +76,7 @@ namespace WildCampingWithMvc.Controllers
 
         private void AddCampPlace(AddCampingPlaceViewModel model)
         {
+            // convert image data
             string bas = "base64,";
             IList<string> imageFileNames = model.ImageFileNames;
             IList<byte[]> imageFilesData = new List<byte[]>();

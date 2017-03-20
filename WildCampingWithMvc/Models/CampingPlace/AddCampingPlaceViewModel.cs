@@ -15,6 +15,8 @@ namespace WildCampingWithMvc.Models.CampingPlace
 
         [DisplayName(Messages.TextDescription)]
         public string Description { get; set; }
+
+        [DisplayName(Messages.TextGoogleMapsUrl)]
         public string GoogleMapsUrl { get; set; }
 
         [DisplayName(Messages.TextHasWater)]

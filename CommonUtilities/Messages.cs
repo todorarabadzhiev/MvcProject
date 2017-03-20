@@ -35,6 +35,7 @@
         public const string TextDescription = "Кратко описание";
         public const string TextAddImages = "Добави изображения";
         public const string TextHasWater = "Има питейна вода";
+        public const string TextGoogleMapsUrl = "Връзка към положение в Google maps"; 
 
 
         // Warnings
