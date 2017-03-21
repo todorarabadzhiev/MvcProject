@@ -29,11 +29,6 @@ namespace WildCampingWithMvc.Controllers
             return View(model);
         }
 
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

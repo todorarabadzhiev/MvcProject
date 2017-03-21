@@ -6,6 +6,7 @@ namespace WildCampingWithMvc.Models.CampingPlace
 {
     public class CampingPlaceDetailsViewModel
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string AddedBy { get; set; }
         public DateTime AddedOn { get; set; }

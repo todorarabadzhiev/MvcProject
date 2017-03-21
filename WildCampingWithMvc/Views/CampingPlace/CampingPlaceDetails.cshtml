@@ -27,14 +27,14 @@
     <h3>Категории</h3>
     @foreach (var category in Model.SiteCategories)
     {
-        <a href="@category.Id">[@category.Name]</a>
+        <a href="@Url.Action("SiteCategoryDetails", "SiteCategory", new { id = category.Id })">[@category.Name]</a>
     }
 </div>
 <div class="row text-center">
     <h3>Забележителности</h3>
     @foreach (var sightseeing in Model.Sightseeings)
     {
-        <a href="@sightseeing.Id">[@sightseeing.Name]</a>
+        <a href="@Url.Action("SightseeingDetails", "Sightseeing", new { id = sightseeing.Id })">[@sightseeing.Name]</a>
     }
 </div>
 <div class="row text-center">
@@ -50,8 +50,8 @@
     }
 </div>
 <div class="row text-center">
-    <a class="btn btn-default" href="#">Редактирай</a>
-    <a class="btn btn-default" href="#">Изтрий</a>
+    <a class="btn btn-warning" href="@Url.Action("EditCampingPlace", "CampingPlace", new { id = Model.Id })">Редактирай</a>
+    <a class="btn btn-danger" href="@Url.Action("DeleteCampingPlace", "CampingPlace", new { id = Model.Id })">Изтрий</a>
 </div>
 
 @section Scripts {

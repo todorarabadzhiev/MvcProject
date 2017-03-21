@@ -1,4 +1,8 @@
-﻿$(document).ready(function () {
+﻿function OnDeleteClick(elem) {
+    $(elem).closest("div").remove()
+}
+
+$(document).ready(function () {
     $("#fileUpload").on("change", function () {
         //Get count of selected files
         var countFiles = $(this)[0].files.length;
@@ -30,15 +34,15 @@
 
                         $("<img />", {
                             "src": e.target.result,
-                            "class": "thumb-image"
+                            "class": "thumb-image",
+                            "alt": e.target.fileName
                         }).appendTo(imgDiv);
 
                         $("<a>", {
                             "href": "#",
-                            "class": "btn btn-small",
+                            "class": "btn btn-sm",
                             "text": "Изтрий"
                         }).on("click", function () {
-
                             $(this).closest("div").remove();
                         }).appendTo(imgDiv);
 

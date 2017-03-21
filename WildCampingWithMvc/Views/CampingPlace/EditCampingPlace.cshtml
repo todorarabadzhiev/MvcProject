@@ -36,7 +36,7 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
                 <div class="col-md-10">
-                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows="5" })
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = "5" })
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
             <h3 class="text-center">Категории</h3>
             @foreach (var category in (IList<ISiteCategory>)this.Cache["AllSiteCategories"])
             {
-                <span class="row">
+                <div class="row">
                     <label for="@category.Name" class="col-md-6 control-label">@category.Name</label>
                     <div class="col-md-6">
                         @if (Model != null && Model.SiteCategoryNames != null && Model.SiteCategoryNames.ToList().Contains(category.Name))
@@ -59,14 +59,14 @@
                             <input type="checkbox" class="form-control" name="SiteCategoryNames" value="@category.Name" />
                         }
                     </div>
-                </span>
+                </div>
             }
         </div>
         <div class="form-group-sm col-md-6">
             <h3 class="text-center">Забележителности</h3>
             @foreach (var sightseeing in (IList<ISightseeing>)this.Cache["AllSightseeings"])
             {
-                <span class="row">
+                <div class="row">
                     <label for="@sightseeing.Name" class="col-md-6 control-label">@sightseeing.Name</label>
                     <div class="col-md-6">
                         @if (Model != null && Model.SightseeingNames != null && Model.SightseeingNames.ToList().Contains(sightseeing.Name))
@@ -79,14 +79,26 @@
                             <input type="checkbox" class="form-control" name="SightseeingNames" value="@sightseeing.Name" />
                         }
                     </div>
-                </span>
+                </div>
             }
         </div>
     </div>
     <div class="form-group-lg">
-        <h3 class="text-center">Изберете изображения за местенцето</h3>
+        <h3 class="text-center">Изображения за местенцето</h3>
         <input class="form-control" type="file" id="fileUpload" multiple />
-        <div id="image-holder"></div>
+        <div id="image-holder">
+            @for (int i = 0; i < Model.ImageFileNames.Count; i++)
+            {
+                string imageName = Model.ImageFileNames[i];
+                string imageData = Model.ImageFilesData[i];
+                <div class="col-md-3 text-center">
+                    <input type="hidden" name="ImageFileNames" value=@imageName />
+                    <input type="hidden" name="ImageFilesData" value=@imageData />
+                    <img class="thumb-image" src=@imageData alt=@imageName />
+                    <a href="#" class="btn btn-sm" onclick="OnDeleteClick(this)">Изтрий</a>
+                </div>
+            }
+        </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-4 col-md-4">
@@ -95,7 +107,7 @@
     </div>
     }
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-        @Scripts.Render("~/Scripts/custom-js-functions.js")
-    }
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/Custom/custom-js-functions.js")
+}

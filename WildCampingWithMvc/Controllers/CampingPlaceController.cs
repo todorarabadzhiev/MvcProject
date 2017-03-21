@@ -47,8 +47,7 @@ namespace WildCampingWithMvc.Controllers
 
         public ActionResult CampingPlaceDetails(CampingPlaceDetailsViewModel model, Guid id)
         {
-            ICampingPlace cpModel = this.campingPlaceProvider.GetCampingPlaceById(id).First();
-            model = this.ConvertFromICampingPlace(cpModel);
+            model = this.ConvertToDetailsFromICampingPlace(id);
             
             return this.View(model);
         }
@@ -82,6 +81,7 @@ namespace WildCampingWithMvc.Controllers
         public ActionResult EditCampingPlace(AddCampingPlaceViewModel model, Guid id)
         {
             this.CacheSiteCategoriesAndSightseeings();
+            model = this.ConvertToAddFromICampingPlace(id);
 
             return this.View(model);
         }
@@ -108,8 +108,54 @@ namespace WildCampingWithMvc.Controllers
         }
 
 
-        private CampingPlaceDetailsViewModel ConvertFromICampingPlace(ICampingPlace cpModel)
+        private AddCampingPlaceViewModel ConvertToAddFromICampingPlace(Guid id)
         {
+            ICampingPlace cpModel = this.campingPlaceProvider.GetCampingPlaceById(id).First();
+            AddCampingPlaceViewModel viewModel = new AddCampingPlaceViewModel();
+
+            viewModel.Description = cpModel.Description;
+            viewModel.GoogleMapsUrl = cpModel.GoogleMapsUrl;
+            viewModel.HasWater = cpModel.HasWater;
+            viewModel.Name = cpModel.Name;
+
+            IList<string> sightseeingNames = new List<string>();
+            foreach (var sightseeingId in cpModel.SightseeingIds)
+            {
+                ISightseeing sightseeing = this.sightseeingProvider.GetSightseeingById(sightseeingId);
+                sightseeingNames.Add(sightseeing.Name);
+            }
+
+            viewModel.SightseeingNames = sightseeingNames;
+
+            IList<string> siteCategoryNames = new List<string>();
+            foreach (var siteCategoryId in cpModel.SiteCategoriesIds)
+            {
+                ISiteCategory siteCategory = this.siteCategoryProvider.GetSiteCategoryById(siteCategoryId);
+                siteCategoryNames.Add(siteCategory.Name);
+            }
+
+            viewModel.SiteCategoryNames = siteCategoryNames;
+
+            IList<string> imageFileNames = new List<string>();
+            IList<string> imageFilesData = new List<string>();
+            foreach (var image in cpModel.ImageFiles)
+            {
+                string imageFileName = image.FileName;
+                imageFileNames.Add(imageFileName);
+
+                byte[] imageFileData = image.Data;
+                imageFilesData.Add(Utilities.ConvertToImage(imageFileData));
+            }
+
+            viewModel.ImageFileNames = imageFileNames;
+            viewModel.ImageFilesData = imageFilesData;
+
+            return viewModel;
+        }
+
+        private CampingPlaceDetailsViewModel ConvertToDetailsFromICampingPlace(Guid id)
+        {
+            ICampingPlace cpModel = this.campingPlaceProvider.GetCampingPlaceById(id).First();
             CampingPlaceDetailsViewModel viewModel = new CampingPlaceDetailsViewModel();
 
             viewModel.AddedBy = cpModel.AddedBy;
@@ -118,6 +164,7 @@ namespace WildCampingWithMvc.Controllers
             viewModel.GoogleMapsUrl = cpModel.GoogleMapsUrl;
             viewModel.HasWater = cpModel.HasWater;
             viewModel.Name = cpModel.Name;
+            viewModel.Id = cpModel.Id;
 
             IList<ISightseeing> sightseeings = new List<ISightseeing>();
             foreach (var sightseeingId in cpModel.SightseeingIds)
