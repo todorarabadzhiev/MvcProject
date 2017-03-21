@@ -89,8 +89,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mocked\CampingPlaceDataProviderMock.cs" />
+    <Compile Include="Mocked\CampingUserDataProviderMock.cs" />
+    <Compile Include="Mocked\SightseeingDataProviderMock.cs" />
+    <Compile Include="Mocked\SiteCategoryDataProviderMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\AddCampingPlace_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\Constructor_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\DeleteCampingPlace_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetAllCampingPlaces_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetCampingPlaceById_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetLatestCampingPlaces_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetSiteCategoryCampingPlaces_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetUserCampingPlaces_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingUserDataProviderClass\AddCampingUser_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingUserDataProviderClass\Constructor_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingUserDataProviderClass\GetAllCampingUsers_Should.cs" />
+    <Compile Include="Services\DataProviders\SightseeingDataProviderClass\Constructor_Should.cs" />
+    <Compile Include="Services\DataProviders\SightseeingDataProviderClass\GetAllSightseeings_Should.cs" />
+    <Compile Include="Services\DataProviders\SightseeingDataProviderClass\GetSightseeingById_Should.cs" />
+    <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\Constructor_Should.cs" />
+    <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\GetAllSiteCategories_Should.cs" />
+    <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\GetSiteCategoryById_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -99,14 +120,24 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EFositories\EFositories.csproj">
+      <Project>{3DC1667F-4F41-4CB0-B4D6-B58F7BA76195}</Project>
+      <Name>EFositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{A4544C4D-D6DC-493F-BD9E-EAF1B78017CA}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WildCampingWithMvc.Db\WildCampingWithMvc.Db.csproj">
+      <Project>{1CB889E6-5A5B-4E9F-8F05-ED720857B875}</Project>
+      <Name>WildCampingWithMvc.Db</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WildCampingWithMvc\WildCampingWithMvc.csproj">
       <Project>{11B8E2E8-A2C7-42A3-8593-CDC9FF1E9467}</Project>
       <Name>WildCampingWithMvc</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

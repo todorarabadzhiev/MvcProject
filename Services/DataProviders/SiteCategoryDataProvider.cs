@@ -15,7 +15,7 @@ namespace Services.DataProviders
         {
             if (repository == null)
             {
-                throw new ArgumentNullException("CampingDBRepository");
+                throw new ArgumentNullException("WildCampingEFository");
             }
             if (unitOfWork == null)
             {
