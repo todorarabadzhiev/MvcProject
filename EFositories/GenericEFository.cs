@@ -33,6 +33,26 @@ namespace EFositories
             entry.State = EntityState.Modified;
         }
 
+        //public void Update(T entity)
+        //{
+        //    var entry = this.DbContext.Entry<T>(entity);
+        //    if (entry.State == EntityState.Detached)
+        //    {
+        //        entry.State = EntityState.Modified;
+        //        //var set = DbContext.Set<T>();
+        //        //T attachedEntity = set.Local.SingleOrDefault(e => e.Id.Equals(entity.Id));
+        //        //if (attachedEntity != null)
+        //        //{
+        //        //    var attachedEntry = DbContext.Entry(attachedEntity);
+        //        //    attachedEntry.CurrentValues.SetValues(entity);
+        //        //}
+        //        //else
+        //        //{
+        //        //    entry.State = EntityState.Modified;
+        //        //}
+        //    }
+        //}
+
         public void Delete(T entity)
         {
             var entry = AttachIfDetached(entity);

@@ -103,6 +103,7 @@
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetLatestCampingPlaces_Should.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetSiteCategoryCampingPlaces_Should.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetUserCampingPlaces_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\UpdateCampingPlace_Should.cs" />
     <Compile Include="Services\DataProviders\CampingUserDataProviderClass\AddCampingUser_Should.cs" />
     <Compile Include="Services\DataProviders\CampingUserDataProviderClass\Constructor_Should.cs" />
     <Compile Include="Services\DataProviders\CampingUserDataProviderClass\GetAllCampingUsers_Should.cs" />

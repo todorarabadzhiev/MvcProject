@@ -40,7 +40,7 @@ namespace Services.DataProviders
             var dbPlaces = capmingPlaceRepository.GetAll(p => (!p.IsDeleted) && (p.AddedBy.UserName == userName));
             foreach (var p in dbPlaces)
             {
-                places.Add(ConvertToPlace(p));
+                places.Add(this.ConvertToPlace(p));
             }
 
             return places;
@@ -60,10 +60,40 @@ namespace Services.DataProviders
             (p.DbSiteCategories.FirstOrDefault(s => s.Name == categoryName) != null));
             foreach (var p in dbPlaces)
             {
-                places.Add(ConvertToPlace(p));
+                places.Add(this.ConvertToPlace(p));
             }
 
             return places;
+        }
+
+        public void UpdateCampingPlace(
+            Guid id, string name, string description, string googleMapsUrl, bool hasWater, 
+            IEnumerable<string> sightseeingNames, IEnumerable<string> siteCategoryNames,
+            IList<string> imageFileNames, IList<byte[]> imageFilesData)
+        {
+            this.GuardCampingPlace(name, imageFileNames, imageFilesData);
+
+            ICampingPlace updatedCampingPlace = new CampingPlace();
+            updatedCampingPlace.Id = id;
+            updatedCampingPlace.Name = name;
+            updatedCampingPlace.Description = description;
+            updatedCampingPlace.GoogleMapsUrl = googleMapsUrl;
+            updatedCampingPlace.HasWater = hasWater;
+            updatedCampingPlace.SightseeingNames = sightseeingNames;
+            updatedCampingPlace.SiteCategoriesNames = siteCategoryNames;
+            using (var uw = this.unitOfWork())
+            {
+                IGenericEFository<DbCampingPlace> campingPlaceRepository =
+                    this.repository.GetCampingPlaceRepository();
+                DbCampingPlace dbCampingPlace = campingPlaceRepository.GetById(id);
+                this.UpdateFromPlace(updatedCampingPlace, dbCampingPlace);
+                this.UpdateImages(dbCampingPlace, imageFileNames, imageFilesData);
+                this.UpdateCategories(dbCampingPlace, siteCategoryNames);
+                this.UpdateSightseeings(dbCampingPlace, sightseeingNames);
+                
+                campingPlaceRepository.Update(dbCampingPlace);
+                uw.Commit();
+            }
         }
 
         public void AddCampingPlace(
@@ -71,31 +101,12 @@ namespace Services.DataProviders
             IEnumerable<string> sightseeingNames, IEnumerable<string> siteCategoryNames,
             IList<string> imageFileNames, IList<byte[]> imageFilesData)
         {
-            if (name == null)
-            {
-                throw new ArgumentNullException("CampingPlaceName");
-            }
-
+            this.GuardCampingPlace(name, imageFileNames, imageFilesData);
             if (addedBy == null)
             {
                 throw new ArgumentNullException("UserName");
             }
 
-            if (imageFileNames == null ||
-                !imageFileNames.GetEnumerator().MoveNext() ||
-                imageFilesData == null ||
-                !imageFilesData.GetEnumerator().MoveNext())
-            {
-                throw new ArgumentNullException("CampingPlace ImageFiles");
-            }
-
-            if (imageFileNames.Count != imageFilesData.Count)
-            {
-                throw new ArgumentException("CampingPlace ImageFiles Names vs Data");
-            }
-
-            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
-                this.repository.GetCampingPlaceRepository();
             ICampingPlace newCampingPlace = new CampingPlace();
             newCampingPlace.Name = name;
             newCampingPlace.AddedBy = addedBy;
@@ -104,11 +115,13 @@ namespace Services.DataProviders
             newCampingPlace.HasWater = hasWater;
             newCampingPlace.SightseeingNames = sightseeingNames;
             newCampingPlace.SiteCategoriesNames = siteCategoryNames;
+            DbCampingPlace dbCampingPlace =  this.AddFromPlace(newCampingPlace);
+            dbCampingPlace.DbImageFiles = this.GetImageFiles(imageFileNames, imageFilesData, dbCampingPlace.Id);
 
             using (var uw = this.unitOfWork())
             {
-                DbCampingPlace dbCampingPlace = ConvertFromPlace(newCampingPlace);
-                dbCampingPlace.DbImageFiles = GetImageFiles(imageFileNames, imageFilesData);
+                IGenericEFository<DbCampingPlace> capmingPlaceRepository =
+                    this.repository.GetCampingPlaceRepository();
                 capmingPlaceRepository.Add(dbCampingPlace);
                 uw.Commit();
             }
@@ -140,7 +153,7 @@ namespace Services.DataProviders
             }
 
             var places = new List<ICampingPlace>();
-            places.Add(ConvertToPlace(dbPlace));
+            places.Add(this.ConvertToPlace(dbPlace));
 
             return places;
         }
@@ -169,7 +182,7 @@ namespace Services.DataProviders
                 counter++;
                 if (counter > total - count)
                 {
-                    places.Add(ConvertToPlace(p));
+                    places.Add(this.ConvertToPlace(p));
                 }
             }
 
@@ -189,13 +202,95 @@ namespace Services.DataProviders
             var places = new List<ICampingPlace>();
             foreach (var p in dbPlaces)
             {
-                places.Add(ConvertToPlace(p));
+                places.Add(this.ConvertToPlace(p));
             }
 
             return places;
         }
 
-        private ICollection<DbImageFile> GetImageFiles(IList<string> imageFileNames, IList<byte[]> imageFilesData)
+        private void UpdateSightseeings(DbCampingPlace dbCampingPlace, IEnumerable<string> sightseeingNames)
+        {
+            IGenericEFository<DbSightseeing> sightseeingRepository =
+                    this.repository.GetSightseeingRepository();
+            ICollection<DbSightseeing> newDbSightseeings = sightseeingRepository.GetAll(
+                s => sightseeingNames.Contains(s.Name)).ToList();
+            IEnumerable<DbSightseeing> oldDbSightseeings = sightseeingRepository.GetAll(
+                s => s.DbCampingPlaces.FirstOrDefault(cp => cp.Id == dbCampingPlace.Id) != null);
+            foreach (DbSightseeing dbSightseeing in oldDbSightseeings)
+            {
+                if (newDbSightseeings.Contains(dbSightseeing))
+                {
+                    newDbSightseeings.Remove(dbSightseeing);
+                }
+                else
+                {
+                    dbCampingPlace.DbSightseeings.Remove(dbSightseeing);
+                    dbSightseeing.DbCampingPlaces.Remove(dbCampingPlace);
+                }
+            }
+
+            foreach (DbSightseeing dbSightseeing in newDbSightseeings)
+            {
+                dbCampingPlace.DbSightseeings.Add(dbSightseeing);
+                dbSightseeing.DbCampingPlaces.Add(dbCampingPlace);
+            }
+        }
+
+        private void UpdateCategories(DbCampingPlace dbCampingPlace, IEnumerable<string> siteCategoryNames)
+        {
+            IGenericEFository<DbSiteCategory> siteCategoryRepository =
+                    this.repository.GetSiteCategoryRepository();
+            ICollection<DbSiteCategory> newDbCategories = siteCategoryRepository.GetAll(
+                s => siteCategoryNames.Contains(s.Name)).ToList();
+            IEnumerable<DbSiteCategory> oldDbCategories = siteCategoryRepository.GetAll(
+                cat => cat.DbCampingPlaces.FirstOrDefault(cp => cp.Id == dbCampingPlace.Id) != null);
+            foreach (DbSiteCategory dbSiteCategory in oldDbCategories)
+            {
+                if (newDbCategories.Contains(dbSiteCategory))
+                {
+                    newDbCategories.Remove(dbSiteCategory);
+                }
+                else
+                {
+                    dbCampingPlace.DbSiteCategories.Remove(dbSiteCategory);
+                    dbSiteCategory.DbCampingPlaces.Remove(dbCampingPlace);
+                }
+            }
+
+            foreach (DbSiteCategory dbSiteCategory in newDbCategories)
+            {
+                dbCampingPlace.DbSiteCategories.Add(dbSiteCategory);
+                dbSiteCategory.DbCampingPlaces.Add(dbCampingPlace);
+            }
+        }
+
+        private void UpdateImages(DbCampingPlace dbCampingPlace, IList<string> imageFileNames, IList<byte[]> imageFilesData)
+        {
+            IGenericEFository<DbImageFile> imageFileRepository =
+                    this.repository.GetImageFileRepository();
+            IEnumerable<DbImageFile> oldDbImages = imageFileRepository.GetAll(img => img.DbCampingPlaceId == dbCampingPlace.Id);
+            ICollection<DbImageFile> newDbImages = this.GetImageFiles(imageFileNames, imageFilesData, dbCampingPlace.Id);
+            foreach (DbImageFile dbImage in oldDbImages)
+            {
+                if (!newDbImages.Contains(dbImage))
+                {
+                    imageFileRepository.Delete(dbImage);
+                }
+                else
+                {
+                    newDbImages.Remove(dbImage);
+                }
+            }
+
+            // Add new images
+            foreach (DbImageFile dbImage in newDbImages)
+            {
+                dbCampingPlace.DbImageFiles.Add(dbImage);
+                imageFileRepository.Add(dbImage);
+            }
+        }
+
+        private ICollection<DbImageFile> GetImageFiles(IList<string> imageFileNames, IList<byte[]> imageFilesData, Guid dBcampingPlaceId)
         {
             if (imageFileNames == null || imageFilesData == null)
             {
@@ -208,6 +303,7 @@ namespace Services.DataProviders
                 DbImageFile dbFile = new DbImageFile();
                 dbFile.FileName = imageFileNames[i];
                 dbFile.Data = imageFilesData[i];
+                dbFile.DbCampingPlaceId = dBcampingPlaceId;
 
                 dbFiles.Add(dbFile);
             }
@@ -215,7 +311,17 @@ namespace Services.DataProviders
             return dbFiles;
         }
 
-        private DbCampingPlace ConvertFromPlace(ICampingPlace p)
+        private void UpdateFromPlace(ICampingPlace p, DbCampingPlace place)
+        {
+            place.Name = p.Name;
+            place.Description = p.Description;
+            place.GoogleMapsUrl = p.GoogleMapsUrl;
+            place.WaterOnSite = p.HasWater;
+            //place.AddedOn = DateTime.Now;
+            //place.IsDeleted = p.IsDeleted;
+        }
+
+        private DbCampingPlace AddFromPlace(ICampingPlace p)
         {
             DbCampingPlace place = new DbCampingPlace();
             place.Name = p.Name;
@@ -228,6 +334,7 @@ namespace Services.DataProviders
             IGenericEFository<DbCampingUser> campingUserRepository =
                 this.repository.GetCampingUserRepository();
             place.AddedBy = campingUserRepository.GetAll(u => u.UserName == p.AddedBy).FirstOrDefault();
+            place.AddedById = place.AddedBy.Id;
 
             IGenericEFository<DbSightseeing> sightseeingRepository =
                 this.repository.GetSightseeingRepository();
@@ -290,6 +397,28 @@ namespace Services.DataProviders
             place.ImageFiles = imageFiles;
 
             return place;
+        }
+
+        private void GuardCampingPlace(string name, 
+            IList<string> imageFileNames, IList<byte[]> imageFilesData)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException("CampingPlaceName");
+            }
+
+            if (imageFileNames == null ||
+                !imageFileNames.GetEnumerator().MoveNext() ||
+                imageFilesData == null ||
+                !imageFilesData.GetEnumerator().MoveNext())
+            {
+                throw new ArgumentNullException("CampingPlace ImageFiles");
+            }
+
+            if (imageFileNames.Count != imageFilesData.Count)
+            {
+                throw new ArgumentException("CampingPlace ImageFiles Names vs Data");
+            }
         }
     }
 }

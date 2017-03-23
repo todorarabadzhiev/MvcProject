@@ -21,7 +21,7 @@ namespace WildCampingWithMvc.Models.CampingPlace
         [DisplayName(Messages.TextHasWater)]
         public bool HasWater { get; set; }
         public IList<string> SightseeingNames { get; set; }
-        public IList<string> SiteCategoryNames { get; set; }
+        public IList<string> SiteCategoriesNames { get; set; }
 
         [Required(ErrorMessage = Messages.ErrAtLeasOneImageRequired)]
         public IList<string> ImageFileNames { get; set; }

@@ -45,10 +45,17 @@ namespace WildCampingWithMvc.Controllers
             this.sightseeingProvider = sightseeingProvider;
         }
 
+        //public ActionResult CampingPlaceDetails(CampingPlace model, Guid id)
+        //{
+        //    model = (CampingPlace)this.campingPlaceProvider.GetCampingPlaceById(id).First();
+
+        //    return this.View(model);
+        //}
+
         public ActionResult CampingPlaceDetails(CampingPlaceDetailsViewModel model, Guid id)
         {
             model = this.ConvertToDetailsFromICampingPlace(id);
-            
+
             return this.View(model);
         }
 
@@ -82,6 +89,8 @@ namespace WildCampingWithMvc.Controllers
         {
             this.CacheSiteCategoriesAndSightseeings();
             model = this.ConvertToAddFromICampingPlace(id);
+            ModelState.Clear();
+            TempData["Id"] = id;
 
             return this.View(model);
         }
@@ -96,7 +105,9 @@ namespace WildCampingWithMvc.Controllers
                 return this.View(model);
             }
 
-            //this.AddCampPlace(model);
+            Guid id = (Guid)TempData["Id"];
+
+            this.UpdateCampPlace(model, id);
 
             return RedirectToAction("Index", "Home");
         }
@@ -107,6 +118,14 @@ namespace WildCampingWithMvc.Controllers
             return this.View();
         }
 
+        private void UpdateCampPlace(AddCampingPlaceViewModel model, Guid id)
+        {
+            IList<byte[]> imageFilesData = this.ConvertImageData(model.ImageFilesData);
+            this.campingPlaceProvider.UpdateCampingPlace(
+                id, model.Name, model.Description, model.GoogleMapsUrl,
+                model.HasWater, model.SightseeingNames, model.SiteCategoriesNames,
+                model.ImageFileNames, imageFilesData);
+        }
 
         private AddCampingPlaceViewModel ConvertToAddFromICampingPlace(Guid id)
         {
@@ -134,7 +153,7 @@ namespace WildCampingWithMvc.Controllers
                 siteCategoryNames.Add(siteCategory.Name);
             }
 
-            viewModel.SiteCategoryNames = siteCategoryNames;
+            viewModel.SiteCategoriesNames = siteCategoryNames;
 
             IList<string> imageFileNames = new List<string>();
             IList<string> imageFilesData = new List<string>();
@@ -207,7 +226,7 @@ namespace WildCampingWithMvc.Controllers
             string addedBy = this.User.Identity.Name;
             this.campingPlaceProvider.AddCampingPlace(
                 model.Name, addedBy, model.Description, model.GoogleMapsUrl,
-                model.HasWater, model.SightseeingNames, model.SiteCategoryNames,
+                model.HasWater, model.SightseeingNames, model.SiteCategoriesNames,
                 model.ImageFileNames, imageFilesData);
         }
 

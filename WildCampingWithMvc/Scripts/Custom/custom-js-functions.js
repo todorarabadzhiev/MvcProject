@@ -41,9 +41,8 @@ $(document).ready(function () {
                         $("<a>", {
                             "href": "#",
                             "class": "btn btn-sm",
-                            "text": "Изтрий"
-                        }).on("click", function () {
-                            $(this).closest("div").remove();
+                            "text": "Изтрий",
+                            "onclick": "OnDeleteClick(this)"
                         }).appendTo(imgDiv);
 
                         imgDiv.appendTo(image_holder);

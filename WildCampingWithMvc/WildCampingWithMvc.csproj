@@ -334,6 +334,7 @@
     <Content Include="Views\CampingPlace\AddCampingPlace.cshtml" />
     <Content Include="Views\CampingPlace\EditCampingPlace.cshtml" />
     <Content Include="Views\CampingPlace\CampingPlaceDetails.cshtml" />
+    <Content Include="Views\Shared\_EditCampingPlace.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

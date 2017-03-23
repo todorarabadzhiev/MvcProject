@@ -1,0 +1,98 @@
+﻿@using Services.Models
+@model WildCampingWithMvc.Models.CampingPlace.AddCampingPlaceViewModel
+
+@Html.AntiForgeryToken()
+<hr />
+@Html.ValidationSummary("", new { @class = "text-danger" })
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.GoogleMapsUrl, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.GoogleMapsUrl, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.HasWater, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                @Html.CheckBoxFor(m => m.HasWater, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = "5" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group-sm col-md-6">
+        <h3 class="text-center">Категории</h3>
+        @foreach (var category in (IList<ISiteCategory>)this.Cache["AllSiteCategories"])
+            {
+            <div class="row">
+                <label for="@category.Name" class="col-md-6 control-label">@category.Name</label>
+                <div class="col-md-6">
+                    @if (Model != null && Model.SiteCategoriesNames != null && Model.SiteCategoriesNames.ToList().Contains(category.Name))
+                    {
+                        <input type="checkbox" class="form-control" name="SiteCategoriesNames" value="@category.Name"
+                               checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" class="form-control" name="SiteCategoriesNames" value="@category.Name" />
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <div class="form-group-sm col-md-6">
+        <h3 class="text-center">Забележителности</h3>
+        @foreach (var sightseeing in (IList<ISightseeing>)this.Cache["AllSightseeings"])
+            {
+            <div class="row">
+                <label for="@sightseeing.Name" class="col-md-6 control-label">@sightseeing.Name</label>
+                <div class="col-md-6">
+                    @if (Model != null && Model.SightseeingNames != null && Model.SightseeingNames.ToList().Contains(sightseeing.Name))
+                    {
+                        <input type="checkbox" class="form-control" name="SightseeingNames" value="@sightseeing.Name"
+                               checked="checked" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" class="form-control" name="SightseeingNames" value="@sightseeing.Name" />
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="form-group-lg">
+    <h3 class="text-center">Изображения за местенцето</h3>
+    <input class="form-control" type="file" id="fileUpload" multiple />
+    <div id="image-holder">
+        @if (Model != null)
+            {
+                for (int i = 0; i < Model.ImageFileNames.Count; i++)
+                {
+                    string imageName = Model.ImageFileNames[i];
+                    string imageData = Model.ImageFilesData[i];
+                <div class="col-md-3 text-center">
+                    <input type="hidden" name="ImageFileNames" value=@imageName />
+                    <input type="hidden" name="ImageFilesData" value=@imageData />
+                    <img class="thumb-image" src=@imageData alt=@imageName />
+                    <a href="#" class="btn btn-sm" onclick="OnDeleteClick(this)">Изтрий</a>
+                </div>
+            }
+        }
+    </div>
+</div>

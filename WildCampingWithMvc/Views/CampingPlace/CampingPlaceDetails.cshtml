@@ -1,5 +1,6 @@
 ﻿@using Services.Models
 @model WildCampingWithMvc.Models.CampingPlace.CampingPlaceDetailsViewModel
+@*@model Services.Models.CampingPlace*@
 @{
     ViewBag.Title = string.Format(Messages.TextCampingPlaceDetails, Model.Name);
 }
@@ -25,6 +26,10 @@
 
 <div class="row text-center">
     <h3>Категории</h3>
+    @*@foreach (var category in Model.SiteCategoriesIds.Zip(Model.SiteCategoriesNames, Tuple.Create))
+    {
+        <a href="@Url.Action("SiteCategoryDetails", "SiteCategory", new { id = category.Item1 })">[@category.Item2]</a>
+    }*@
     @foreach (var category in Model.SiteCategories)
     {
         <a href="@Url.Action("SiteCategoryDetails", "SiteCategory", new { id = category.Id })">[@category.Name]</a>
@@ -32,6 +37,10 @@
 </div>
 <div class="row text-center">
     <h3>Забележителности</h3>
+    @*@foreach (var sightseeing in Model.SightseeingIds.Zip(Model.SightseeingNames, Tuple.Create))
+    {
+        <a href="@Url.Action("SightseeingDetails", "Sightseeing", new { id = sightseeing.Item1 })">[@sightseeing.Item2]</a>
+    }*@
     @foreach (var sightseeing in Model.Sightseeings)
     {
         <a href="@Url.Action("SightseeingDetails", "Sightseeing", new { id = sightseeing.Id })">[@sightseeing.Name]</a>
@@ -39,6 +48,15 @@
 </div>
 <div class="row text-center">
     <h3>Изображения от "@Model.Name"</h3>
+    @*@foreach (var imageFile in Model.ImageFiles)
+    {
+        string imageName = imageFile.FileName;
+        byte[] imageData = imageFile.Data;
+        <div class="col-md-6">
+            <img class="image-400px" src="@Utilities.ConvertToImage(imageData)" alt="@imageName" /><br />
+            <span>@imageName</span>
+        </div>
+    }*@
     @for (int i = 0; i < Model.ImageFileNames.Count; i++)
     {
         string imageName = Model.ImageFileNames[i];
