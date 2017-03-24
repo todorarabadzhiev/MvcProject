@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Telerik.JustMock;
 using WildCampingWithMvc.Db.Models;
+using System.Linq.Expressions;
 
 namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderClass
 {
@@ -13,6 +14,10 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
     {
         private string campingPlaceName = "SomeName";
         private string addedBy = "SomeUserName";
+        private DbCampingUser dbUser = new DbCampingUser()
+        {
+            Id = Guid.NewGuid()
+        };
 
         [Test]
         public void ThrowArgumentNullExceptionWithCorrectMessage_WhenProvidedCampingPlaceNameIsNull()
@@ -133,6 +138,9 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new CampingPlaceDataProvider(repository, unitOfWork);
+            Mock.Arrange(() => repository.GetCampingUserRepository()
+                .GetAll(Arg.IsAny<Expression<Func<DbCampingUser, bool>>>()))
+                .Returns(new List<DbCampingUser>() { this.dbUser});
 
             // Act
             provider.AddCampingPlace(this.campingPlaceName, this.addedBy,
@@ -150,6 +158,9 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new CampingPlaceDataProvider(repository, unitOfWork);
+            Mock.Arrange(() => repository.GetCampingUserRepository()
+                .GetAll(Arg.IsAny<Expression<Func<DbCampingUser, bool>>>()))
+                .Returns(new List<DbCampingUser>() { this.dbUser });
 
             // Act
             provider.AddCampingPlace(this.campingPlaceName, this.addedBy,

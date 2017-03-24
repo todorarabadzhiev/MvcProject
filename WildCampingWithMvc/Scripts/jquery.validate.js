@@ -143,11 +143,11 @@ $.extend($.fn, {
 			switch(command) {
 			case "add":
 				$.extend(existingRules, $.validator.normalizeRule(argument));
-				// remove messages from rules, but allow them to be set separetely
-				delete existingRules.messages;
+				// remove Messages from rules, but allow them to be set separetely
+				delete existingRules.Messages;
 				staticRules[element.name] = existingRules;
-				if ( argument.messages ) {
-					settings.messages[element.name] = $.extend( settings.messages[element.name], argument.messages );
+				if ( argument.Messages ) {
+					settings.Messages[element.name] = $.extend( settings.Messages[element.name], argument.Messages );
 				}
 				break;
 			case "remove":
@@ -226,7 +226,7 @@ $.validator.format = function( source, params ) {
 $.extend($.validator, {
 
 	defaults: {
-		messages: {},
+		Messages: {},
 		groups: {},
 		rules: {},
 		errorClass: "error",
@@ -292,7 +292,7 @@ $.extend($.validator, {
 		$.extend( $.validator.defaults, settings );
 	},
 
-	messages: {
+	Messages: {
 		required: "This field is required.",
 		remote: "Please fix this field.",
 		email: "Please enter a valid email address.",
@@ -603,7 +603,7 @@ $.extend($.validator, {
 
 		// return the custom message for the given element name and validation method
 		customMessage: function( name, method ) {
-			var m = this.settings.messages[name];
+			var m = this.settings.Messages[name];
 			return m && (m.constructor === String ? m : m[method]);
 		},
 
@@ -623,7 +623,7 @@ $.extend($.validator, {
 				this.customDataMessage( element, method ),
 				// title is never undefined, so handle empty string as undefined
 				!this.settings.ignoreTitle && element.title || undefined,
-				$.validator.messages[method],
+				$.validator.Messages[method],
 				"<strong>Warning: No message defined for " + element.name + "</strong>"
 			);
 		},
@@ -998,7 +998,7 @@ $.extend($.validator, {
 	// http://docs.jquery.com/Plugins/Validation/Validator/addMethod
 	addMethod: function( name, method, message ) {
 		$.validator.methods[name] = method;
-		$.validator.messages[name] = message !== undefined ? message : $.validator.messages[name];
+		$.validator.Messages[name] = message !== undefined ? message : $.validator.Messages[name];
 		if ( method.length < 3 ) {
 			$.validator.addClassRules(name, $.validator.normalizeRule(name));
 		}
@@ -1139,11 +1139,11 @@ $.extend($.validator, {
 			}
 
 			var previous = this.previousValue(element);
-			if (!this.settings.messages[element.name] ) {
-				this.settings.messages[element.name] = {};
+			if (!this.settings.Messages[element.name] ) {
+				this.settings.Messages[element.name] = {};
 			}
-			previous.originalMessage = this.settings.messages[element.name].remote;
-			this.settings.messages[element.name].remote = previous.message;
+			previous.originalMessage = this.settings.Messages[element.name].remote;
+			this.settings.Messages[element.name].remote = previous.message;
 
 			param = typeof param === "string" && {url:param} || param;
 
@@ -1163,7 +1163,7 @@ $.extend($.validator, {
 				dataType: "json",
 				data: data,
 				success: function( response ) {
-					validator.settings.messages[element.name].remote = previous.originalMessage;
+					validator.settings.Messages[element.name].remote = previous.originalMessage;
 					var valid = response === true || response === "true";
 					if ( valid ) {
 						var submitted = validator.formSubmitted;

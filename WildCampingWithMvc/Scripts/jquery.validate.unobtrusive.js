@@ -28,7 +28,7 @@
     function setValidationValues(options, ruleName, value) {
         options.rules[ruleName] = value;
         if (options.message) {
-            options.messages[ruleName] = options.message;
+            options.Messages[ruleName] = options.message;
         }
     }
 
@@ -146,7 +146,7 @@
                         onErrors.apply(form, arguments);
                         execInContext("invalidHandler", arguments);
                     },
-                    messages: {},
+                    Messages: {},
                     rules: {},
                     success: function () {
                         onSuccess.apply(form, arguments);
@@ -184,7 +184,7 @@
             /// to the form when you are finished. The default is false.</param>
             var $element = $(element),
                 form = $element.parents("form")[0],
-                valInfo, rules, messages;
+                valInfo, rules, Messages;
 
             if (!form) {  // Cannot do client-side validation without a form
                 return;
@@ -192,7 +192,7 @@
 
             valInfo = validationInfo(form);
             valInfo.options.rules[element.name] = rules = {};
-            valInfo.options.messages[element.name] = messages = {};
+            valInfo.options.Messages[element.name] = Messages = {};
 
             $.each(this.adapters, function () {
                 var prefix = "data-val-" + this.name,
@@ -212,7 +212,7 @@
                         message: message,
                         params: paramValues,
                         rules: rules,
-                        messages: messages
+                        Messages: Messages
                     });
                 }
             });
@@ -264,7 +264,7 @@
         /// be extracted from the data-val-nnnn-mmmm HTML attributes (where nnnn is the adapter name, and
         /// mmmm is the parameter name).</param>
         /// <param name="fn" type="Function">The function to call, which adapts the values from the HTML
-        /// attributes into jQuery Validate rules and/or messages.</param>
+        /// attributes into jQuery Validate rules and/or Messages.</param>
         /// <returns type="jQuery.validator.unobtrusive.adapters" />
         if (!fn) {  // Called with no params, just a function
             fn = params;

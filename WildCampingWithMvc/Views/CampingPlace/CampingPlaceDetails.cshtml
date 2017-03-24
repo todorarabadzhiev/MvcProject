@@ -1,15 +1,15 @@
-﻿@using Services.Models
+﻿@*@using Services.Models*@
 @model WildCampingWithMvc.Models.CampingPlace.CampingPlaceDetailsViewModel
 @*@model Services.Models.CampingPlace*@
 @{
-    ViewBag.Title = string.Format(Messages.TextCampingPlaceDetails, Model.Name);
+    ViewBag.Title = string.Format(GlobalResources.TextCampingPlaceDetails, Model.Name);
 }
 
 <div class="row text-center">
     <h2>@ViewBag.Title.</h2>
     <hr />
     <h5>Добавено от @Model.AddedBy на @Model.AddedOn</h5>
-    <a href="@Model.GoogleMapsUrl">@Messages.TextGoogleMapsUrl</a>
+    <a href="@Model.GoogleMapsUrl">@GlobalResources.TextGoogleMapsUrl</a>
 </div>
 <div class="row text-center">
     @if (Model.HasWater)

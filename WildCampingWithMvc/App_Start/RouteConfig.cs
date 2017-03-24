@@ -16,6 +16,13 @@ namespace WildCampingWithMvc
             routes.LowercaseUrls = true;
 
             routes.MapRoute(
+                name: "CultureDefault",
+                url: "{culture}/{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                constraints: new { culture = "bg|en" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

@@ -179,8 +179,8 @@ $.extend($.fn, {
 			case "add":
 				$.extend(existingRules, $.validator.normalizeRule(argument));
 				staticRules[element.name] = existingRules;
-				if (argument.messages)
-					settings.messages[element.name] = $.extend( settings.messages[element.name], argument.messages );
+				if (argument.Messages)
+					settings.Messages[element.name] = $.extend( settings.Messages[element.name], argument.Messages );
 				break;
 			case "remove":
 				if (!argument) {
@@ -268,7 +268,7 @@ $.validator.format = function(source, params) {
 $.extend($.validator, {
 	
 	defaults: {
-		messages: {},
+		Messages: {},
 		groups: {},
 		rules: {},
 		errorClass: "error",
@@ -328,7 +328,7 @@ $.extend($.validator, {
 		$.extend( $.validator.defaults, settings );
 	},
 
-	messages: {
+	Messages: {
 		required: "This field is required.",
 		remote: "Please fix this field.",
 		email: "Please enter a valid email address.",
@@ -444,11 +444,11 @@ $.extend($.validator, {
 		// http://docs.jquery.com/Plugins/Validation/Validator/showErrors
 		showErrors: function(errors) {
 			/// <summary>
-			/// Show the specified messages.
+			/// Show the specified Messages.
 			/// Keys have to refer to the names of elements, values are displayed for those elements, using the configured error placement.
 			/// </summary>
 			/// <param name="errors" type="Object">
-			/// One or more key/value pairs of input names and messages.
+			/// One or more key/value pairs of input names and Messages.
 			/// </param>
 
 			if(errors) {
@@ -476,7 +476,7 @@ $.extend($.validator, {
 			/// <summary>
 			/// Resets the controlled form.
 			/// Resets input fields to their original value (requires form plugin), removes classes
-			/// indicating invalid elements and hides error messages.
+			/// indicating invalid elements and hides error Messages.
 			/// </summary>
 
 			if ( $.fn.resetForm )
@@ -635,7 +635,7 @@ $.extend($.validator, {
 		},
 		
 		// return the custom message for the given element and validation method
-		// specified in the element's "messages" metadata
+		// specified in the element's "Messages" metadata
 		customMetaMessage: function(element, method) {
 			if (!$.metadata)
 				return;
@@ -644,12 +644,12 @@ $.extend($.validator, {
 				? $(element).metadata()[this.settings.meta]
 				: $(element).metadata();
 			
-			return meta && meta.messages && meta.messages[method];
+			return meta && meta.Messages && meta.Messages[method];
 		},
 		
 		// return the custom message for the given element name and validation method
 		customMessage: function( name, method ) {
-			var m = this.settings.messages[name];
+			var m = this.settings.Messages[name];
 			return m && (m.constructor == String
 				? m
 				: m[method]);
@@ -670,7 +670,7 @@ $.extend($.validator, {
 				this.customMetaMessage( element, method ),
 				// title is never undefined, so handle empty string as undefined
 				!this.settings.ignoreTitle && element.title || undefined,
-				$.validator.messages[method],
+				$.validator.Messages[method],
 				"<strong>Warning: No message defined for " + element.name + "</strong>"
 			);
 		},
@@ -988,9 +988,9 @@ $.extend($.validator, {
 			}
 		}
 		
-		// To support custom messages in metadata ignore rule methods titled "messages"
-		if (rules.messages) {
-			delete rules.messages;
+		// To support custom Messages in metadata ignore rule methods titled "Messages"
+		if (rules.Messages) {
+			delete rules.Messages;
 		}
 		
 		return rules;
@@ -1024,11 +1024,11 @@ $.extend($.validator, {
 		/// <param name="message" type="String" optional="true">
 		/// (Optional) The default message to display for this method. Can be a function created by 
 		/// jQuery.validator.format(value). When undefined, an already existing message is used 
-		/// (handy for localization), otherwise the field-specific messages have to be defined.
+		/// (handy for localization), otherwise the field-specific Messages have to be defined.
 		/// </param>
 
 		$.validator.methods[name] = method;
-		$.validator.messages[name] = message != undefined ? message : $.validator.messages[name];
+		$.validator.Messages[name] = message != undefined ? message : $.validator.Messages[name];
 		if (method.length < 3) {
 			$.validator.addClassRules(name, $.validator.normalizeRule(name));
 		}
@@ -1060,10 +1060,10 @@ $.extend($.validator, {
 				return "dependency-mismatch";
 			
 			var previous = this.previousValue(element);
-			if (!this.settings.messages[element.name] )
-				this.settings.messages[element.name] = {};
-			previous.originalMessage = this.settings.messages[element.name].remote;
-			this.settings.messages[element.name].remote = previous.message;
+			if (!this.settings.Messages[element.name] )
+				this.settings.Messages[element.name] = {};
+			previous.originalMessage = this.settings.Messages[element.name].remote;
+			this.settings.Messages[element.name].remote = previous.message;
 			
 			param = typeof param == "string" && {url:param} || param; 
 			
@@ -1086,7 +1086,7 @@ $.extend($.validator, {
 				dataType: "json",
 				data: data,
 				success: function(response) {
-					validator.settings.messages[element.name].remote = previous.originalMessage;
+					validator.settings.Messages[element.name].remote = previous.originalMessage;
 					var valid = response === true;
 					if ( valid ) {
 						var submitted = validator.formSubmitted;
