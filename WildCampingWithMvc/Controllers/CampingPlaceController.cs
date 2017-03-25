@@ -1,4 +1,5 @@
 ﻿using CommonUtilities.Utilities;
+using Ninject;
 using Services.DataProviders;
 using Services.Models;
 using System;
@@ -262,22 +263,39 @@ namespace WildCampingWithMvc.Controllers
             return imageFilesData;
         }
 
+        //private void CacheSiteCategoriesAndSightseeings()
+        //{
+        //    IList<ISiteCategory> allSiteCategories = this.HttpContCache.AllSiteCategories;
+        //    if (allSiteCategories == null)
+        //    {
+        //        allSiteCategories = (IList<ISiteCategory>)this.siteCategoryProvider.GetAllSiteCategories();
+        //        this.HttpContCache.AllSiteCategories = allSiteCategories;
+        //    }
+
+        //    IList<ISightseeing> allSightseeings = this.HttpContCache.AllSightseeings;
+        //    if (allSightseeings == null)
+        //    {
+        //        allSightseeings = (IList<ISightseeing>)this.sightseeingProvider.GetAllSightseeings();
+        //        this.HttpContCache.AllSightseeings = allSightseeings;
+        //    }
+        //}
+
         private void CacheSiteCategoriesAndSightseeings()
         {
-            IList<ISiteCategory> allSiteCategories = (IList<ISiteCategory>)this.HttpContext.Cache["AllSiteCategories"];
+            IList<ISiteCategory> allSiteCategories =
+                (IList<ISiteCategory>)this.ControllerContext.HttpContext.Cache["AllSiteCategories"];
             if (allSiteCategories == null)
             {
                 allSiteCategories = (IList<ISiteCategory>)this.siteCategoryProvider.GetAllSiteCategories();
-                this.HttpContext.Cache["AllSiteCategories"] = allSiteCategories;
-
+                this.ControllerContext.HttpContext.Cache["AllSiteCategories"] = allSiteCategories;
             }
 
-            IList<ISightseeing> allSightseeings = (IList<ISightseeing>)this.HttpContext.Cache["AllSightseeings"];
+            IList<ISightseeing> allSightseeings =
+                (IList<ISightseeing>)this.ControllerContext.HttpContext.Cache["AllSightseeings"];
             if (allSightseeings == null)
             {
                 allSightseeings = (IList<ISightseeing>)this.sightseeingProvider.GetAllSightseeings();
-                this.HttpContext.Cache["AllSightseeings"] = allSightseeings;
-
+                this.ControllerContext.HttpContext.Cache["AllSightseeings"] = allSightseeings;
             }
         }
     }
