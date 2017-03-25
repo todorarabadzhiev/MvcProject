@@ -45,16 +45,9 @@ namespace WildCampingWithMvc.Controllers
             this.sightseeingProvider = sightseeingProvider;
         }
 
-        //public ActionResult CampingPlaceDetails(CampingPlace model, Guid id)
-        //{
-        //    model = (CampingPlace)this.campingPlaceProvider.GetCampingPlaceById(id).First();
-
-        //    return this.View(model);
-        //}
-
-        public ActionResult CampingPlaceDetails(CampingPlaceDetailsViewModel model, Guid id)
+        public ActionResult CampingPlaceDetails(Guid id)
         {
-            model = this.ConvertToDetailsFromICampingPlace(id);
+            CampingPlaceDetailsViewModel model = this.ConvertToDetailsFromICampingPlace(id);
 
             return this.View(model);
         }
@@ -85,12 +78,16 @@ namespace WildCampingWithMvc.Controllers
 
         // GET: EditCampingPlace
         [HttpGet]
-        public ActionResult EditCampingPlace(AddCampingPlaceViewModel model, Guid id)
+        public ActionResult EditCampingPlace(Guid id)
         {
             this.CacheSiteCategoriesAndSightseeings();
-            model = this.ConvertToAddFromICampingPlace(id);
-            ModelState.Clear();
-            TempData["Id"] = id;
+            bool isAuthorized = (bool)TempData["isAuthorized"];
+            if (!isAuthorized)
+            {
+                return this.RedirectToAction("CampingPlaceDetails", new { id = id });
+            }
+
+            AddCampingPlaceViewModel model = this.ConvertToAddFromICampingPlace(id);
 
             return this.View(model);
         }
@@ -98,24 +95,47 @@ namespace WildCampingWithMvc.Controllers
         // POST: EditCampingPlace
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditCampingPlace(AddCampingPlaceViewModel model)
+        public ActionResult EditCampingPlace(AddCampingPlaceViewModel model, Guid id)
         {
+            bool isAuthorized = (bool)TempData["isAuthorized"];
+            if (!isAuthorized)
+            {
+                return this.RedirectToAction("CampingPlaceDetails", new { id = id });
+            }
+
             if (!ModelState.IsValid)
             {
                 return this.View(model);
             }
 
-            Guid id = (Guid)TempData["Id"];
-
             this.UpdateCampPlace(model, id);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("CampingPlaceDetails", new { id = id });
+        }
+
+        public ActionResult DeleteCampingPlace(Guid id)
+        {
+            bool isAuthorized = (bool)TempData["isAuthorized"];
+            if (isAuthorized)
+            {
+                this.campingPlaceProvider.DeleteCampingPlace(id);
+            }
+
+            return RedirectToAction("Index");
+        }
+        public ActionResult Index()
+        {
+            var places = this.campingPlaceProvider.GetAllCampingPlaces();
+            MultipleCampingPlacesViewModel model = new MultipleCampingPlacesViewModel();
+            model.CampingPlaces = places;
+
+            return View(model);
         }
 
         // GET: CampingPlace
-        public ActionResult Index()
+        public ActionResult AllCampingPlaces()
         {
-            return this.View();
+            return RedirectToAction("Index");
         }
 
         private void UpdateCampPlace(AddCampingPlaceViewModel model, Guid id)

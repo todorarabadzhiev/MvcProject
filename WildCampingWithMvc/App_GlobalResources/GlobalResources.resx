@@ -199,7 +199,7 @@
     <value>Has drinking water</value>
   </data>
   <data name="TextHello" xml:space="preserve">
-    <value>Hello</value>
+    <value>Hello </value>
   </data>
   <data name="TextLastName" xml:space="preserve">
     <value>Last name</value>
@@ -239,5 +239,14 @@
   </data>
   <data name="WarnPasswordsDoNotMatch" xml:space="preserve">
     <value>Passwords do not match!</value>
+  </data>
+  <data name="TextAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="TextAllCampingPlaces" xml:space="preserve">
+    <value>All CampingPlaces</value>
+  </data>
+  <data name="TextContacts" xml:space="preserve">
+    <value>Contacts</value>
   </data>
 </root>

@@ -9,23 +9,24 @@
 @using (Html.BeginForm("EditCampingPlace", "CampingPlace", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     Html.RenderPartial("_EditCampingPlace", Model);
+    TempData["isAuthorized"] = true;
     @*<div class="form-group-lg">
-        <h3 class="text-center">Изображения за местенцето</h3>
-        <input class="form-control" type="file" id="fileUpload" multiple />
-        <div id="image-holder">
-            @for (int i = 0; i < Model.ImageFileNames.Count; i++)
-            {
-                string imageName = Model.ImageFileNames[i];
-                string imageData = Model.ImageFilesData[i];
-                <div class="col-md-3 text-center">
-                    <input type="hidden" name="ImageFileNames" value=@imageName />
-                    <input type="hidden" name="ImageFilesData" value=@imageData />
-                    <img class="thumb-image" src=@imageData alt=@imageName />
-                    <a href="#" class="btn btn-sm" onclick="OnDeleteClick(this)">Изтрий</a>
-                </div>
-            }
-        </div>
-    </div>*@
+            <h3 class="text-center">Изображения за местенцето</h3>
+            <input class="form-control" type="file" id="fileUpload" multiple />
+            <div id="image-holder">
+                @for (int i = 0; i < Model.ImageFileNames.Count; i++)
+                {
+                    string imageName = Model.ImageFileNames[i];
+                    string imageData = Model.ImageFilesData[i];
+                    <div class="col-md-3 text-center">
+                        <input type="hidden" name="ImageFileNames" value=@imageName />
+                        <input type="hidden" name="ImageFilesData" value=@imageData />
+                        <img class="thumb-image" src=@imageData alt=@imageName />
+                        <a href="#" class="btn btn-sm" onclick="OnDeleteClick(this)">Изтрий</a>
+                    </div>
+                }
+            </div>
+        </div>*@
     <div class="form-group">
         <div class="col-md-offset-4 col-md-4">
             <input type="submit" class="btn btn-block" value=@GlobalResources.TextEdit />

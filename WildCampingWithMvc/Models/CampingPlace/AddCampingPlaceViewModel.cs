@@ -11,6 +11,7 @@ namespace WildCampingWithMvc.Models.CampingPlace
         [MinLength(2, ErrorMessage = Messages.ErrNameLength_2)]
         [DisplayName(Messages.TextPlaceName)]
         public string Name { get; set; }
+        //public bool IsAuthor { get; set; }
 
         [DisplayName(Messages.TextDescription)]
         public string Description { get; set; }

@@ -21,8 +21,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("За нас", "About", "Home")</li>
-                    <li>@Html.ActionLink("Контакти", "Contact", "Home")</li>
+                    <li>@Html.ActionLink(GlobalResources.TextAbout, "About", "Home")</li>
+                    <li>@Html.ActionLink(GlobalResources.TextContacts, "Contact", "Home")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink(GlobalResources.TextAllCampingPlaces, "AllCampingPlaces", "CampingPlace")</li>
+                        <li>@Html.ActionLink(GlobalResources.TextAddCampingPlace, "AddCampingPlace", "CampingPlace")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using EFositories;
+﻿using EFositories;
+using NUnit.Framework;
 using Services.DataProviders;
 using System;
 using System.Collections.Generic;
@@ -12,8 +12,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
     public class UpdateCampingPlace_Should
     {
         private string campingPlaceName = "SomeName";
-        private string addedBy = "SomeUserName";
-        private Guid id = new Guid();
+        private Guid id = Guid.NewGuid();
 
         [Test]
         public void ThrowArgumentNullExceptionWithCorrectMessage_WhenProvidedCampingPlaceNameIsNull()
@@ -25,8 +24,26 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             string expectedMessage = "CampingPlaceName";
 
             // Act&Assert
-            var ex = Assert.Throws<ArgumentNullException>(() => provider.AddCampingPlace(
-               null, this.addedBy, null, null, false, null, null,
+            var ex = Assert.Throws<ArgumentNullException>(() => provider.UpdateCampingPlace(
+               this.id, null, null, null, false, null, null,
+               this.GetImageFileNames(), this.GetImageFilesData()));
+            StringAssert.Contains(expectedMessage, ex.Message);
+        }
+
+        [Test]
+        public void ThrowArgumentExceptionWithCorrectMessage_WhenProvidedCampingPlaceIdIsNotFound()
+        {
+            // Arrange
+            IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
+            Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
+            var provider = new CampingPlaceDataProvider(repository, unitOfWork);
+            Mock.Arrange(() => repository.GetCampingPlaceRepository()
+                .GetById(this.id)).Returns((DbCampingPlace)null);
+            string expectedMessage = "Invalid CampingPlaceId";
+
+            // Act&Assert
+            var ex = Assert.Throws<ArgumentException>(() => provider.UpdateCampingPlace(
+               this.id, this.campingPlaceName, null, null, false, null, null,
                this.GetImageFileNames(), this.GetImageFilesData()));
             StringAssert.Contains(expectedMessage, ex.Message);
         }
@@ -41,8 +58,8 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             string expectedMessage = "CampingPlace ImageFiles";
 
             // Act&Assert
-            var ex = Assert.Throws<ArgumentNullException>(() => provider.AddCampingPlace(
-               this.campingPlaceName, this.addedBy, null, null, false, null, null,
+            var ex = Assert.Throws<ArgumentNullException>(() => provider.UpdateCampingPlace(
+               this.id, this.campingPlaceName, null, null, false, null, null,
                null, this.GetImageFilesData()));
             StringAssert.Contains(expectedMessage, ex.Message);
         }
@@ -57,8 +74,8 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             string expectedMessage = "CampingPlace ImageFiles";
 
             // Act&Assert
-            var ex = Assert.Throws<ArgumentNullException>(() => provider.AddCampingPlace(
-               this.campingPlaceName, this.addedBy, null, null, false, null, null,
+            var ex = Assert.Throws<ArgumentNullException>(() => provider.UpdateCampingPlace(
+               this.id, this.campingPlaceName, null, null, false, null, null,
                this.GetImageFileNames(), null));
             StringAssert.Contains(expectedMessage, ex.Message);
         }
@@ -73,8 +90,8 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             string expectedMessage = "CampingPlace ImageFiles";
 
             // Act&Assert
-            var ex = Assert.Throws<ArgumentNullException>(() => provider.AddCampingPlace(
-               this.campingPlaceName, this.addedBy, null, null, false, null, null,
+            var ex = Assert.Throws<ArgumentNullException>(() => provider.UpdateCampingPlace(
+               this.id, this.campingPlaceName, null, null, false, null, null,
                this.GetImageFileNames(), new List<byte[]>()));
             StringAssert.Contains(expectedMessage, ex.Message);
         }
@@ -89,8 +106,8 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             string expectedMessage = "CampingPlace ImageFiles";
 
             // Act&Assert
-            var ex = Assert.Throws<ArgumentNullException>(() => provider.AddCampingPlace(
-               this.campingPlaceName, this.addedBy, null, null, false, null, null,
+            var ex = Assert.Throws<ArgumentNullException>(() => provider.UpdateCampingPlace(
+               this.id, this.campingPlaceName, null, null, false, null, null,
                new List<string>(), this.GetImageFilesData()));
             StringAssert.Contains(expectedMessage, ex.Message);
         }
@@ -105,8 +122,8 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             string expectedMessage = "CampingPlace ImageFiles Names vs Data";
 
             // Act&Assert
-            var ex = Assert.Throws<ArgumentException>(() => provider.AddCampingPlace(
-               this.campingPlaceName, this.addedBy, null, null, false, null, null,
+            var ex = Assert.Throws<ArgumentException>(() => provider.UpdateCampingPlace(
+               this.id, this.campingPlaceName, null, null, false, null, null,
                this.GetImageFileNamesTwo(), this.GetImageFilesData()));
             StringAssert.Contains(expectedMessage, ex.Message);
         }

@@ -199,7 +199,7 @@
     <value>Има питейна вода</value>
   </data>
   <data name="TextHello" xml:space="preserve">
-    <value>Здрасти</value>
+    <value>Здрасти, </value>
   </data>
   <data name="TextLastName" xml:space="preserve">
     <value>Фамилно име</value>
@@ -239,5 +239,14 @@
   </data>
   <data name="WarnPasswordsDoNotMatch" xml:space="preserve">
     <value>Двете пароли не съвпадат!</value>
+  </data>
+  <data name="TextAbout" xml:space="preserve">
+    <value>За нас</value>
+  </data>
+  <data name="TextAllCampingPlaces" xml:space="preserve">
+    <value>Всички местенца</value>
+  </data>
+  <data name="TextContacts" xml:space="preserve">
+    <value>Контакти</value>
   </data>
 </root>

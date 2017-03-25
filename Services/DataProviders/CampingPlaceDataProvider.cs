@@ -73,6 +73,14 @@ namespace Services.DataProviders
         {
             this.GuardCampingPlace(name, imageFileNames, imageFilesData);
 
+            IGenericEFository<DbCampingPlace> campingPlaceRepository =
+                    this.repository.GetCampingPlaceRepository();
+            DbCampingPlace dbCampingPlace = campingPlaceRepository.GetById(id);
+            if (dbCampingPlace == null)
+            {
+                throw new ArgumentException("Invalid CampingPlaceId");
+            }
+
             ICampingPlace updatedCampingPlace = new CampingPlace();
             updatedCampingPlace.Id = id;
             updatedCampingPlace.Name = name;
@@ -83,9 +91,6 @@ namespace Services.DataProviders
             updatedCampingPlace.SiteCategoriesNames = siteCategoryNames;
             using (var uw = this.unitOfWork())
             {
-                IGenericEFository<DbCampingPlace> campingPlaceRepository =
-                    this.repository.GetCampingPlaceRepository();
-                DbCampingPlace dbCampingPlace = campingPlaceRepository.GetById(id);
                 this.UpdateFromPlace(updatedCampingPlace, dbCampingPlace);
                 this.UpdateImages(dbCampingPlace, imageFileNames, imageFilesData);
                 this.UpdateCategories(dbCampingPlace, siteCategoryNames);
@@ -351,7 +356,8 @@ namespace Services.DataProviders
             ICampingPlace place = new CampingPlace();
             place.Name = p.Name;
             place.Id = p.Id;
-            place.AddedBy = p.AddedBy.FirstName + " " + p.AddedBy.LastName;
+            //place.AddedBy = p.AddedBy.FirstName + " " + p.AddedBy.LastName;
+            place.AddedBy = p.AddedBy.UserName;
             place.AddedOn = p.AddedOn;
             place.Description = p.Description;
             place.GoogleMapsUrl = p.GoogleMapsUrl;

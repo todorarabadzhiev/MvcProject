@@ -247,6 +247,8 @@
     <Compile Include="App_Start\NinjectModules\DBNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CampingPlaceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -266,8 +268,8 @@
     <Compile Include="Models\Account\SendCodeViewModel.cs" />
     <Compile Include="Models\Account\VerifyCodeViewModel.cs" />
     <Compile Include="Models\CampingPlace\AddCampingPlaceViewModel.cs" />
+    <Compile Include="Models\CampingPlace\MultipleCampingPlacesViewModel.cs" />
     <Compile Include="Models\CampingPlace\CampingPlaceDetailsViewModel.cs" />
-    <Compile Include="Models\Home\IndexViewModel.cs" />
     <Compile Include="Models\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="Models\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Manage\ConfigureTwoFactorViewModel.cs" />
@@ -292,6 +294,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <None Include="Properties\PublishProfiles\bivacizadivaci - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bivacizadivaci - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
@@ -345,10 +349,14 @@
     <Content Include="Views\CampingPlace\AddCampingPlace.cshtml" />
     <Content Include="Views\CampingPlace\EditCampingPlace.cshtml" />
     <Content Include="Views\CampingPlace\CampingPlaceDetails.cshtml" />
-    <Content Include="Views\Shared\_EditCampingPlace.cshtml" />
+    <Content Include="Views\CampingPlace\_EditCampingPlace.cshtml" />
+    <Content Include="Views\Shared\_MultipleCampingPlacesPartial.cshtml" />
+    <Content Include="Views\CampingPlace\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

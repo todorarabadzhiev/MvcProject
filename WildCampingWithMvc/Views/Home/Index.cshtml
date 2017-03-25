@@ -1,5 +1,4 @@
-﻿@using CommonUtilities.Utilities
-@model WildCampingWithMvc.Models.Home.IndexViewModel
+﻿@model WildCampingWithMvc.Models.CampingPlace.MultipleCampingPlacesViewModel
 @{
     ViewBag.Title = "Начало";
 }
@@ -15,14 +14,5 @@
 <div>
     <h2 class="text-center">Последни споделени местенца</h2>
 
-    @foreach (var m in Model.LastCampingPlaces)
-    {
-        string imgSource = Utilities.ConvertToImage(m.ImageFiles[0].Data);
-        string url = Url.Action("CampingPlaceDetails", "CampingPlace", new { id = m.Id });
-
-        <div class="col-md-4 text-center">
-            <img src='@imgSource' class="image-200px" /><br />
-            <a href='@url'>@m.Name</a>
-        </div>
-    }
+    @Html.Partial("_MultipleCampingPlacesPartial", Model);
 </div>

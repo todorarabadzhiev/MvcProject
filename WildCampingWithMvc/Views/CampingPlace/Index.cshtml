@@ -1,0 +1,10 @@
+﻿@model WildCampingWithMvc.Models.CampingPlace.MultipleCampingPlacesViewModel
+@{
+    ViewBag.Title = "Всички";
+}
+
+<div>
+    <h2 class="text-center">Всички споделени местенца</h2>
+
+    @Html.Partial("_MultipleCampingPlacesPartial", Model);
+</div>

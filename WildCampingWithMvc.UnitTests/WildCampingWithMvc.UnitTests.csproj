@@ -87,6 +87,10 @@
       <HintPath>..\packages\JustMock.2016.2.426.1\lib\Net35\Telerik.JustMock.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="TestStack.FluentMVCTesting, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TestStack.FluentMVCTesting.3.0.0\lib\NET45\TestStack.FluentMVCTesting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mocked\CampingPlaceDataProviderMock.cs" />
@@ -94,7 +98,7 @@
     <Compile Include="Mocked\SightseeingDataProviderMock.cs" />
     <Compile Include="Mocked\SiteCategoryDataProviderMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Controllers\HomeControllerClass\Index_Should.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\AddCampingPlace_Should.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\Constructor_Should.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\DeleteCampingPlace_Should.cs" />

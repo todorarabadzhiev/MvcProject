@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        internal static string TextAbout {
+            get {
+                return ResourceManager.GetString("TextAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         internal static string TextAdd {
@@ -120,6 +129,15 @@ namespace Resources {
         internal static string TextAddImages {
             get {
                 return ResourceManager.GetString("TextAddImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All CampingPlaces.
+        /// </summary>
+        internal static string TextAllCampingPlaces {
+            get {
+                return ResourceManager.GetString("TextAllCampingPlaces", resourceCulture);
             }
         }
         
@@ -192,6 +210,15 @@ namespace Resources {
         internal static string TextConfirmPasswordChange {
             get {
                 return ResourceManager.GetString("TextConfirmPasswordChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contacts.
+        /// </summary>
+        internal static string TextContacts {
+            get {
+                return ResourceManager.GetString("TextContacts", resourceCulture);
             }
         }
         
@@ -304,7 +331,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello.
+        ///   Looks up a localized string similar to Hello .
         /// </summary>
         internal static string TextHello {
             get {
