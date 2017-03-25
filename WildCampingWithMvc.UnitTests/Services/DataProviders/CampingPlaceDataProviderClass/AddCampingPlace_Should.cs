@@ -29,7 +29,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             string expectedMessage = "CampingPlaceName";
 
             // Act&Assert
-            var ex = Assert.Throws< ArgumentNullException>(() => provider.AddCampingPlace(
+            var ex = Assert.Throws<ArgumentNullException>(() => provider.AddCampingPlace(
                 null, this.addedBy, null, null, false, null, null, 
                 this.GetImageFileNames(), this.GetImageFilesData()));
             StringAssert.Contains(expectedMessage, ex.Message);

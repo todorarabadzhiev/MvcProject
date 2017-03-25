@@ -1,4 +1,5 @@
 ﻿using Services.DataProviders;
+using System;
 using System.Web.Mvc;
 using WildCampingWithMvc.Models.CampingPlace;
 
@@ -7,10 +8,15 @@ namespace WildCampingWithMvc.Controllers
     public class HomeController : Controller
     {
         private const int CountOfLastPlaces = 6;
-        private readonly ICampingPlaceDataProvider campPlaceDataProvider;
+        protected readonly ICampingPlaceDataProvider campPlaceDataProvider;
 
         public HomeController(ICampingPlaceDataProvider campPlaceDataProvider)
         {
+            if (campPlaceDataProvider == null)
+            {
+                throw new ArgumentNullException("CampingPlaceDataProvider");
+            }
+
             this.campPlaceDataProvider = campPlaceDataProvider;
         }
 
