@@ -17,6 +17,16 @@ namespace WildCampingWithMvc
             bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
                        "~/Scripts/jquery.unobtrusive*"));
 
+            // ***BEGIN*** JQGRID Files
+            bundles.Add(new StyleBundle("~/Content/jqgrid").Include(
+                      "~/Content/jquery.jqGrid/ui.jqgrid.css",
+                      "~/Content/themes/jq-ui-themes/sunny/theme.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqgrid").Include(
+                       "~/Scripts/jquery.jqGrid.min.js",
+                       "~/Scripts/i18n/grid.locale-en.js"));
+            // ***END*** JQGRID Files
+
             // ***BEGIN*** CUSTOM JS FILES !!!!!!!!!!!!!!!!!!!!
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                         "~/Scripts/Custom/custom-js-*"));
