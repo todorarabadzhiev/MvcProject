@@ -1,4 +1,10 @@
-﻿function OnDeleteClick(elem) {
+﻿$(function () {
+    $('[name="searchTerm"]').keyup(function () {
+        $('#ajaxForm').submit()
+    })
+})
+
+function OnDeleteClick(elem) {
     $(elem).closest("div").remove()
 }
 

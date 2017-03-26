@@ -139,7 +139,7 @@
     <value>Добави изображения</value>
   </data>
   <data name="TextCampingPlaceDetails" xml:space="preserve">
-    <value>Подробна информация за \"{0}\"</value>
+    <value>Подробна информация за "{0}"</value>
   </data>
   <data name="TextChangePassword" xml:space="preserve">
     <value>Смени парола</value>
@@ -248,5 +248,8 @@
   </data>
   <data name="TextContacts" xml:space="preserve">
     <value>Контакти</value>
+  </data>
+  <data name="TextSearchByName" xml:space="preserve">
+    <value>Търси по име: </value>
   </data>
 </root>

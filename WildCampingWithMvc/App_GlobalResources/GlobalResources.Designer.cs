@@ -142,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Details about \&quot;{0}\&quot;.
+        ///   Looks up a localized string similar to Details about &quot;{0}&quot;.
         /// </summary>
         internal static string TextCampingPlaceDetails {
             get {
@@ -426,6 +426,15 @@ namespace Resources {
         internal static string TextRememberMe {
             get {
                 return ResourceManager.GetString("TextRememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search by name: .
+        /// </summary>
+        internal static string TextSearchByName {
+            get {
+                return ResourceManager.GetString("TextSearchByName", resourceCulture);
             }
         }
         

@@ -14,6 +14,8 @@ namespace WildCampingWithMvc
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryajax").Include(
+                       "~/Scripts/jquery.unobtrusive*"));
 
             // ***BEGIN*** CUSTOM JS FILES !!!!!!!!!!!!!!!!!!!!
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(

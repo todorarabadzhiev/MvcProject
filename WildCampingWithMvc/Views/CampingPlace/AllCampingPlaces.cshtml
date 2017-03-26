@@ -1,0 +1,27 @@
+﻿@model WildCampingWithMvc.Models.CampingPlace.MultipleCampingPlacesViewModel
+@{
+    ViewBag.Title = "Всички";
+}
+
+<div class="form-control">
+    @using (Ajax.BeginForm("FilteredCampingPlaces", new { }, new AjaxOptions()
+    {
+        HttpMethod = "Post",
+        UpdateTargetId = "campingPlacesContainer",
+        InsertionMode = InsertionMode.Replace,
+    }, new { id = "ajaxForm" }))
+    {
+        <label for="searchTerm">@GlobalResources.TextSearchByName</label>
+        <input type="text" name="searchTerm" />
+    }
+</div>
+
+<div id="campingPlacesContainer" class="container">
+    <h2 class="text-center">Всички споделени местенца</h2>
+
+    @Html.Partial("_MultipleCampingPlacesPartial", Model);
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/custom")
+}

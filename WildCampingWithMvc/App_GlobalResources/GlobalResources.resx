@@ -139,7 +139,7 @@
     <value>Add images</value>
   </data>
   <data name="TextCampingPlaceDetails" xml:space="preserve">
-    <value>Details about \"{0}\"</value>
+    <value>Details about "{0}"</value>
   </data>
   <data name="TextChangePassword" xml:space="preserve">
     <value>Change password</value>
@@ -248,5 +248,8 @@
   </data>
   <data name="TextContacts" xml:space="preserve">
     <value>Contacts</value>
+  </data>
+  <data name="TextSearchByName" xml:space="preserve">
+    <value>Search by name: </value>
   </data>
 </root>

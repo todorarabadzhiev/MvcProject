@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
 using WildCampingWithMvc.Models.CampingPlace;
+using WildCampingWithMvc.Utils;
 
 namespace WildCampingWithMvc.Controllers
 {
@@ -44,6 +45,25 @@ namespace WildCampingWithMvc.Controllers
             this.campingPlaceProvider = campingPlaceProvider;
             this.siteCategoryProvider = siteCategoryProvider;
             this.sightseeingProvider = sightseeingProvider;
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult FilteredCampingPlaces(string searchTerm)
+        {
+            MultipleCampingPlacesViewModel model = new MultipleCampingPlacesViewModel();
+            IEnumerable<ICampingPlace> foundCampingPlaces;
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                foundCampingPlaces = this.campingPlaceProvider.GetAllCampingPlaces();
+            }
+            else
+            {
+                foundCampingPlaces = this.campingPlaceProvider.GetCampingPlacesBySearchName(searchTerm);
+            }
+
+            model.CampingPlaces = foundCampingPlaces;
+            return this.PartialView("_MultipleCampingPlacesPartial", model);
         }
 
         public ActionResult CampingPlaceDetails(Guid id)
@@ -126,17 +146,18 @@ namespace WildCampingWithMvc.Controllers
         }
         public ActionResult Index()
         {
+            return RedirectToAction("AllCampingPlaces");
+        }
+
+        // GET: CampingPlace
+        [HttpGet]
+        public ActionResult AllCampingPlaces()
+        {
             var places = this.campingPlaceProvider.GetAllCampingPlaces();
             MultipleCampingPlacesViewModel model = new MultipleCampingPlacesViewModel();
             model.CampingPlaces = places;
 
             return View(model);
-        }
-
-        // GET: CampingPlace
-        public ActionResult AllCampingPlaces()
-        {
-            return RedirectToAction("Index");
         }
 
         private void UpdateCampPlace(AddCampingPlaceViewModel model, Guid id)
