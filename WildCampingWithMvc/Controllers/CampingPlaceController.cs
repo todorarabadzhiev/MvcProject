@@ -67,7 +67,7 @@ namespace WildCampingWithMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddCampingPlace(AddCampingPlaceViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.View(model);
             }
@@ -262,23 +262,6 @@ namespace WildCampingWithMvc.Controllers
 
             return imageFilesData;
         }
-
-        //private void CacheSiteCategoriesAndSightseeings()
-        //{
-        //    IList<ISiteCategory> allSiteCategories = this.HttpContCache.AllSiteCategories;
-        //    if (allSiteCategories == null)
-        //    {
-        //        allSiteCategories = (IList<ISiteCategory>)this.siteCategoryProvider.GetAllSiteCategories();
-        //        this.HttpContCache.AllSiteCategories = allSiteCategories;
-        //    }
-
-        //    IList<ISightseeing> allSightseeings = this.HttpContCache.AllSightseeings;
-        //    if (allSightseeings == null)
-        //    {
-        //        allSightseeings = (IList<ISightseeing>)this.sightseeingProvider.GetAllSightseeings();
-        //        this.HttpContCache.AllSightseeings = allSightseeings;
-        //    }
-        //}
 
         private void CacheSiteCategoriesAndSightseeings()
         {

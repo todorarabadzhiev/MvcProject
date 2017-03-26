@@ -94,8 +94,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CampingPlaceControllerClass\AddCampingPlace_Should.cs" />
+    <Compile Include="Controllers\CampingPlaceControllerClass\AllCampingPlaces_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\CampingPlaceDetails_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\Constructor_Should.cs" />
+    <Compile Include="Controllers\CampingPlaceControllerClass\DeleteCampingPlace_Should.cs" />
+    <Compile Include="Controllers\CampingPlaceControllerClass\EditCampingPlace_Should.cs" />
+    <Compile Include="Controllers\CampingPlaceControllerClass\Index_Should.cs" />
+    <Compile Include="Controllers\CampingPlaceControllerClass\Util.cs" />
     <Compile Include="Controllers\HomeControllerClass\Constructor_Should.cs" />
     <Compile Include="Controllers\Mocked\CampingPlaceControllerMock.cs" />
     <Compile Include="Controllers\Mocked\HomeControllerMock.cs" />
@@ -131,6 +136,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonUtilities\CommonUtilities.csproj">
+      <Project>{19AB8972-33E5-437F-88B2-48EA4730595F}</Project>
+      <Name>CommonUtilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EFositories\EFositories.csproj">
       <Project>{3DC1667F-4F41-4CB0-B4D6-B58F7BA76195}</Project>
       <Name>EFositories</Name>

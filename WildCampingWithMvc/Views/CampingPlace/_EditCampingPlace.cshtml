@@ -80,7 +80,7 @@
     <h3 class="text-center">Изображения за местенцето</h3>
     <input class="form-control" type="file" id="fileUpload" multiple />
     <div id="image-holder">
-        @if (Model != null)
+        @if (Model != null && Model.ImageFileNames != null)
             {
                 for (int i = 0; i < Model.ImageFileNames.Count; i++)
                 {
