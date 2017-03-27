@@ -1,61 +1,65 @@
 ﻿@model WildCampingWithMvc.Models.CampingPlace.CampingPlaceDetailsViewModel
-@{
-    ViewBag.Title = string.Format(GlobalResources.TextCampingPlaceDetails, Model.Name);
+
+@if (ViewBag.NoPlaceFound)
+{
+    <h3 class="row text-center">@GlobalResources.TextPlaceNotFound</h3>
 }
+else
+{
+    <div class="row text-center">
+        <h2>@string.Format(GlobalResources.TextCampingPlaceDetails, Model.Name).</h2>
+        <hr />
+        <h5>Добавено от @Model.AddedBy на @Model.AddedOn</h5>
+        <a href="@Model.GoogleMapsUrl">@GlobalResources.TextGoogleMapsUrl</a>
+    </div>
+    <div class="row text-center">
+        @if (Model.HasWater)
+        {
+            <h4>В района <strong class="my-strong">има питейна вода</strong>!</h4>
+        }
+        else
+        {
+            <h4>В района <strong class="my-strong"><span class="my-red">няма</span> питейна вода</strong>!</h4>
+        }
+        <h5>Описание на мястото:</h5>
+        <p>@Model.Description</p>
+    </div>
 
-<div class="row text-center">
-    <h2>@ViewBag.Title.</h2>
-    <hr />
-    <h5>Добавено от @Model.AddedBy на @Model.AddedOn</h5>
-    <a href="@Model.GoogleMapsUrl">@GlobalResources.TextGoogleMapsUrl</a>
-</div>
-<div class="row text-center">
-    @if (Model.HasWater)
-    {
-        <h4>В района <strong class="my-strong">има питейна вода</strong>!</h4>
-    }
-    else
-    {
-        <h4>В района <strong class="my-strong"><span class="my-red">няма</span> питейна вода</strong>!</h4>
-    }
-    <h5>Описание на мястото:</h5>
-    <p>@Model.Description</p>
-</div>
-
-<div class="row text-center">
-    <h3>Категории</h3>
-    @foreach (var category in Model.SiteCategories)
-    {
-        <a href="@Url.Action("SiteCategoryDetails", "SiteCategory", new { id = category.Id })">[@category.Name]</a>
-    }
-</div>
-<div class="row text-center">
-    <h3>Забележителности</h3>
-    @foreach (var sightseeing in Model.Sightseeings)
-    {
-        <a href="@Url.Action("SightseeingDetails", "Sightseeing", new { id = sightseeing.Id })">[@sightseeing.Name]</a>
-    }
-</div>
-<div class="row text-center">
-    <h3>Изображения от "@Model.Name"</h3>
-    @for (int i = 0; i < Model.ImageFileNames.Count; i++)
-    {
-        string imageName = Model.ImageFileNames[i];
-        byte[] imageData = Model.ImageFilesData[i];
-        <div class="col-md-6">
-            <img class="image-400px" src="@Utilities.ConvertToImage(imageData)" alt="@imageName" /><br />
-            <span>@imageName</span>
-        </div>
-    }
-</div>
+    <div class="row text-center">
+        <h3>Категории</h3>
+        @foreach (var category in Model.SiteCategories)
+        {
+            <a href="@Url.Action("SiteCategoryDetails", "SiteCategory", new { id = category.Id })">[@category.Name]</a>
+        }
+    </div>
+    <div class="row text-center">
+        <h3>Забележителности</h3>
+        @foreach (var sightseeing in Model.Sightseeings)
+        {
+            <a href="@Url.Action("SightseeingDetails", "Sightseeing", new { id = sightseeing.Id })">[@sightseeing.Name]</a>
+        }
+    </div>
+    <div class="row text-center">
+        <h3>Изображения от "@Model.Name"</h3>
+        @for (int i = 0; i < Model.ImageFileNames.Count; i++)
+        {
+            string imageName = Model.ImageFileNames[i];
+            byte[] imageData = Model.ImageFilesData[i];
+            <div class="col-md-6">
+                <img class="image-400px" src="@Utilities.ConvertToImage(imageData)" alt="@imageName" /><br />
+                <span>@imageName</span>
+            </div>
+        }
+    </div>
+}
 <div class="row text-center">
     <a class="btn btn-default" href="@Url.Action("Index", "Home")">Последни</a>
     @{
-        bool isAuthorized = User.IsInRole("Admin") || Model.AddedBy == User.Identity.Name;
+        bool isAuthorized = User.IsInRole("Admin") || (Model != null && Model.AddedBy == User.Identity.Name);
         if (isAuthorized)
         {
             <a class="btn btn-warning" href="@Url.Action("EditCampingPlace", "CampingPlace", new { id = Model.Id })">Редактирай</a>
-            <a class="btn btn-danger" href="@Url.Action("DeleteCampingPlace", "CampingPlace", new { id = Model.Id })">Изтрий</a>
+                <a class="btn btn-danger" href="@Url.Action("DeleteCampingPlace", "CampingPlace", new { id = Model.Id })">Изтрий</a>
         }
 
         TempData["isAuthorized"] = isAuthorized;

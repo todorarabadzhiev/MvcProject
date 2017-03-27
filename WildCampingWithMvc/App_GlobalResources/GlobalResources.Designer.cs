@@ -430,6 +430,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Camping place not found!.
+        /// </summary>
+        internal static string TextPlaceNotFound {
+            get {
+                return ResourceManager.GetString("TextPlaceNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Register.
         /// </summary>
         internal static string TextRegister {

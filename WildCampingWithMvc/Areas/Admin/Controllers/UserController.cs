@@ -1,6 +1,7 @@
 ﻿using Resources;
 using Services.DataProviders;
 using Services.Models;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using WildCampingWithMvc.Areas.Admin.Models;
@@ -9,9 +10,14 @@ namespace WildCampingWithMvc.Areas.Admin.Controllers
 {
     public class UserController : Controller
     {
-        private readonly ICampingUserDataProvider campingUserDataProvider;
+        protected readonly ICampingUserDataProvider campingUserDataProvider;
         public UserController(ICampingUserDataProvider campingUserDataProvider)
         {
+            if (campingUserDataProvider == null)
+            {
+                throw new ArgumentNullException("CampingUserDataProvider");
+            }
+
             this.campingUserDataProvider = campingUserDataProvider;
         }
 

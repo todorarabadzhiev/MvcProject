@@ -38,7 +38,7 @@ namespace WildCampingWithMvc.UnitTests.Controllers.CampingPlaceControllerClass
         }
 
         [Test]
-        public void ReturnViewWithModelWithCorrectCampingPlace()
+        public void ReturnViewWithModelWithCorrectCampingPlaceAndSetViewBagNoPlaceFoundToFalse()
         {
             // Arrange
             var campingPlaceProvider = Mock.Create<ICampingPlaceDataProvider>();
@@ -88,7 +88,32 @@ namespace WildCampingWithMvc.UnitTests.Controllers.CampingPlaceControllerClass
                     Assert.AreSame(cp.SightseeingNames.First(), viewModel.Sightseeings.First().Name);
                     Assert.AreEqual(cp.SiteCategoriesIds.First(), viewModel.SiteCategories.First().Id);
                     Assert.AreSame(cp.SiteCategoriesNames.First(), viewModel.SiteCategories.First().Name);
+
+                    Assert.IsFalse(campingPlaceController.ViewBag.NoPlaceFound);
                 });
+        }
+
+        [Test]
+        public void ReturnViewWithModelNullAndSetViewBagNoPlaceFoundToTrue()
+        {
+            // Arrange
+            Guid id = Guid.NewGuid();
+            var campingPlaceProvider = Mock.Create<ICampingPlaceDataProvider>();
+            var sightseeingsProvider = Mock.Create<ISightseeingDataProvider>();
+            var siteCategoryProvider = Mock.Create<ISiteCategoryDataProvider>();
+            CampingPlaceController campingPlaceController = new CampingPlaceController(
+                campingPlaceProvider,
+                sightseeingsProvider,
+                siteCategoryProvider);
+            Mock.Arrange(() => campingPlaceProvider.GetCampingPlaceById(Arg.AnyGuid))
+                .Returns((IEnumerable<ICampingPlace>)null);
+
+            // Act & Assert
+            campingPlaceController
+                .WithCallTo(c => c.CampingPlaceDetails(id))
+                .ShouldRenderDefaultView();
+
+            Assert.IsTrue(campingPlaceController.ViewBag.NoPlaceFound);
         }
     }
 }

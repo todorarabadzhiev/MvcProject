@@ -93,12 +93,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Controllers\Mocked\UserControllerMock.cs" />
+    <Compile Include="Admin\Controllers\UserControllerClass\Constructor_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\AddCampingPlace_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\AllCampingPlaces_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\CampingPlaceDetails_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\Constructor_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\DeleteCampingPlace_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\EditCampingPlace_Should.cs" />
+    <Compile Include="Controllers\CampingPlaceControllerClass\FilteredCampingPlaces_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\Index_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\Util.cs" />
     <Compile Include="Controllers\HomeControllerClass\Constructor_Should.cs" />

@@ -264,4 +264,7 @@
   <data name="ErrDbUpdate" xml:space="preserve">
     <value>Error Updating Data!</value>
   </data>
+  <data name="TextPlaceNotFound" xml:space="preserve">
+    <value>Camping place not found!</value>
+  </data>
 </root>

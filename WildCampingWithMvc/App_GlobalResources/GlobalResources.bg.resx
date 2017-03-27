@@ -264,4 +264,7 @@
   <data name="ErrDbUpdate" xml:space="preserve">
     <value>Грешка при опресняване на данните!</value>
   </data>
+  <data name="TextPlaceNotFound" xml:space="preserve">
+    <value>Местенцето не е намерено!</value>
+  </data>
 </root>

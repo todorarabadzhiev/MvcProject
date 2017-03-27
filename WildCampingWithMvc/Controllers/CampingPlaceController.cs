@@ -68,7 +68,12 @@ namespace WildCampingWithMvc.Controllers
 
         public ActionResult CampingPlaceDetails(Guid id)
         {
+            ViewBag.NoPlaceFound = false;
             CampingPlaceDetailsViewModel model = this.ConvertToDetailsFromICampingPlace(id);
+            if (model == null)
+            {
+                ViewBag.NoPlaceFound = true;
+            }
 
             return this.View(model);
         }
@@ -216,7 +221,13 @@ namespace WildCampingWithMvc.Controllers
 
         private CampingPlaceDetailsViewModel ConvertToDetailsFromICampingPlace(Guid id)
         {
-            ICampingPlace cpModel = this.campingPlaceProvider.GetCampingPlaceById(id).First();
+            IEnumerable<ICampingPlace> cpsFound = this.campingPlaceProvider.GetCampingPlaceById(id);
+            if (cpsFound == null)
+            {
+                return null;
+            }
+
+            ICampingPlace cpModel = cpsFound.First();
             CampingPlaceDetailsViewModel viewModel = new CampingPlaceDetailsViewModel();
 
             viewModel.AddedBy = cpModel.AddedBy;
