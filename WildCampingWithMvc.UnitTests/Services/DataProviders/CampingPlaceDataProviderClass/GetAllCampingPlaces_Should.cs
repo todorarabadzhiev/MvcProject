@@ -25,9 +25,9 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
         private string userName_01 = "User_01";
         private string userName_02 = "User_02";
         private string userName_03 = "User_03";
-        
+
         [Test]
-        public void CallsExactlyOnceCampingPlaceRepositoryMethodGetAllWithOneExpressionsAsArguments()
+        public void CallExactlyOnceCampingPlaceRepositoryMethodGetAllWithOneExpressionsAsArguments()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
@@ -51,10 +51,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             var provider = new CampingPlaceDataProvider(repository, unitOfWork);
             IEnumerable<DbCampingPlace> dbPlaces = null;
             Mock.Arrange(() => repository.GetCampingPlaceRepository()
-                .GetAll
-                (
-                Arg.IsAny<Expression<Func<DbCampingPlace, bool>>>()
-                )).Returns(dbPlaces);
+                .GetAll(p => !p.IsDeleted)).Returns(dbPlaces);
 
             // Act
             var places = provider.GetAllCampingPlaces();
@@ -63,7 +60,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             Assert.IsNull(places);
         }
 
-        public void ReturnsAllCampingPlaces_WhenCampingPlacesExistInTheDB()
+        public void ReturnsAllCampingPlacesThatAreNotMarkedAsDeleted_WhenCampingPlacesExistInTheDB()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
@@ -77,13 +74,13 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             IEnumerable<ICampingPlace> expectedPlaces = this.GetCampingPlaces();
 
             // Act
-            var places = provider.GetAllCampingPlaces();
+            IEnumerable<ICampingPlace> places = provider.GetAllCampingPlaces();
 
             // Assert
             Assert.AreEqual(expectedPlaces.Count(), places.Count());
             foreach (var doublePlace in expectedPlaces.Zip(places, Tuple.Create))
             {
-                Assert.AreEqual(doublePlace.Item1.Id, doublePlace.Item2.Id);
+                Assert.AreEqual(doublePlace.Item1, doublePlace.Item2);
             }
         }
 
@@ -107,7 +104,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
                 {
                     Id = this.id_03,
                     Name = this.placeName_03,
-                    AddedBy = this.userName_01
+                    AddedBy = this.userName_03
                 }
             };
 
@@ -145,6 +142,16 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
                     {
                         UserName = this.userName_03
                     }
+                },
+                new DbCampingPlace()
+                {
+                    Id = this.id_03,
+                    Name = this.placeName_03,
+                    AddedBy = new DbCampingUser()
+                    {
+                        UserName = this.userName_03
+                    },
+                    IsDeleted = true
                 }
             };
 

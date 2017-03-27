@@ -12,9 +12,11 @@ namespace EFositories
             this.dbContext = dbContext;
         }
 
-        public void Commit()
+        public int Commit()
         {
-            this.dbContext.SaveChanges();
+            int result = this.dbContext.SaveChanges();
+
+            return result;
         }
 
         public void Dispose()

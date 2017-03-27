@@ -4,6 +4,6 @@ namespace EFositories
 {
     public interface IUnitOfWork : IDisposable
     {
-        void Commit();
+        int Commit();
     }
 }

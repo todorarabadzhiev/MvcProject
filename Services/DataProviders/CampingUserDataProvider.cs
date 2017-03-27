@@ -26,6 +26,72 @@ namespace Services.DataProviders
             this.unitOfWork = unitOfWork;
         }
 
+        public ICampingUser GetCampingUserById(Guid id)
+        {
+            IGenericEFository<DbCampingUser> capmingUserRepository =
+                this.repository.GetCampingUserRepository();
+            var dbUser = capmingUserRepository.GetById(id);
+            if (dbUser == null)
+            {
+                return null;
+            }
+
+            var user = this.ConvertToUser(dbUser);
+
+            return user;
+        }
+
+        public int UpdateCampingUser(Guid id, string firstName,  string lastName)
+        {
+            if (firstName == null)
+            {
+                throw new ArgumentNullException("FirstName");
+            }
+
+            if (lastName == null)
+            {
+                throw new ArgumentNullException("LastName");
+            }
+
+            int result = 0;
+
+            IGenericEFository<DbCampingUser> capmingUserRepository =
+                this.repository.GetCampingUserRepository();
+            var dbUser = capmingUserRepository.GetById(id);
+            if (dbUser == null)
+            {
+                throw new ArgumentException("Invalid CampingUserId");
+            }
+
+            dbUser.FirstName = firstName;
+            dbUser.LastName = lastName;
+            using (var uw = this.unitOfWork())
+            {
+                capmingUserRepository.Update(dbUser);
+                result = uw.Commit();
+            }
+
+            return result;
+        }
+
+        public int DeleteCampingUser(Guid id)
+        {
+            int result = 0;
+            IGenericEFository<DbCampingUser> capmingUserRepository =
+                this.repository.GetCampingUserRepository();
+            var dbUser = capmingUserRepository.GetById(id);
+            if (dbUser != null)
+            {
+                using (var uw = this.unitOfWork())
+                {
+                    capmingUserRepository.Delete(dbUser);
+                    result = uw.Commit();
+                }
+            }
+
+            return result;
+        }
+
         public void AddCampingUser(string appUserId, string firstName,
             string lastName, string userName)
         {

@@ -104,6 +104,10 @@
     <Compile Include="Controllers\HomeControllerClass\Constructor_Should.cs" />
     <Compile Include="Controllers\Mocked\CampingPlaceControllerMock.cs" />
     <Compile Include="Controllers\Mocked\HomeControllerMock.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetCampingPlacesBySearchName_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingUserDataProviderClass\DeleteCampingUser_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingUserDataProviderClass\GetCampingUserById_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingUserDataProviderClass\UpdateCampingUser_Should.cs" />
     <Compile Include="Services\DataProviders\Mocked\CampingPlaceDataProviderMock.cs" />
     <Compile Include="Services\DataProviders\Mocked\CampingUserDataProviderMock.cs" />
     <Compile Include="Services\DataProviders\Mocked\SightseeingDataProviderMock.cs" />

@@ -1,9 +1,7 @@
-﻿using Services.DataProviders;
+﻿using Resources;
+using Services.DataProviders;
 using Services.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using WildCampingWithMvc.Areas.Admin.Models;
 
@@ -29,6 +27,53 @@ namespace WildCampingWithMvc.Areas.Admin.Controllers
             ICollection<UserViewModel> usersModel = this.GetUsersModelFromICampingUser(users);
 
             return Json(usersModel, JsonRequestBehavior.AllowGet);
+        }
+
+        public string UpdateUser(UserViewModel userModel)
+        {
+            string message;
+            if (ModelState.IsValid)
+            {
+                int updateResult = this.campingUserDataProvider.UpdateCampingUser(
+                    userModel.Id, userModel.FirstName, userModel.LastName);
+                if (updateResult > 0)
+                {
+                    message = GlobalResources.SuccessUpdate;
+                }
+                else
+                {
+                    message = GlobalResources.ErrDbUpdate;
+                }
+            }
+            else
+            {
+                message = GlobalResources.ErrValidation;
+            }
+
+            return message;
+        }
+
+        public string DeleteUser(UserViewModel userModel)
+        {
+            string message;
+            if (ModelState.IsValid)
+            {
+                int deleteResult = this.campingUserDataProvider.DeleteCampingUser(userModel.Id);
+                if (deleteResult > 0)
+                {
+                    message = GlobalResources.SuccessDelete;
+                }
+                else
+                {
+                    message = GlobalResources.ErrDbUpdate;
+                }
+            }
+            else
+            {
+                message = GlobalResources.ErrValidation;
+            }
+
+            return message;
         }
 
         private ICollection<UserViewModel> GetUsersModelFromICampingUser(IEnumerable<ICampingUser> users)

@@ -252,4 +252,16 @@
   <data name="TextSearchByName" xml:space="preserve">
     <value>Search by name: </value>
   </data>
+  <data name="ErrValidation" xml:space="preserve">
+    <value>Validation Error!</value>
+  </data>
+  <data name="SuccessDelete" xml:space="preserve">
+    <value>Successfull Delete!</value>
+  </data>
+  <data name="SuccessUpdate" xml:space="preserve">
+    <value>Successfull Update!</value>
+  </data>
+  <data name="ErrDbUpdate" xml:space="preserve">
+    <value>Error Updating Data!</value>
+  </data>
 </root>

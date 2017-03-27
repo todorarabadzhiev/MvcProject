@@ -1,6 +1,4 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,37 +12,3 @@
 </div>
 
 @Scripts.Render("~/bundles/jqgrid")
-<script>
-    $(function () {
-        $("#grid").jqGrid({
-            url: "/Admin/User/GetUsers",
-            datatype: "json",
-            mtype: "Get",
-            colNames: ["ID", "First Name", "Last Name", "User Name", "Registered On"],
-            colModel: [
-                { name: "Id", key: true, index: "Id" },
-                { name: "FirstName", index: "FirstName" },
-                { name: "LastName", index: "LastName" },
-                { name: "UserName", index: "UserName" },
-                { name: "RegisteredOn", index: "RegisteredOn" }
-            ],
-
-            height: "auto",
-            autowidth: "true",
-            rowNum: 10,
-            loadonce: true,
-            rowList: [10, 20],
-            pager: "pager",
-            sortName: "FirstName",
-            viewrecords: true,
-            sortorder: "asc",
-            caption: "List of users",
-            emptyrecords: "No users found",
-            jsonreader: {
-                repeatitems: false,
-                Id: "0"
-            },
-            multiselect: false
-        })
-    })
-</script>

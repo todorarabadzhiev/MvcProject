@@ -252,4 +252,16 @@
   <data name="TextSearchByName" xml:space="preserve">
     <value>Търси по име: </value>
   </data>
+  <data name="ErrValidation" xml:space="preserve">
+    <value>Невалидни данни!</value>
+  </data>
+  <data name="SuccessDelete" xml:space="preserve">
+    <value>Успешно изтриване!</value>
+  </data>
+  <data name="SuccessUpdate" xml:space="preserve">
+    <value>Успешно редактиране!</value>
+  </data>
+  <data name="ErrDbUpdate" xml:space="preserve">
+    <value>Грешка при опресняване на данните!</value>
+  </data>
 </root>

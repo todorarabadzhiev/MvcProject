@@ -24,7 +24,9 @@ namespace WildCampingWithMvc
 
             bundles.Add(new ScriptBundle("~/bundles/jqgrid").Include(
                        "~/Scripts/jquery.jqGrid.min.js",
-                       "~/Scripts/i18n/grid.locale-en.js"));
+                       "~/Scripts/i18n/grid.locale-en.js",
+                       "~/Scripts/Custom/custom-admin-user-grid.js"
+                       ));
             // ***END*** JQGRID Files
 
             // ***BEGIN*** CUSTOM JS FILES !!!!!!!!!!!!!!!!!!!!

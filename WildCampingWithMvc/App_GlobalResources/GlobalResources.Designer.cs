@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error Updating Data!.
+        /// </summary>
+        internal static string ErrDbUpdate {
+            get {
+                return ResourceManager.GetString("ErrDbUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The name is required!.
         /// </summary>
         internal static string ErrNameIsRequired {
@@ -84,6 +93,33 @@ namespace Resources {
         internal static string ErrNameLength_2 {
             get {
                 return ResourceManager.GetString("ErrNameLength_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation Error!.
+        /// </summary>
+        internal static string ErrValidation {
+            get {
+                return ResourceManager.GetString("ErrValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfull Delete!.
+        /// </summary>
+        internal static string SuccessDelete {
+            get {
+                return ResourceManager.GetString("SuccessDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfull Update!.
+        /// </summary>
+        internal static string SuccessUpdate {
+            get {
+                return ResourceManager.GetString("SuccessUpdate", resourceCulture);
             }
         }
         

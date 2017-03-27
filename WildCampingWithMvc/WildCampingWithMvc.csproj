@@ -710,6 +710,7 @@
     <None Include="Properties\PublishProfiles\bivacizadivaci - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Custom\custom-admin-user-grid.js" />
     <Content Include="Scripts\Custom\custom-js-functions.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />

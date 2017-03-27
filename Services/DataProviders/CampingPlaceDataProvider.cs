@@ -27,8 +27,13 @@ namespace Services.DataProviders
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<ICampingPlace>GetCampingPlacesBySearchName(string searchedName)
+        public IEnumerable<ICampingPlace> GetCampingPlacesBySearchName(string searchedName)
         {
+            if (searchedName == null)
+            {
+                return null;
+            }
+
             IGenericEFository<DbCampingPlace> capmingPlaceRepository =
                 this.repository.GetCampingPlaceRepository();
             var places = new List<ICampingPlace>();

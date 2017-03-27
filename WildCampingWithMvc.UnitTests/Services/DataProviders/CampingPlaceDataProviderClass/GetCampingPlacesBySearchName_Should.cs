@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using EFositories;
+﻿using EFositories;
+using NUnit.Framework;
 using Services.DataProviders;
 using Services.Models;
 using System;
@@ -8,10 +8,10 @@ using System.Linq;
 using Telerik.JustMock;
 using WildCampingWithMvc.Db.Models;
 
-namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderClass
+namespace WildCampingWithMvc.UnitTests.Services.DataProviders.CampingPlaceDataProviderClass
 {
     [TestFixture]
-    public class GetCampingPlaceById_Should
+    public class GetCampingPlacesBySearchName_Should
     {
         private Guid id_01 = Guid.NewGuid();
         private Guid id_02 = Guid.NewGuid();
@@ -19,117 +19,88 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
 
         private string placeName_01 = "Name_01";
         private string placeName_02 = "Name_02";
-        private string placeName_03 = "Name_03";
 
         private string userName_01 = "User_01";
         private string userName_02 = "User_02";
         private string userName_03 = "User_03";
 
         [Test]
-        public void CallExactlyOnceCampingPlaceRepositoryMethodGetByIdWithCorrectArgument()
+        public void CallExactlyOnceCampingPlaceRepositoryMethodGetAllWithCorrectExpressionAsArgument()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new CampingPlaceDataProvider(repository, unitOfWork);
-            Guid id = this.id_01;
+            string searchName = this.placeName_01;
 
             // Act
-            provider.GetCampingPlaceById(id);
+            provider.GetCampingPlacesBySearchName(searchName);
 
             // Assert
-            Mock.Assert(() => repository.GetCampingPlaceRepository().GetById(id), Occurs.Once());
+            Mock.Assert(() => repository.GetCampingPlaceRepository().GetAll(p => (!p.IsDeleted) && (p.Name.Contains(searchName))), Occurs.Once());
         }
 
         [Test]
-        public void ReturnsNull_WhenCampingPlaceIsNotFound()
+        public void ReturnCorrectCampingPlaces_WhenMatchesOfTheSearchTermExist()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new CampingPlaceDataProvider(repository, unitOfWork);
-            Guid id = this.id_01;
-            DbCampingPlace dbPlace = null;
-            Mock.Arrange(() => repository.GetCampingPlaceRepository().GetById(id)).Returns(dbPlace);
+            string searchName = this.placeName_01;
+            IEnumerable<DbCampingPlace> dbPlaces = this.GetDbCampingPlaces()
+                .Where(p => p.Name == searchName)
+                .ToList();
+            Mock.Arrange(() => repository.GetCampingPlaceRepository().GetAll(p => (!p.IsDeleted) && (p.Name.Contains(searchName)))).Returns(dbPlaces);
 
             // Act
-            IEnumerable<ICampingPlace> foundPlace = provider.GetCampingPlaceById(id);
+            IEnumerable<ICampingPlace> foundPlaces = provider.GetCampingPlacesBySearchName(searchName);
 
             // Assert
-            Assert.IsNull(foundPlace);
-        }
-
-        [Test]
-        public void ReturnsNull_WhenCampingPlaceIsFoundButTheIsDeletedPropertyIsTrue()
-        {
-            // Arrange
-            IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
-            Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
-            var provider = new CampingPlaceDataProvider(repository, unitOfWork);
-            Guid id = this.id_01;
-            DbCampingPlace dbPlace = new DbCampingPlace() { Id = id, IsDeleted = true };
-            Mock.Arrange(() => repository.GetCampingPlaceRepository().GetById(id)).Returns(dbPlace);
-
-            // Act
-            IEnumerable<ICampingPlace> foundPlace = provider.GetCampingPlaceById(id);
-
-            // Assert
-            Assert.IsNull(foundPlace);
-        }
-
-        [Test]
-        public void ReturnsCorrectCampingPlace_WhenCampingPlaceIsFoundByIdAndItsIsDeletedPropertyIsFalse()
-        {
-            // Arrange
-            IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
-            Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
-            var provider = new CampingPlaceDataProvider(repository, unitOfWork);
-            Guid id = this.id_01;
-            ICampingPlace expectedPlace = this.GetCampingPlaces()
-                .Where(p => p.Id == id)
-                .FirstOrDefault();
-            DbCampingPlace dbPlace = this.GetDbCampingPlaces()
-                .Where(p => p.Id == id)
-                .FirstOrDefault();
-            Mock.Arrange(() => repository.GetCampingPlaceRepository().GetById(id)).Returns(dbPlace);
-
-            // Act
-            IEnumerable<ICampingPlace> foundPlaces = provider.GetCampingPlaceById(id);
-
-            // Assert
-            Assert.AreEqual(1, foundPlaces.Count());
-            foreach (var foundPlace in foundPlaces)
+            Assert.AreEqual(dbPlaces.Count(), foundPlaces.Count());
+            foreach (var doublePlace in dbPlaces.Zip(foundPlaces, Tuple.Create))
             {
-                Assert.AreEqual(foundPlace.Id, expectedPlace.Id);
-                Assert.AreEqual(foundPlace.Name, expectedPlace.Name);
+                Assert.AreEqual(doublePlace.Item1.Id, doublePlace.Item2.Id);
+                Assert.AreEqual(doublePlace.Item1.Name, doublePlace.Item2.Name);
             }
+
         }
 
-        private IEnumerable<ICampingPlace> GetCampingPlaces()
+        [Test]
+        public void ReturnEmptyCollection_WhenThereArentAnyMatchingCampingPlaces()
         {
-            IEnumerable<ICampingPlace> places = new List<ICampingPlace>()
-            {
-                new CampingPlace()
-                {
-                    Id = this.id_01,
-                    Name = this.placeName_01,
-                    AddedBy = this.userName_01
-                },
-                new CampingPlace()
-                {
-                    Id = this.id_02,
-                    Name = this.placeName_02,
-                    AddedBy = this.userName_02
-                },
-                new CampingPlace()
-                {
-                    Id = this.id_03,
-                    Name = this.placeName_03,
-                    AddedBy = this.userName_01
-                }
-            };
+            // Arrange
+            string searchName = "fake name";
+            IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
+            Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
+            var provider = new CampingPlaceDataProvider(repository, unitOfWork);
+            IEnumerable<DbCampingPlace> dbPlaces = new List<DbCampingPlace>();
+            Mock.Arrange(() => repository.GetCampingPlaceRepository()
+                .GetAll(p => (!p.IsDeleted) && (p.Name.Contains(searchName)))).Returns(dbPlaces);
 
-            return places;
+            // Act
+            var places = provider.GetCampingPlacesBySearchName(searchName);
+
+            // Assert
+            Assert.IsEmpty(places);
+        }
+
+        [Test]
+        public void ReturnNull_WhenTheSearchTermIsNull()
+        {
+            // Arrange
+            string searchName = null;
+            IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
+            Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
+            var provider = new CampingPlaceDataProvider(repository, unitOfWork);
+            Mock.Arrange(() => repository.GetCampingPlaceRepository()
+                .GetAll(p => (!p.IsDeleted) && (p.Name.Contains(searchName)))).Returns((IEnumerable<DbCampingPlace>)null);
+
+            // Act
+            var places = provider.GetCampingPlacesBySearchName(searchName);
+
+            // Assert
+            Assert.IsNull(places);
         }
 
         private IEnumerable<DbCampingPlace> GetDbCampingPlaces()
@@ -166,7 +137,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
                 new DbCampingPlace()
                 {
                     Id = this.id_03,
-                    Name = this.placeName_03,
+                    Name = this.placeName_01,
                     AddedBy = new DbCampingUser()
                     {
                         UserName = this.userName_03
