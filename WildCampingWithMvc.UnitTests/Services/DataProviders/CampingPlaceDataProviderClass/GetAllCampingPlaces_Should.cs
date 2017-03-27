@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
-using EFositories;
+﻿using EFositories;
+using NUnit.Framework;
 using Services.DataProviders;
 using Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Telerik.JustMock;
 using WildCampingWithMvc.Db.Models;
 
@@ -49,9 +48,8 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new CampingPlaceDataProvider(repository, unitOfWork);
-            IEnumerable<DbCampingPlace> dbPlaces = null;
             Mock.Arrange(() => repository.GetCampingPlaceRepository()
-                .GetAll(p => !p.IsDeleted)).Returns(dbPlaces);
+                .GetAll(p => !p.IsDeleted)).Returns((IEnumerable<DbCampingPlace>)null);
 
             // Act
             var places = provider.GetAllCampingPlaces();
@@ -60,6 +58,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             Assert.IsNull(places);
         }
 
+        [Test]
         public void ReturnsAllCampingPlacesThatAreNotMarkedAsDeleted_WhenCampingPlacesExistInTheDB()
         {
             // Arrange
@@ -71,46 +70,46 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             Mock.Arrange(() => repository.GetCampingPlaceRepository()
                 .GetAll(p => !p.IsDeleted)).Returns(dbPlaces);
 
-            IEnumerable<ICampingPlace> expectedPlaces = this.GetCampingPlaces();
-
             // Act
             IEnumerable<ICampingPlace> places = provider.GetAllCampingPlaces();
 
             // Assert
-            Assert.AreEqual(expectedPlaces.Count(), places.Count());
-            foreach (var doublePlace in expectedPlaces.Zip(places, Tuple.Create))
+            Assert.AreEqual(dbPlaces.Count(), places.Count());
+            foreach (var doublePlace in dbPlaces.Zip(places, Tuple.Create))
             {
-                Assert.AreEqual(doublePlace.Item1, doublePlace.Item2);
+                Assert.AreEqual(doublePlace.Item1.AddedBy.UserName, doublePlace.Item2.AddedBy);
+                Assert.AreEqual(doublePlace.Item1.AddedOn, doublePlace.Item2.AddedOn);
+                Assert.AreEqual(doublePlace.Item1.Description, doublePlace.Item2.Description);
+                Assert.AreEqual(doublePlace.Item1.GoogleMapsUrl, doublePlace.Item2.GoogleMapsUrl);
+                Assert.AreEqual(doublePlace.Item1.WaterOnSite, doublePlace.Item2.HasWater);
+                Assert.AreEqual(doublePlace.Item1.Name, doublePlace.Item2.Name);
+                Assert.AreEqual(doublePlace.Item1.IsDeleted, doublePlace.Item2.IsDeleted);
+                Assert.AreEqual(doublePlace.Item1.Id, doublePlace.Item2.Id);
+
+                for (int i = 0; i < doublePlace.Item1.DbSightseeings.Count; i++)
+                {
+                    var sightseeing = ((IList<DbSightseeing>)doublePlace.Item1.DbSightseeings)[i];
+                    Assert.AreEqual(sightseeing.Id, ((IList<string>)doublePlace.Item2.SightseeingIds)[i]);
+                    Assert.AreEqual(sightseeing.Name, ((IList<string>)doublePlace.Item2.SightseeingNames)[i]);
+                }
+
+                for (int i = 0; i < doublePlace.Item1.DbSiteCategories.Count; i++)
+                {
+                    var siteCategories = ((IList<DbSiteCategory>)doublePlace.Item1.DbSiteCategories)[i];
+                    Assert.AreEqual(siteCategories.Id, ((IList<string>)doublePlace.Item2.SiteCategoriesIds)[i]);
+                    Assert.AreEqual(siteCategories.Name, ((IList<string>)doublePlace.Item2.SiteCategoriesNames)[i]);
+                }
+                
+                foreach (var doubleImgs in doublePlace.Item1.DbImageFiles.Zip(doublePlace.Item2.ImageFiles, Tuple.Create))
+                {
+                    Assert.AreEqual(doubleImgs.Item1.FileName, doubleImgs.Item2.FileName);
+                    Assert.AreEqual(doubleImgs.Item1.DbCampingPlaceId, doubleImgs.Item2.CampingPlaceId);
+                    Assert.AreEqual(doubleImgs.Item1.Id, doubleImgs.Item2.Id);
+                    Assert.AreEqual(doubleImgs.Item1.Data, doubleImgs.Item2.Data);
+                }
             }
         }
-
-        private IEnumerable<ICampingPlace> GetCampingPlaces()
-        {
-            IEnumerable<ICampingPlace> places = new List<ICampingPlace>()
-            {
-                new CampingPlace()
-                {
-                    Id = this.id_01,
-                    Name = this.placeName_01,
-                    AddedBy = this.userName_01
-                },
-                new CampingPlace()
-                {
-                    Id = this.id_02,
-                    Name = this.placeName_02,
-                    AddedBy = this.userName_02
-                },
-                new CampingPlace()
-                {
-                    Id = this.id_03,
-                    Name = this.placeName_03,
-                    AddedBy = this.userName_03
-                }
-            };
-
-            return places;
-        }
-
+        
         private IEnumerable<DbCampingPlace> GetDbCampingPlaces()
         {
             IEnumerable<DbCampingPlace> dbPlaces =

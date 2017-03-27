@@ -407,7 +407,7 @@ namespace Services.DataProviders
 
             List<string> imgFileNames = new List<string>();
             List<byte[]> imgFilesData = new List<byte[]>();
-            var imgRepository = repository.GetImageFileRepository();
+            var imgRepository = this.repository.GetImageFileRepository();
             var dbImages = imgRepository.GetAll(img => img.DbCampingPlaceId == p.Id);
             List<IImageFile> imageFiles = new List<IImageFile>();
             foreach (var dbImg in dbImages)
