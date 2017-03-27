@@ -1,9 +1,9 @@
-﻿using Resources;
-using Services.DataProviders;
+﻿using Services.DataProviders;
 using Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using WildCampingWithMvc.App_GlobalResources;
 using WildCampingWithMvc.Areas.Admin.Models;
 
 namespace WildCampingWithMvc.Areas.Admin.Controllers

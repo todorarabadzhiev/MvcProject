@@ -8,6 +8,35 @@ namespace WildCampingWithMvc.UnitTests.Controllers.CampingPlaceControllerClass
 {
     internal static class Util
     {
+        public static IEnumerable<ICampingUser> GetCampingUsers(int count)
+        {
+            ICollection<ICampingUser> campingUsers = new List<ICampingUser>();
+            for (int i = 0; i < count; i++)
+            {
+                var campingUser = Mock.Create<ICampingUser>();
+                Guid id = Guid.NewGuid();
+                Mock.Arrange(() => campingUser.Id).Returns(id);
+
+                string applicationUserId = string.Format("applicationUserId_{0}", i);
+                Mock.Arrange(() => campingUser.ApplicationUserId).Returns(applicationUserId);
+
+                string firstName = string.Format("some first name_{0}", i);
+                Mock.Arrange(() => campingUser.FirstName).Returns(firstName);
+
+                string lastName = string.Format("some last name_{0}", i);
+                Mock.Arrange(() => campingUser.LastName).Returns(lastName);
+
+                string userName = string.Format("some description_{0}", i);
+                Mock.Arrange(() => campingUser.UserName).Returns(userName);
+
+                Mock.Arrange(() => campingUser.RegisteredOn).Returns(DateTime.Now);
+
+                campingUsers.Add(campingUser);
+            }
+
+            return campingUsers;
+        }
+
         public static AddCampingPlaceViewModel GetCampingPlaceViewModel()
         {
             AddCampingPlaceViewModel campingPlaceViewModel = new AddCampingPlaceViewModel()

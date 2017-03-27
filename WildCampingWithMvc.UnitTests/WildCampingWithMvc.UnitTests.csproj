@@ -95,6 +95,10 @@
   <ItemGroup>
     <Compile Include="Admin\Controllers\Mocked\UserControllerMock.cs" />
     <Compile Include="Admin\Controllers\UserControllerClass\Constructor_Should.cs" />
+    <Compile Include="Admin\Controllers\UserControllerClass\GetUsers_Should.cs" />
+    <Compile Include="Admin\Controllers\UserControllerClass\Index_Should.cs" />
+    <Compile Include="Admin\Controllers\UserControllerClass\DeleteUser_Should.cs" />
+    <Compile Include="Admin\Controllers\UserControllerClass\UpdateUser_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\AddCampingPlace_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\AllCampingPlaces_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\CampingPlaceDetails_Should.cs" />
