@@ -1,14 +1,9 @@
 ﻿using CommonUtilities.Utilities;
-using Ninject;
 using Services.DataProviders;
 using Services.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.Caching;
 using System.Web.Mvc;
 using WildCampingWithMvc.Models.CampingPlace;
 using WildCampingWithMvc.Utils;
@@ -49,6 +44,7 @@ namespace WildCampingWithMvc.Controllers
 
         [HttpPost]
         [AjaxOnly]
+        [ValidateAntiForgeryToken]
         public ActionResult FilteredCampingPlaces(string searchTerm)
         {
             MultipleCampingPlacesViewModel model = new MultipleCampingPlacesViewModel();
@@ -139,6 +135,7 @@ namespace WildCampingWithMvc.Controllers
             return RedirectToAction("CampingPlaceDetails", new { id = id });
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteCampingPlace(Guid id)
         {
             bool isAuthorized = (bool)TempData["isAuthorized"];

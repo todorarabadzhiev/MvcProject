@@ -2,7 +2,9 @@
 
 @if (ViewBag.NoPlaceFound)
 {
-    <h3 class="row text-center">@GlobalResources.TextPlaceNotFound</h3>
+    <div class="row text-center">
+        @Html.Raw("<h3 class='row text - center'>" + @GlobalResources.TextPlaceNotFound + "</h3>")
+    </div>
 }
 else
 {
@@ -59,7 +61,7 @@ else
         if (isAuthorized)
         {
             <a class="btn btn-warning" href="@Url.Action("EditCampingPlace", "CampingPlace", new { id = Model.Id })">Редактирай</a>
-                <a class="btn btn-danger" href="@Url.Action("DeleteCampingPlace", "CampingPlace", new { id = Model.Id })">Изтрий</a>
+            <a class="btn btn-danger" href="@Url.Action("DeleteCampingPlace", "CampingPlace", new { id = Model.Id })">Изтрий</a>
         }
 
         TempData["isAuthorized"] = isAuthorized;

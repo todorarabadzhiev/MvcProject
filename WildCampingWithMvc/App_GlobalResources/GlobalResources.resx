@@ -267,4 +267,7 @@
   <data name="TextPlaceNotFound" xml:space="preserve">
     <value>Camping place not found!</value>
   </data>
+  <data name="TextDisplayUsers" xml:space="preserve">
+    <value>Display Users</value>
+  </data>
 </root>

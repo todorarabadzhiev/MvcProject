@@ -267,4 +267,7 @@
   <data name="TextPlaceNotFound" xml:space="preserve">
     <value>Местенцето не е намерено!</value>
   </data>
+  <data name="TextDisplayUsers" xml:space="preserve">
+    <value>Потребители</value>
+  </data>
 </root>

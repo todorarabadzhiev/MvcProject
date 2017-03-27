@@ -30,6 +30,10 @@
                         <li>@Html.ActionLink(GlobalResources.TextAllCampingPlaces, "AllCampingPlaces", "CampingPlace")</li>
                         <li>@Html.ActionLink(GlobalResources.TextAddCampingPlace, "AddCampingPlace", "CampingPlace")</li>
                     }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink(GlobalResources.TextDisplayUsers, "Index", "User", new { area = "Admin"}, null)</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

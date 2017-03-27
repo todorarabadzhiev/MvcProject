@@ -277,6 +277,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display Users.
+        /// </summary>
+        public static string TextDisplayUsers {
+            get {
+                return ResourceManager.GetString("TextDisplayUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot password?.
         /// </summary>
         public static string TextDoNotRememberPassword {

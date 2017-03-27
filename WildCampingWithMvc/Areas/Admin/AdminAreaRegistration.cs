@@ -15,6 +15,13 @@ namespace WildCampingWithMvc.Areas.Admin
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
+                "Admin_CultureDefault",
+                "{culture}/Admin/{controller}/{action}/{id}",
+                new { action = "Index", id = UrlParameter.Optional },
+                constraints: new { culture = "bg|en" }
+            );
+
+            context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }

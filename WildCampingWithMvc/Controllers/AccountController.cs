@@ -29,16 +29,6 @@ namespace WildCampingWithMvc.Controllers
             this.SignInManager = signInManager;
         }
 
-        //public AccountController(
-        //    ApplicationUserManager userManager,
-        //    ApplicationSignInManager signInManager,
-        //    CampingUserDataProvider campingUserDataProvider)
-        //{
-        //    this.UserManager = userManager;
-        //    this.SignInManager = signInManager;
-        //    this.campingUserDataProvider = campingUserDataProvider;
-        //}
-
         [Inject]
         public ICampingUserDataProvider CampUserDataProvider { private get; set; }
 

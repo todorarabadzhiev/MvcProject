@@ -8,6 +8,7 @@ using WildCampingWithMvc.Areas.Admin.Models;
 
 namespace WildCampingWithMvc.Areas.Admin.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class UserController : Controller
     {
         protected readonly ICampingUserDataProvider campingUserDataProvider;
@@ -35,6 +36,7 @@ namespace WildCampingWithMvc.Areas.Admin.Controllers
             return Json(usersModel, JsonRequestBehavior.AllowGet);
         }
 
+        [ValidateAntiForgeryToken]
         public string UpdateUser(UserViewModel userModel)
         {
             string message;
@@ -59,6 +61,7 @@ namespace WildCampingWithMvc.Areas.Admin.Controllers
             return message;
         }
 
+        [ValidateAntiForgeryToken]
         public string DeleteUser(UserViewModel userModel)
         {
             string message;
