@@ -36,7 +36,6 @@ namespace WildCampingWithMvc.Areas.Admin.Controllers
             return Json(usersModel, JsonRequestBehavior.AllowGet);
         }
 
-        [ValidateAntiForgeryToken]
         public string UpdateUser(UserViewModel userModel)
         {
             string message;
@@ -61,7 +60,6 @@ namespace WildCampingWithMvc.Areas.Admin.Controllers
             return message;
         }
 
-        [ValidateAntiForgeryToken]
         public string DeleteUser(UserViewModel userModel)
         {
             string message;
