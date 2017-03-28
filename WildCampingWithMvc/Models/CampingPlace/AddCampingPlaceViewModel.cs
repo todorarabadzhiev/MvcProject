@@ -1,6 +1,4 @@
-﻿using CommonUtilities.Utilities;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using WildCampingWithMvc.App_GlobalResources;
