@@ -20,7 +20,7 @@ namespace WildCampingWithMvc
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<WildCampingWithMvcDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<WildCampingWithMvcDbContext, Configuration>());
         }
     }
 }

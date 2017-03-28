@@ -1,16 +1,18 @@
-﻿namespace WildCampingWithMvc.Db.Migrations
-{
-    using Models;
-    using System.Data.Entity.Migrations;
+﻿using System.Data.Entity.Migrations;
+using WildCampingWithMvc.Db.Models;
 
+namespace WildCampingWithMvc.Db.Migrations
+{
     public sealed class Configuration : DbMigrationsConfiguration<WildCampingWithMvc.Db.WildCampingWithMvcDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            //AutomaticMigrationsEnabled = true;
+            //AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(WildCampingWithMvc.Db.WildCampingWithMvcDbContext context)
+        protected override void Seed(WildCampingWithMvcDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
