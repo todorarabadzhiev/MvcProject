@@ -2,29 +2,32 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+using WildCampingWithMvc.App_GlobalResources;
 
 namespace WildCampingWithMvc.Models.CampingPlace
 {
     public class AddCampingPlaceViewModel
     {
-        [Required(ErrorMessage = Messages.ErrNameIsRequired)]
-        [MinLength(2, ErrorMessage = Messages.ErrNameLength_2)]
-        [DisplayName(Messages.TextPlaceName)]
+        [Required(ErrorMessageResourceType = typeof(GlobalResources), ErrorMessageResourceName = "ErrNameIsRequired")]
+        [MinLength(2, ErrorMessageResourceType = typeof(GlobalResources), ErrorMessageResourceName = "ErrNameLength_2")]
+        [Display(ResourceType = typeof(GlobalResources), Name = "TextPlaceName")]
         public string Name { get; set; }
         //public bool IsAuthor { get; set; }
 
-        [DisplayName(Messages.TextDescription)]
+        [Display(ResourceType = typeof(GlobalResources), Name = "TextDescription")]
+        [AllowHtml]
         public string Description { get; set; }
 
-        [DisplayName(Messages.TextGoogleMapsUrl)]
+        [Display(ResourceType = typeof(GlobalResources), Name = "TextGoogleMapsUrl")]
         public string GoogleMapsUrl { get; set; }
 
-        [DisplayName(Messages.TextHasWater)]
+        [Display(ResourceType = typeof(GlobalResources), Name = "TextHasWater")]
         public bool HasWater { get; set; }
         public IList<string> SightseeingNames { get; set; }
         public IList<string> SiteCategoriesNames { get; set; }
 
-        [Required(ErrorMessage = Messages.ErrAtLeasOneImageRequired)]
+        [Required(ErrorMessageResourceType = typeof(GlobalResources), ErrorMessageResourceName = "ErrAtLeasOneImageRequired")]
         public IList<string> ImageFileNames { get; set; }
 
         public IList<string> ImageFilesData { get; set; }

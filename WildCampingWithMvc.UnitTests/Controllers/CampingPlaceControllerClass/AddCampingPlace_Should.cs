@@ -1,15 +1,7 @@
-﻿using CommonUtilities.Utilities;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Services.DataProviders;
-using Services.Models;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Caching;
 using System.Web.Mvc;
 using Telerik.JustMock;
 using TestStack.FluentMVCTesting;
