@@ -322,7 +322,7 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter.
+        ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string TextEnter {
             get {

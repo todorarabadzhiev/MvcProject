@@ -44,7 +44,6 @@ namespace WildCampingWithMvc.Controllers
 
         [HttpPost]
         [AjaxOnly]
-        [ValidateAntiForgeryToken]
         public ActionResult FilteredCampingPlaces(string searchTerm)
         {
             MultipleCampingPlacesViewModel model = new MultipleCampingPlacesViewModel();

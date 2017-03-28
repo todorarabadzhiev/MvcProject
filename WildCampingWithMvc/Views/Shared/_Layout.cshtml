@@ -23,12 +23,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink(GlobalResources.TextAbout, "About", "Home")</li>
-                    <li>@Html.ActionLink(GlobalResources.TextContacts, "Contact", "Home")</li>
+                    <li>@Html.ActionLink(GlobalResources.TextAbout, "About", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink(GlobalResources.TextContacts, "Contact", "Home", new { area = "" }, null)</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink(GlobalResources.TextAllCampingPlaces, "AllCampingPlaces", "CampingPlace")</li>
-                        <li>@Html.ActionLink(GlobalResources.TextAddCampingPlace, "AddCampingPlace", "CampingPlace")</li>
+                        <li>@Html.ActionLink(GlobalResources.TextAllCampingPlaces, "AllCampingPlaces", "CampingPlace", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink(GlobalResources.TextAddCampingPlace, "AddCampingPlace", "CampingPlace", new { area = "" }, null)</li>
                     }
                     @if (User.IsInRole("Admin"))
                     {

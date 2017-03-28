@@ -181,7 +181,7 @@
     <value>Email</value>
   </data>
   <data name="TextEnter" xml:space="preserve">
-    <value>Enter</value>
+    <value>Login</value>
   </data>
   <data name="TextFailedLogIn" xml:space="preserve">
     <value>Failed Login</value>
