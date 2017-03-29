@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using CommonUtilities.Utilities;
+using WildCampingWithMvc.App_GlobalResources;
 
 namespace WildCampingWithMvc.Models.Manage
 {
     public class AddPhoneNumberViewModel
     {
-        [Required]
         [Phone]
-        [Display(Name = Messages.TextPhoneNumber)]
+        [Required(ErrorMessageResourceType = typeof(GlobalResources), ErrorMessageResourceName = "ErrPhoneIsRequired")]
+        [Display(ResourceType = typeof(GlobalResources), Name = "TextPhoneNumber")]
         public string Number { get; set; }
     }
 }

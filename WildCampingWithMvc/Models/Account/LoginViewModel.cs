@@ -1,21 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using CommonUtilities.Utilities;
+using WildCampingWithMvc.App_GlobalResources;
 
 namespace WildCampingWithMvc.Models.Account
 {
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = Messages.TextEmail)]
+        [Required(ErrorMessageResourceType = typeof(GlobalResources), ErrorMessageResourceName = "ErrNameIsRequired")]
+        [Display(ResourceType = typeof(GlobalResources), Name = "TextEmail")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
         [DataType(DataType.Password)]
-        [Display(Name = Messages.TextPassword)]
+        [Required(ErrorMessageResourceType = typeof(GlobalResources), ErrorMessageResourceName = "ErrPasswordIsRequired")]
+        [Display(ResourceType = typeof(GlobalResources), Name = "TextPassword")]
         public string Password { get; set; }
 
-        [Display(Name = Messages.TextRememberMe)]
+        [Display(ResourceType = typeof(GlobalResources), Name = "TextRememberMe")]
         public bool RememberMe { get; set; }
     }
 }

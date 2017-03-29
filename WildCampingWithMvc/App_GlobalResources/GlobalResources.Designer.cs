@@ -70,11 +70,29 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Code is required.
+        /// </summary>
+        public static string ErrCodeIsRequired {
+            get {
+                return ResourceManager.GetString("ErrCodeIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error Updating Data!.
         /// </summary>
         public static string ErrDbUpdate {
             get {
                 return ResourceManager.GetString("ErrDbUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is required!.
+        /// </summary>
+        public static string ErrEmailIsRequired {
+            get {
+                return ResourceManager.GetString("ErrEmailIsRequired", resourceCulture);
             }
         }
         
@@ -93,6 +111,33 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string ErrNameLength_2 {
             get {
                 return ResourceManager.GetString("ErrNameLength_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is required!.
+        /// </summary>
+        public static string ErrPasswordIsRequired {
+            get {
+                return ResourceManager.GetString("ErrPasswordIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone is required.
+        /// </summary>
+        public static string ErrPhoneIsRequired {
+            get {
+                return ResourceManager.GetString("ErrPhoneIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provider is required.
+        /// </summary>
+        public static string ErrProviderIsRequired {
+            get {
+                return ResourceManager.GetString("ErrProviderIsRequired", resourceCulture);
             }
         }
         
@@ -156,6 +201,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextAddedBy {
             get {
                 return ResourceManager.GetString("TextAddedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added by {0} on {1}.
+        /// </summary>
+        public static string TextAddedByOn {
+            get {
+                return ResourceManager.GetString("TextAddedByOn", resourceCulture);
             }
         }
         
@@ -489,15 +543,6 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextNewPassword {
             get {
                 return ResourceManager.GetString("TextNewPassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to on.
-        /// </summary>
-        public static string TextOn {
-            get {
-                return ResourceManager.GetString("TextOn", resourceCulture);
             }
         }
         

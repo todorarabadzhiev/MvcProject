@@ -315,7 +315,22 @@
   <data name="TextLatestPlaces" xml:space="preserve">
     <value>Последни споделени местенца</value>
   </data>
-  <data name="TextOn" xml:space="preserve">
-    <value>на</value>
+  <data name="TextAddedByOn" xml:space="preserve">
+    <value>Добавено от {0} на {1}</value>
+  </data>
+  <data name="ErrCodeIsRequired" xml:space="preserve">
+    <value>Задължително въведете код!</value>
+  </data>
+  <data name="ErrEmailIsRequired" xml:space="preserve">
+    <value>Задължително въведете е-mail!</value>
+  </data>
+  <data name="ErrPasswordIsRequired" xml:space="preserve">
+    <value>Задължително въведете парола!</value>
+  </data>
+  <data name="ErrPhoneIsRequired" xml:space="preserve">
+    <value>Задължително въведете телефон!</value>
+  </data>
+  <data name="ErrProviderIsRequired" xml:space="preserve">
+    <value>Задължително въведете доставчик!</value>
   </data>
 </root>

@@ -1,19 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using CommonUtilities.Utilities;
+using WildCampingWithMvc.App_GlobalResources;
 
 namespace WildCampingWithMvc.Models.Manage
 {
     public class SetPasswordViewModel
     {
-        [Required]
-        [StringLength(100, ErrorMessage = Messages.WarnPasswordLength, MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = Messages.TextNewPassword)]
+        [Required(ErrorMessageResourceType = typeof(GlobalResources), ErrorMessageResourceName = "ErrPasswordIsRequired")]
+        [StringLength(100, ErrorMessageResourceType = typeof(GlobalResources), ErrorMessageResourceName = "WarnPasswordLength", MinimumLength = 6)]
+        [Display(ResourceType = typeof(GlobalResources), Name = "TextNewPassword")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = Messages.TextConfirmNewPassword)]
-        [Compare("NewPassword", ErrorMessage = Messages.WarnPasswordsDoNotMatch)]
+        [Display(ResourceType = typeof(GlobalResources), Name = "TextConfirmNewPassword")]
+        [Compare("NewPassword", ErrorMessageResourceType = typeof(GlobalResources), ErrorMessageResourceName = "WarnPasswordsDoNotMatch")]
         public string ConfirmPassword { get; set; }
     }
 }

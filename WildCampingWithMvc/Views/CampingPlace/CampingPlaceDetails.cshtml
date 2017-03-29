@@ -11,7 +11,7 @@ else
     <div class="row text-center">
         <h2>@string.Format(GlobalResources.TextCampingPlaceDetails, Model.Name).</h2>
         <hr />
-        <h5>@GlobalResources.TextAddedBy @Model.AddedBy @GlobalResources.TextOn @Model.AddedOn</h5>
+        <h5>string.Format(@GlobalResources.TextAddedByOn, @Model.AddedBy, @Model.AddedOn)</h5>
         <a href="@Model.GoogleMapsUrl">@GlobalResources.TextGoogleMapsUrl</a>
     </div>
     <div class="row text-center">
