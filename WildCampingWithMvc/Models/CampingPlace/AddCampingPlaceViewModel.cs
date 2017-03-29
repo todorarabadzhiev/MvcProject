@@ -11,7 +11,6 @@ namespace WildCampingWithMvc.Models.CampingPlace
         [MinLength(2, ErrorMessageResourceType = typeof(GlobalResources), ErrorMessageResourceName = "ErrNameLength_2")]
         [Display(ResourceType = typeof(GlobalResources), Name = "TextPlaceName")]
         public string Name { get; set; }
-        //public bool IsAuthor { get; set; }
 
         [Display(ResourceType = typeof(GlobalResources), Name = "TextDescription")]
         [AllowHtml]
