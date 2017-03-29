@@ -1,18 +1,17 @@
 ﻿@model WildCampingWithMvc.Models.CampingPlace.MultipleCampingPlacesViewModel
 @{
-    ViewBag.Title = "Начало";
+    ViewBag.Title = GlobalResources.TextBegin;
 }
 
 <div class="jumbotron text-center">
-    <h1>Биваци</h1>
+    <h1>@GlobalResources.TextTitle</h1>
     <p class="lead">
-        Нашето приложение има за цел споделяне на информация за интересни места, подходящи за
-        диво къмпингуване.
+        @GlobalResources.TextHomeInit
     </p>
 </div>
 
 <div>
-    <h2 class="text-center">Последни споделени местенца</h2>
+    <h2 class="text-center">@GlobalResources.TextLatestPlaces</h2>
 
     @Html.Partial("_MultipleCampingPlacesPartial", Model);
 </div>

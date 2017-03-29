@@ -36,7 +36,7 @@
 </div>
 <div class="row">
     <div class="form-group-sm col-md-6">
-        <h3 class="text-center">Категории</h3>
+        <h3 class="text-center">@GlobalResources.TextSiteCategories</h3>
         @foreach (var category in (IList<ISiteCategory>)this.Cache["AllSiteCategories"])
             {
             <div class="row">
@@ -56,7 +56,7 @@
         }
     </div>
     <div class="form-group-sm col-md-6">
-        <h3 class="text-center">Забележителности</h3>
+        <h3 class="text-center">@GlobalResources.TextSightseeings</h3>
         @foreach (var sightseeing in (IList<ISightseeing>)this.Cache["AllSightseeings"])
             {
             <div class="row">
@@ -77,7 +77,7 @@
     </div>
 </div>
 <div class="form-group-lg">
-    <h3 class="text-center">Изображения за местенцето</h3>
+    <h3 class="text-center">@GlobalResources.TextImageFiles</h3>
     <input class="form-control" type="file" id="fileUpload" multiple />
     <div id="image-holder">
         @if (Model != null && Model.ImageFileNames != null)

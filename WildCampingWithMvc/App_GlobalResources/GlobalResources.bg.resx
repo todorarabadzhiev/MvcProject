@@ -270,4 +270,52 @@
   <data name="TextDisplayUsers" xml:space="preserve">
     <value>Потребители</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value>Всички споделени местенца</value>
+  </data>
+  <data name="TextDelete" xml:space="preserve">
+    <value>Изтрий</value>
+  </data>
+  <data name="TextDrinkingWater" xml:space="preserve">
+    <value> питейна вода</value>
+  </data>
+  <data name="TextImageFiles" xml:space="preserve">
+    <value>Изображения за местенцето</value>
+  </data>
+  <data name="TextImagesFrom" xml:space="preserve">
+    <value>Изображения от</value>
+  </data>
+  <data name="TextInTheRegion" xml:space="preserve">
+    <value>В района </value>
+  </data>
+  <data name="TextLastPlaces" xml:space="preserve">
+    <value>Последни</value>
+  </data>
+  <data name="TextPlaceDescription" xml:space="preserve">
+    <value>Описание на местенцето</value>
+  </data>
+  <data name="TextSightseeings" xml:space="preserve">
+    <value>Забележителности</value>
+  </data>
+  <data name="TextSiteCategories" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="TextThereIs" xml:space="preserve">
+    <value>има</value>
+  </data>
+  <data name="TextThereIsNo" xml:space="preserve">
+    <value>няма</value>
+  </data>
+  <data name="TextBegin" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="TextHomeInit" xml:space="preserve">
+    <value>Нашето приложение има за цел споделяне на информация за интересни места, подходящи за диво къмпингуване.</value>
+  </data>
+  <data name="TextLatestPlaces" xml:space="preserve">
+    <value>Последни споделени местенца</value>
+  </data>
+  <data name="TextOn" xml:space="preserve">
+    <value>на</value>
+  </data>
 </root>

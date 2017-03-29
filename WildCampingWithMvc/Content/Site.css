@@ -64,3 +64,8 @@ textarea {
     color: red;
     text-decoration-line: underline;
 }
+
+.my-green {
+    color: greenyellow;
+    text-decoration-line: underline;
+}

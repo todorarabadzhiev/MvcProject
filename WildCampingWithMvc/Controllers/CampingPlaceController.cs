@@ -4,6 +4,7 @@ using Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Caching;
 using System.Web.Mvc;
 using WildCampingWithMvc.Models.CampingPlace;
 using WildCampingWithMvc.Utils;
@@ -298,7 +299,7 @@ namespace WildCampingWithMvc.Controllers
             if (allSiteCategories == null)
             {
                 allSiteCategories = (IList<ISiteCategory>)this.siteCategoryProvider.GetAllSiteCategories();
-                this.ControllerContext.HttpContext.Cache["AllSiteCategories"] = allSiteCategories;
+                this.ControllerContext.HttpContext.Cache.Add("AllSiteCategories", allSiteCategories, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 15, 0), CacheItemPriority.Normal, null);
             }
 
             IList<ISightseeing> allSightseeings =
@@ -306,7 +307,7 @@ namespace WildCampingWithMvc.Controllers
             if (allSightseeings == null)
             {
                 allSightseeings = (IList<ISightseeing>)this.sightseeingProvider.GetAllSightseeings();
-                this.ControllerContext.HttpContext.Cache["AllSightseeings"] = allSightseeings;
+                this.ControllerContext.HttpContext.Cache.Add("AllSightseeings", allSightseeings, null, Cache.NoAbsoluteExpiration, new TimeSpan(0, 15, 0), CacheItemPriority.Normal, null);
             }
         }
     }
