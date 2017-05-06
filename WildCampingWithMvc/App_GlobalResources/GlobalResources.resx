@@ -330,4 +330,13 @@
   <data name="ErrProviderIsRequired" xml:space="preserve">
     <value>Provider is required</value>
   </data>
+  <data name="TextUseLocalProfile" xml:space="preserve">
+    <value>Use your local profile to log in.</value>
+  </data>
+  <data name="TextNoImageFor" xml:space="preserve">
+    <value>No image for {0}</value>
+  </data>
+  <data name="TextCategoryPlaces" xml:space="preserve">
+    <value>Category {0} Places</value>
+  </data>
 </root>

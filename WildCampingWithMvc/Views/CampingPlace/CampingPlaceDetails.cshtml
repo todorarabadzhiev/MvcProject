@@ -11,7 +11,7 @@ else
     <div class="row text-center">
         <h2>@string.Format(GlobalResources.TextCampingPlaceDetails, Model.Name).</h2>
         <hr />
-        <h5>string.Format(@GlobalResources.TextAddedByOn, @Model.AddedBy, @Model.AddedOn)</h5>
+        <h5>@string.Format(GlobalResources.TextAddedByOn, Model.AddedBy, Model.AddedOn)</h5>
         <a href="@Model.GoogleMapsUrl">@GlobalResources.TextGoogleMapsUrl</a>
     </div>
     <div class="row text-center">
@@ -31,7 +31,7 @@ else
         <h3>@GlobalResources.TextSiteCategories</h3>
         @foreach (var category in Model.SiteCategories)
         {
-            <a href="@Url.Action("SiteCategoryDetails", "SiteCategory", new { id = category.Id })">[@category.Name]</a>
+            <a href="@Url.Action("SiteCategoriesDetails", "SiteCategory", new { name = category.Name })">[@category.Name]</a>
         }
     </div>
     <div class="row text-center">
@@ -53,20 +53,20 @@ else
             </div>
         }
     </div>
-}
-<div class="row text-center">
-    <a class="btn btn-default" href="@Url.Action("Index", "Home")">@GlobalResources.TextLastPlaces</a>
-    @{
-        bool isAuthorized = User.IsInRole("Admin") || (Model != null && Model.AddedBy == User.Identity.Name);
-        if (isAuthorized)
-        {
-            <a class="btn btn-warning" href="@Url.Action("EditCampingPlace", "CampingPlace", new { id = Model.Id })">@GlobalResources.TextEdit</a>
-            <a class="btn btn-danger" href="@Url.Action("DeleteCampingPlace", "CampingPlace", new { id = Model.Id })">@GlobalResources.TextDelete</a>
-        }
+    <div class="row text-center">
+        <a class="btn btn-default" href="@Url.Action("Index", "Home")">@GlobalResources.TextLastPlaces</a>
+        @{
+            bool isAuthorized = User.IsInRole("Admin") || (Model != null && Model.AddedBy == User.Identity.Name);
+            if (isAuthorized)
+            {
+                <a class="btn btn-warning" href="@Url.Action("EditCampingPlace", "CampingPlace", new { id = Model.Id })">@GlobalResources.TextEdit</a>
+                <a class="btn btn-danger" href="@Url.Action("DeleteCampingPlace", "CampingPlace", new { id = Model.Id })">@GlobalResources.TextDelete</a>
+            }
 
-        TempData["isAuthorized"] = isAuthorized;
-    }
-</div>
+            TempData["isAuthorized"] = isAuthorized;
+        }
+    </div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

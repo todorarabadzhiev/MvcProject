@@ -86,13 +86,13 @@
                 {
                     string imageName = Model.ImageFileNames[i];
                     string imageData = Model.ImageFilesData[i];
-                <div class="col-md-3 text-center">
-                    <input type="hidden" name="ImageFileNames" value=@imageName />
-                    <input type="hidden" name="ImageFilesData" value=@imageData />
-                    <img class="thumb-image" src=@imageData alt=@imageName />
-                    <a href="#" class="btn btn-sm" onclick="OnDeleteClick(this)">Изтрий</a>
-                </div>
+                    <div class="col-md-3 text-center">
+                        <input type="hidden" name="ImageFileNames" value=@imageName />
+                        <input type="hidden" name="ImageFilesData" value=@imageData />
+                        <img class="thumb-image" src=@imageData alt=@imageName />
+                        <a href="#" class="btn btn-sm" onclick="OnDeleteClick(this)">Изтрий</a>
+                    </div>
+                }
             }
-        }
     </div>
 </div>

@@ -57,6 +57,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201705061910246_ImageAddedToCategory.cs" />
+    <Compile Include="Migrations\201705061910246_ImageAddedToCategory.Designer.cs">
+      <DependentUpon>201705061910246_ImageAddedToCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705061914413_DescriptionAddedToCategory.cs" />
+    <Compile Include="Migrations\201705061914413_DescriptionAddedToCategory.Designer.cs">
+      <DependentUpon>201705061914413_DescriptionAddedToCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705061917282_ImageNotRequiredInCategory.cs" />
+    <Compile Include="Migrations\201705061917282_ImageNotRequiredInCategory.Designer.cs">
+      <DependentUpon>201705061917282_ImageNotRequiredInCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DbCampingPlace.cs" />
     <Compile Include="Models\DbCampingUser.cs" />
@@ -81,6 +93,17 @@
       <Project>{19AB8972-33E5-437F-88B2-48EA4730595F}</Project>
       <Name>CommonUtilities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705061910246_ImageAddedToCategory.resx">
+      <DependentUpon>201705061910246_ImageAddedToCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705061914413_DescriptionAddedToCategory.resx">
+      <DependentUpon>201705061914413_DescriptionAddedToCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705061917282_ImageNotRequiredInCategory.resx">
+      <DependentUpon>201705061917282_ImageNotRequiredInCategory.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

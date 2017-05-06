@@ -1,0 +1,43 @@
+﻿@using CommonUtilities.Utilities
+@model WildCampingWithMvc.Models.SiteCategory.SiteCategoriesViewModel
+@{
+    ViewBag.Title = GlobalResources.TextBegin;
+}
+
+<div class="jumbotron text-center">
+    <h1>@GlobalResources.TextTitle</h1>
+    <p class="lead">
+        @GlobalResources.TextHomeInit
+    </p>
+</div>
+
+<div class="row container">
+    <h2 class="text-center">@GlobalResources.TextSiteCategories</h2>
+
+    @foreach (var m in Model.SiteCategories)
+    {
+        string imgSource;
+        if (m.Image != null)
+        {
+            imgSource = Utilities.ConvertToImage(m.Image);
+        }
+        else
+        {
+            imgSource = string.Format(GlobalResources.TextNoImageFor, m.Name);
+        }
+        string url = Url.Action("SiteCategoriesDetails", "SiteCategory", new { name = m.Name });
+
+        <div class="col-md-4 text-center">
+            @if (m.Image != null)
+            {
+                <img src="@imgSource" class="image-200px" /><br />
+            }
+            else
+            {
+                <div class="image-200px center-block">@imgSource</div>
+            }
+            <a href="@url">@m.Name</a><br />
+            @*<div>@m.Description</div>*@
+        </div>
+    }
+</div>

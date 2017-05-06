@@ -1,7 +1,7 @@
 ﻿@using WildCampingWithMvc.Models.Account
 @model LoginViewModel
 @{
-    ViewBag.Title = Messages.TextEnter;
+    ViewBag.Title = GlobalResources.TextEnter;
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -11,7 +11,7 @@
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Използвай локалния си профил, за да влезеш.</h4>
+                <h4>@GlobalResources.TextUseLocalProfile</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink(Messages.TextRegisterAsNewUser, "Register")
+                    @Html.ActionLink(GlobalResources.TextRegisterAsNewUser, "Register")
                 </p>
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>

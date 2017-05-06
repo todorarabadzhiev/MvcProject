@@ -16,10 +16,10 @@
     }
 </div>
 
-<div id="campingPlacesContainer" class="container">
+<div id="campingPlacesContainer" class="row container">
     <h2 class="text-center">@GlobalResources.TextAllCampingPlaces</h2>
 
-    @Html.Partial("_MultipleCampingPlacesPartial", Model);
+    @Html.Partial("_MultipleCampingPlacesPartial", Model)
 </div>
 
 @Scripts.Render("~/bundles/custom")

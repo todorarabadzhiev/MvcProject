@@ -1,7 +1,17 @@
-﻿$(function () {
+﻿//$(function () {
+//    $('[name="searchTerm"]').keyup(function () {
+//        $('#ajaxForm').submit()
+//    })
+//})
+
+$(function () {
+    let delayTimer;
     $('[name="searchTerm"]').keyup(function () {
-        $('#ajaxForm').submit()
-    })
+        clearTimeout(delayTimer);
+        delayTimer = setTimeout(function () {
+            $('#ajaxForm').submit();
+        }, 2000);
+    });
 })
 
 function OnDeleteClick(elem) {
@@ -20,6 +30,15 @@ $(document).ready(function () {
             if (typeof (FileReader) != "undefined") {
                 //loop for each file selected for uploaded.
                 for (var i = 0; i < countFiles; i++) {
+
+
+                    //START CHECK SIZE
+                    var size = $(this)[0].files[i].size;
+                    var name = $(this)[0].files[i].name;
+                    console.log("file size of" + name + " is " + size);
+                    //END CHECK SIZE
+
+
                     var reader = new FileReader();
                     reader.onload = function (e) {
                         var imgDiv = $("<div>", {

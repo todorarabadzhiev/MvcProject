@@ -20,6 +20,11 @@ namespace WildCampingWithMvc.Db.Models
         [Required]
         [MaxLength(30), MinLength(2)]
         public string Name { get; set; }
+
+        [MaxLength(500), MinLength(5)]
+        public string Description { get; set; }
+
+        public byte[] Image { get; set; }
         public virtual ICollection<DbCampingPlace> DbCampingPlaces
         {
             get

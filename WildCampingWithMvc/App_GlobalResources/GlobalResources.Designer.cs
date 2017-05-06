@@ -250,6 +250,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category {0} Places.
+        /// </summary>
+        public static string TextCategoryPlaces {
+            get {
+                return ResourceManager.GetString("TextCategoryPlaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change password.
         /// </summary>
         public static string TextChangePassword {
@@ -547,6 +556,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No image for {0}.
+        /// </summary>
+        public static string TextNoImageFor {
+            get {
+                return ResourceManager.GetString("TextNoImageFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string TextPassword {
@@ -678,6 +696,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextTitle {
             get {
                 return ResourceManager.GetString("TextTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use your local profile to log in..
+        /// </summary>
+        public static string TextUseLocalProfile {
+            get {
+                return ResourceManager.GetString("TextUseLocalProfile", resourceCulture);
             }
         }
         

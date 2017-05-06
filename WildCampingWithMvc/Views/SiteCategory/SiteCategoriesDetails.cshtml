@@ -11,7 +11,7 @@
 </div>
 
 <div class="row container">
-    <h2 class="text-center">@GlobalResources.TextLatestPlaces</h2>
+    <h2 class="text-center">@string.Format(GlobalResources.TextCategoryPlaces, ViewBag.CategoryName)</h2>
 
     @Html.Partial("_MultipleCampingPlacesPartial", Model)
 </div>

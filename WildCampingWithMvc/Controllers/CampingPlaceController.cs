@@ -62,13 +62,18 @@ namespace WildCampingWithMvc.Controllers
             return this.PartialView("_MultipleCampingPlacesPartial", model);
         }
 
-        public ActionResult CampingPlaceDetails(Guid id)
+        public ActionResult CampingPlaceDetails(Guid? id)
         {
-            ViewBag.NoPlaceFound = false;
-            CampingPlaceDetailsViewModel model = this.ConvertToDetailsFromICampingPlace(id);
+            if (id == null)
+            {
+                return this.RedirectToAction("Index", "Home");
+            }
+
+            this.ViewBag.NoPlaceFound = false;
+            CampingPlaceDetailsViewModel model = this.ConvertToDetailsFromICampingPlace((Guid)id);
             if (model == null)
             {
-                ViewBag.NoPlaceFound = true;
+                this.ViewBag.NoPlaceFound = true;
             }
 
             return this.View(model);

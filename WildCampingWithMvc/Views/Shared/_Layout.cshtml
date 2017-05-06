@@ -25,6 +25,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(GlobalResources.TextAbout, "About", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink(GlobalResources.TextContacts, "Contact", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink(GlobalResources.TextSiteCategories, "Index", "SiteCategory", new { area = "" }, null)</li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink(GlobalResources.TextAllCampingPlaces, "AllCampingPlaces", "CampingPlace", new { area = "" }, null)</li>
@@ -35,6 +36,7 @@
                         <li>@Html.ActionLink(GlobalResources.TextDisplayUsers, "Index", "User", new { area = "Admin"}, null)</li>
                     }
                 </ul>
+                @Html.Partial("_LangPartial")
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -42,8 +44,8 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer class="row">
-            <p>&copy; @DateTime.Now.Year - Telerik Academy</p>
+        <footer>
+            <p class="row">&copy; @DateTime.Now.Year - Telerik Academy</p>
         </footer>
     </div>
 

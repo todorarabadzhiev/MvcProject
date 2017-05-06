@@ -333,4 +333,13 @@
   <data name="ErrProviderIsRequired" xml:space="preserve">
     <value>Задължително въведете доставчик!</value>
   </data>
+  <data name="TextUseLocalProfile" xml:space="preserve">
+    <value>Използвай локалния си профил, за да влезеш.</value>
+  </data>
+  <data name="TextNoImageFor" xml:space="preserve">
+    <value>Липсва изображение на {0}</value>
+  </data>
+  <data name="TextCategoryPlaces" xml:space="preserve">
+    <value>Местенца от категория {0}</value>
+  </data>
 </root>
