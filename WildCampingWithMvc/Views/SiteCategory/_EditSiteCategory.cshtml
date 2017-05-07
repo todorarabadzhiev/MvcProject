@@ -1,0 +1,38 @@
+﻿@model WildCampingWithMvc.Models.SiteCategory.AddSiteCategoryViewModel
+
+@Html.AntiForgeryToken()
+<hr />
+@Html.ValidationSummary("", new { @class = "text-danger" })
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "col-md-4 control-label" })
+        <div class="col-md-8">
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @rows = "5" })
+        </div>
+    </div>
+</div>
+<div class="form-group-lg">
+    <h3 class="text-center">@GlobalResources.TextImageFile</h3>
+    <input class="form-control col-md-4 col-md-offset-4" type="file" id="fileUpload" />
+    <div id="image-holder" class="text-center">
+        @if (Model != null && Model.ImageFileName != null)
+        {
+            string imageName = Model.ImageFileName;
+            string imageData = Model.ImageFileData;
+            <div class="col-md-3 text-center">
+                <input type="hidden" name="ImageFileName" value=@imageName />
+                <input type="hidden" name="ImageFileData" value=@imageData />
+                <img class="thumb-image" src=@imageData alt=@imageName />
+            </div>
+        }
+    </div>
+</div>
+

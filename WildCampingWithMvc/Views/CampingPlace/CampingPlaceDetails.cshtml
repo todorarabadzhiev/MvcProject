@@ -31,14 +31,14 @@ else
         <h3>@GlobalResources.TextSiteCategories</h3>
         @foreach (var category in Model.SiteCategories)
         {
-            <a href="@Url.Action("SiteCategoriesDetails", "SiteCategory", new { name = category.Name })">[@category.Name]</a>
+            <a href="@Url.Action("SiteCategoryPlaces", "SiteCategory", new { name = category.Name })">[@category.Name]</a>
         }
     </div>
     <div class="row text-center">
         <h3>@GlobalResources.TextSightseeings</h3>
         @foreach (var sightseeing in Model.Sightseeings)
         {
-            <a href="@Url.Action("SightseeingDetails", "Sightseeing", new { id = sightseeing.Id })">[@sightseeing.Name]</a>
+            <a href="@Url.Action("SightseeingPlaces", "Sightseeing", new { id = sightseeing.Id })">[@sightseeing.Name]</a>
         }
     </div>
     <div class="row text-center">

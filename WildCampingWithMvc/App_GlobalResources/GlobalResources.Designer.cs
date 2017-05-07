@@ -223,6 +223,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add site category.
+        /// </summary>
+        public static string TextAddSiteCategory {
+            get {
+                return ResourceManager.GetString("TextAddSiteCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All CampingPlaces.
         /// </summary>
         public static string TextAllCampingPlaces {
@@ -484,6 +493,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        public static string TextImageFile {
+            get {
+                return ResourceManager.GetString("TextImageFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Images.
         /// </summary>
         public static string TextImageFiles {
@@ -669,6 +687,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextSiteCategories {
             get {
                 return ResourceManager.GetString("TextSiteCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site category name.
+        /// </summary>
+        public static string TextSiteCategoryName {
+            get {
+                return ResourceManager.GetString("TextSiteCategoryName", resourceCulture);
             }
         }
         

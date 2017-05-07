@@ -342,4 +342,13 @@
   <data name="TextCategoryPlaces" xml:space="preserve">
     <value>Местенца от категория {0}</value>
   </data>
+  <data name="TextSiteCategoryName" xml:space="preserve">
+    <value>Име на категорията място</value>
+  </data>
+  <data name="TextAddSiteCategory" xml:space="preserve">
+    <value>Добавяне на нова категория местенца</value>
+  </data>
+  <data name="TextImageFile" xml:space="preserve">
+    <value>Изображение</value>
+  </data>
 </root>

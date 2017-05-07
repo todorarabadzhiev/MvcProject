@@ -25,7 +25,7 @@
         {
             imgSource = string.Format(GlobalResources.TextNoImageFor, m.Name);
         }
-        string url = Url.Action("SiteCategoriesDetails", "SiteCategory", new { name = m.Name });
+        string url = Url.Action("SiteCategoryPlaces", "SiteCategory", new { name = m.Name });
 
         <div class="col-md-4 text-center">
             @if (m.Image != null)

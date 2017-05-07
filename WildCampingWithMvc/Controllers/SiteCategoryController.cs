@@ -1,4 +1,5 @@
-﻿using Services.DataProviders;
+﻿using CommonUtilities.Utilities;
+using Services.DataProviders;
 using System;
 using System.Web.Mvc;
 using WildCampingWithMvc.Models.CampingPlace;
@@ -39,9 +40,9 @@ namespace WildCampingWithMvc.Controllers
             return View(model);
         }
 
-        // GET: CampingPlace
+        // GET: SiteCategoryPlaces
         [HttpGet]
-        public ActionResult SiteCategoriesDetails(string name)
+        public ActionResult SiteCategoryPlaces(string name)
         {
             var categoryPlaces = this.campingPlaceProvider.GetSiteCategoryCampingPlaces(name);
             MultipleCampingPlacesViewModel model = new MultipleCampingPlacesViewModel();
@@ -49,6 +50,35 @@ namespace WildCampingWithMvc.Controllers
             ViewBag.CategoryName = name;
 
             return View(model);
+        }
+
+        // GET: AddSiteCategory
+        [HttpGet]
+        public ActionResult AddSiteCategory()
+        {
+            return this.View();
+        }
+
+        // POST: AddSiteCategory
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddSiteCategory(AddSiteCategoryViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            this.AddCategory(model);
+
+            return RedirectToAction("Index");
+        }
+
+        private void AddCategory(AddSiteCategoryViewModel model)
+        {
+            byte[] imageFileData = Utilities.ConvertFromImage(model.ImageFileData);
+            this.siteCategoryDataProvider.AddSiteCategory(
+                model.Name, model.Description, imageFileData);
         }
     }
 }

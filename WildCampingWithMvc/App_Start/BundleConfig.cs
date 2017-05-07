@@ -32,6 +32,9 @@ namespace WildCampingWithMvc
             // ***BEGIN*** CUSTOM JS FILES !!!!!!!!!!!!!!!!!!!!
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                         "~/Scripts/Custom/custom-js-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/category").Include(
+                        "~/Scripts/Custom/category-js-*"));
             // ***END*** CUSTOM JS FILES
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

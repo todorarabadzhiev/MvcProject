@@ -339,4 +339,13 @@
   <data name="TextCategoryPlaces" xml:space="preserve">
     <value>Category {0} Places</value>
   </data>
+  <data name="TextSiteCategoryName" xml:space="preserve">
+    <value>Site category name</value>
+  </data>
+  <data name="TextAddSiteCategory" xml:space="preserve">
+    <value>Add site category</value>
+  </data>
+  <data name="TextImageFile" xml:space="preserve">
+    <value>Image</value>
+  </data>
 </root>

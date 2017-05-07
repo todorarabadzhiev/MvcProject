@@ -26,6 +26,28 @@ namespace Services.DataProviders
             this.unitOfWork = unitOfWork;
         }
 
+        public void AddSiteCategory(string name, string description, byte[] imageFileData)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException("Category Name");
+            }
+
+            ISiteCategory newSiteCategory = new SiteCategory();
+            newSiteCategory.Name = name;
+            newSiteCategory.Description = description;
+            newSiteCategory.Image = imageFileData;
+            DbSiteCategory dbSiteCategory = this.ConvertFromSiteCategory(newSiteCategory);
+
+            using (var uw = this.unitOfWork())
+            {
+                IGenericEFository<DbSiteCategory> siteCategoryRepository =
+                    this.repository.GetSiteCategoryRepository();
+                siteCategoryRepository.Add(dbSiteCategory);
+                uw.Commit();
+            }
+        }
+
         public IEnumerable<ISiteCategory> GetAllSiteCategories()
         {
             IGenericEFository<DbSiteCategory> siteCategoryRepository =
@@ -65,8 +87,20 @@ namespace Services.DataProviders
             ISiteCategory category = new SiteCategory();
             category.Name = c.Name;
             category.Id = c.Id;
+            category.Description = c.Description;
+            category.Image = c.Image;
 
             return category;
+        }
+
+        private DbSiteCategory ConvertFromSiteCategory(ISiteCategory category)
+        {
+            DbSiteCategory c = new DbSiteCategory();
+            c.Name = category.Name;
+            c.Description = category.Description;
+            c.Image = category.Image;
+
+            return c;
         }
     }
 }
