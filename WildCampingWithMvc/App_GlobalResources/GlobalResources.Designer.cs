@@ -259,15 +259,6 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Category {0} Places.
-        /// </summary>
-        public static string TextCategoryPlaces {
-            get {
-                return ResourceManager.GetString("TextCategoryPlaces", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Change password.
         /// </summary>
         public static string TextChangePassword {
@@ -574,11 +565,29 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No image for {0}.
+        ///   Looks up a localized string similar to No description for &quot;{0}&quot;.
+        /// </summary>
+        public static string TextNoDescriptionFor {
+            get {
+                return ResourceManager.GetString("TextNoDescriptionFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No image for &quot;{0}&quot;.
         /// </summary>
         public static string TextNoImageFor {
             get {
                 return ResourceManager.GetString("TextNoImageFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There aren&apos;t any places in category &quot;{0}&quot;.
+        /// </summary>
+        public static string TextNoPlacesFor {
+            get {
+                return ResourceManager.GetString("TextNoPlacesFor", resourceCulture);
             }
         }
         
@@ -624,6 +633,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextPlaceNotFound {
             get {
                 return ResourceManager.GetString("TextPlaceNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Places in category.
+        /// </summary>
+        public static string TextPlacesInCategory {
+            get {
+                return ResourceManager.GetString("TextPlacesInCategory", resourceCulture);
             }
         }
         
@@ -687,6 +705,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextSiteCategories {
             get {
                 return ResourceManager.GetString("TextSiteCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category &quot;{0}&quot;.
+        /// </summary>
+        public static string TextSiteCategory {
+            get {
+                return ResourceManager.GetString("TextSiteCategory", resourceCulture);
             }
         }
         

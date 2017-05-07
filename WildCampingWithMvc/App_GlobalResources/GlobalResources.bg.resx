@@ -337,10 +337,10 @@
     <value>Използвай локалния си профил, за да влезеш.</value>
   </data>
   <data name="TextNoImageFor" xml:space="preserve">
-    <value>Липсва изображение на {0}</value>
+    <value>Липсва изображение на "{0}"</value>
   </data>
-  <data name="TextCategoryPlaces" xml:space="preserve">
-    <value>Местенца от категория {0}</value>
+  <data name="TextSiteCategory" xml:space="preserve">
+    <value>Категория "{0}"</value>
   </data>
   <data name="TextSiteCategoryName" xml:space="preserve">
     <value>Име на категорията място</value>
@@ -350,5 +350,14 @@
   </data>
   <data name="TextImageFile" xml:space="preserve">
     <value>Изображение</value>
+  </data>
+  <data name="TextPlacesInCategory" xml:space="preserve">
+    <value>Местенца в категорията</value>
+  </data>
+  <data name="TextNoDescriptionFor" xml:space="preserve">
+    <value>Липсва описание на "{0}"</value>
+  </data>
+  <data name="TextNoPlacesFor" xml:space="preserve">
+    <value>Все още няма местенца в категория "{0}"</value>
   </data>
 </root>

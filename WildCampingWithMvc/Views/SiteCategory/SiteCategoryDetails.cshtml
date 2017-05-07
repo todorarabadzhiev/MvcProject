@@ -1,0 +1,53 @@
+﻿@model WildCampingWithMvc.Models.SiteCategory.SiteCategoryDetailsViewModel
+@{
+    ViewBag.Title = GlobalResources.TextBegin;
+}
+
+<div class="jumbotron text-center">
+    <h1>@GlobalResources.TextTitle</h1>
+    <p class="lead">
+        @GlobalResources.TextHomeInit
+    </p>
+</div>
+
+<div class="row container">
+    <h2 class="text-center">@string.Format(GlobalResources.TextSiteCategory, Model.Name)</h2>
+    <div class="text-center">
+        @if (Model.ImageData != null)
+        {
+            <img src=@Model.ImageData alt=@Model.Name class="image-400px" /><br />
+        }
+        else
+        {
+            <div class="image-200px center-block">
+                @string.Format(GlobalResources.TextNoImageFor, Model.Name)
+            </div>
+        }
+    </div>
+
+    @if (Model.Description != null)
+    {
+        <h4 class="text-center">@Model.Description</h4>
+    }
+    else
+    {
+        <div class="text-center">
+            @string.Format(GlobalResources.TextNoDescriptionFor, Model.Name)
+        </div>
+    }
+
+    <h3 class="text-center">@GlobalResources.TextPlacesInCategory</h3>
+
+    @if (Model.Places.CampingPlaces.Count() > 0)
+    {
+        <div class="text-center">
+            @Html.Partial("_MultipleCampingPlacesPartial", Model.Places)
+        </div>
+    }
+    else
+    {
+        <div class="text-center">
+            @string.Format(GlobalResources.TextNoPlacesFor, Model.Name)
+        </div>
+    }
+</div>

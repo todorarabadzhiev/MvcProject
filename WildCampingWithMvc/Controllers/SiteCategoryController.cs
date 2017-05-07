@@ -40,14 +40,29 @@ namespace WildCampingWithMvc.Controllers
             return View(model);
         }
 
-        // GET: SiteCategoryPlaces
+        // GET: SiteCategoryDetails
         [HttpGet]
-        public ActionResult SiteCategoryPlaces(string name)
+        public ActionResult SiteCategoryDetails(Guid? id)
         {
-            var categoryPlaces = this.campingPlaceProvider.GetSiteCategoryCampingPlaces(name);
-            MultipleCampingPlacesViewModel model = new MultipleCampingPlacesViewModel();
-            model.CampingPlaces = categoryPlaces;
-            ViewBag.CategoryName = name;
+            if (id == null)
+            {
+                return this.RedirectToAction("Index");
+            }
+
+            var category = this.siteCategoryDataProvider.GetSiteCategoryById((Guid)id);
+            if (category == null)
+            {
+                return this.RedirectToAction("Index");
+            }
+
+            SiteCategoryDetailsViewModel model = new SiteCategoryDetailsViewModel();
+            model.Name = category.Name;
+            model.Description = category.Description;
+            var imageData = Utilities.ConvertToImage(category.Image);
+            model.ImageData = imageData == Utilities.NoImage ? null : imageData;
+            var categoryPlaces = this.campingPlaceProvider.GetSiteCategoryCampingPlaces(category.Name);
+            model.Places = new MultipleCampingPlacesViewModel();
+            model.Places.CampingPlaces = categoryPlaces;
 
             return View(model);
         }

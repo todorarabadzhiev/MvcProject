@@ -4,16 +4,22 @@ namespace CommonUtilities.Utilities
 {
     public static class Utilities
     {
+        public const string NoImage = "no image";
         public const string DbConnectionName = "DefaultConnection";
+
+        private const string ExceptionBase64 = "Base64String";
+        private const string StrBase64 = "base64,";
+        private const string ImageSource = "data:image/jpeg;base64,{0}";
+
         public static string ConvertToImage(byte[] fileData)
         {
             if (fileData == null)
             {
-                return "no image";
+                return NoImage;
             }
 
             string base64 = Convert.ToBase64String(fileData);
-            string imgSource = String.Format("data:image/jpeg;base64,{0}", base64);
+            string imgSource = String.Format(ImageSource, base64);
 
             return imgSource;
         }
@@ -22,11 +28,10 @@ namespace CommonUtilities.Utilities
         {
             if (string.IsNullOrWhiteSpace(strData))
             {
-                throw new ArgumentNullException("Base64String");
+                throw new ArgumentNullException(ExceptionBase64);
             }
 
-            string strBase64 = "base64,";
-            string strItem = strData.Substring(strData.IndexOf(strBase64) + strBase64.Length);
+            string strItem = strData.Substring(strData.IndexOf(StrBase64) + StrBase64.Length);
             try
             {
                 byte[] imageData = Convert.FromBase64String(strItem);
@@ -34,7 +39,7 @@ namespace CommonUtilities.Utilities
             }
             catch (FormatException)
             {
-                throw new FormatException("Base64String");
+                throw new FormatException(ExceptionBase64);
             }
         }
     }

@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="App_GlobalResources.qxecucln">
+      <HintPath>..\..\..\..\..\..\..\AppData\Local\Temp\Temporary ASP.NET Files\root\52b6898e\_shadow\8dccfce7\3428\App_GlobalResources.qxecucln.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
