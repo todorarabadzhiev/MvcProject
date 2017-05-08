@@ -51,8 +51,8 @@
         </div>
     }
 </div>
-<div class="row text-center">
-    <a class="btn btn-default" href="@Url.Action("Index", "Home")">@GlobalResources.TextLastPlaces</a>
+<div class="jumbotron text-center">
+    <a class="btn btn-default" href="@Url.Action("Index")">@GlobalResources.TextSiteCategories</a>
     @{
         bool isAuthorized = User.IsInRole("Admin");
         if (isAuthorized)

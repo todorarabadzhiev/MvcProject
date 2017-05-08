@@ -153,17 +153,12 @@ namespace Services.DataProviders
 
         public void DeleteCampingPlace(Guid id)
         {
-            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
-                this.repository.GetCampingPlaceRepository();
-            var dbPlace = capmingPlaceRepository.GetById(id);
-            if (dbPlace != null)
-            {
-                using (var uw = this.unitOfWork())
-                {
-                    dbPlace.IsDeleted = true;
-                    uw.Commit();
-                }
-            }
+            this.ChangeIsDeletedPropertyTo(id, true);
+        }
+
+        public void RecoverDeletedCampingPlaceById(Guid id)
+        {
+            this.ChangeIsDeletedPropertyTo(id, false);
         }
 
         public IEnumerable<ICampingPlace> GetCampingPlaceById(Guid id)
@@ -215,21 +210,12 @@ namespace Services.DataProviders
 
         public IEnumerable<ICampingPlace> GetAllCampingPlaces()
         {
-            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
-                this.repository.GetCampingPlaceRepository();
-            var dbPlaces = capmingPlaceRepository.GetAll(p => !p.IsDeleted);
-            if (dbPlaces == null)
-            {
-                return null;
-            }
+            return this.GetPlacesByIsDeletedProperty(false);
+        }
 
-            var places = new List<ICampingPlace>();
-            foreach (var p in dbPlaces)
-            {
-                places.Add(this.ConvertToPlace(p));
-            }
-
-            return places;
+        public IEnumerable<ICampingPlace> GetDeletedCampingPlaces()
+        {
+            return this.GetPlacesByIsDeletedProperty(true);
         }
 
         private void UpdateSightseeings(DbCampingPlace dbCampingPlace, IEnumerable<string> sightseeingNames)
@@ -443,6 +429,40 @@ namespace Services.DataProviders
             if (imageFileNames.Count != imageFilesData.Count)
             {
                 throw new ArgumentException("CampingPlace ImageFiles Names vs Data");
+            }
+        }
+
+        private IEnumerable<ICampingPlace> GetPlacesByIsDeletedProperty(bool isDeleted)
+        {
+            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
+                this.repository.GetCampingPlaceRepository();
+            var dbPlaces = capmingPlaceRepository.GetAll(p => p.IsDeleted == isDeleted);
+            if (dbPlaces == null)
+            {
+                return null;
+            }
+
+            var places = new List<ICampingPlace>();
+            foreach (var p in dbPlaces)
+            {
+                places.Add(this.ConvertToPlace(p));
+            }
+
+            return places;
+        }
+
+        private void ChangeIsDeletedPropertyTo(Guid id, bool isDeleted)
+        {
+            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
+                this.repository.GetCampingPlaceRepository();
+            var dbPlace = capmingPlaceRepository.GetById(id);
+            if (dbPlace != null)
+            {
+                using (var uw = this.unitOfWork())
+                {
+                    dbPlace.IsDeleted = isDeleted;
+                    uw.Commit();
+                }
             }
         }
     }

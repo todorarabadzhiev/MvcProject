@@ -360,4 +360,31 @@
   <data name="TextEditSiteCategory" xml:space="preserve">
     <value>Edit site category</value>
   </data>
+  <data name="TextCampingPlaces" xml:space="preserve">
+    <value>Camping places</value>
+  </data>
+  <data name="TextLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="TextUsers" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="TextDeletedSiteCategories" xml:space="preserve">
+    <value>Deleted site categories</value>
+  </data>
+  <data name="TextRecover" xml:space="preserve">
+    <value>Recover</value>
+  </data>
+  <data name="TextDeletedCategories" xml:space="preserve">
+    <value>Deleted categories</value>
+  </data>
+  <data name="TextNoDeletedCategories" xml:space="preserve">
+    <value>There are no deleted categories</value>
+  </data>
+  <data name="TextDeletedCampingPlaces" xml:space="preserve">
+    <value>Deleted camping places</value>
+  </data>
+  <data name="TextDeletedPlaces" xml:space="preserve">
+    <value>Deleted camping places</value>
+  </data>
 </root>

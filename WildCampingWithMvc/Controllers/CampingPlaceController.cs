@@ -140,7 +140,6 @@ namespace WildCampingWithMvc.Controllers
             return RedirectToAction("CampingPlaceDetails", new { id = id });
         }
 
-        //[ValidateAntiForgeryToken]
         public ActionResult DeleteCampingPlace(Guid id)
         {
             bool isAuthorized = (bool)TempData["isAuthorized"];
@@ -152,6 +151,13 @@ namespace WildCampingWithMvc.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult RecoverCampingPlace(Guid id)
+        {
+            this.campingPlaceProvider.RecoverDeletedCampingPlaceById(id);
+
+            return RedirectToAction("CampingPlaceDetails", new { id = id });
+        }
+        
         public ActionResult Index()
         {
             return RedirectToAction("AllCampingPlaces");
@@ -162,6 +168,17 @@ namespace WildCampingWithMvc.Controllers
         public ActionResult AllCampingPlaces()
         {
             var places = this.campingPlaceProvider.GetAllCampingPlaces();
+            MultipleCampingPlacesViewModel model = new MultipleCampingPlacesViewModel();
+            model.CampingPlaces = places;
+
+            return View(model);
+        }
+
+        // GET: DeletedCampingPlace
+        [HttpGet]
+        public ActionResult DeletedCampingPlaces()
+        {
+            var places = this.campingPlaceProvider.GetDeletedCampingPlaces();
             MultipleCampingPlacesViewModel model = new MultipleCampingPlacesViewModel();
             model.CampingPlaces = places;
 

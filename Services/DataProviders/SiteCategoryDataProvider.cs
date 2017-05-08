@@ -62,17 +62,12 @@ namespace Services.DataProviders
 
         public void DeleteSiteCategory(Guid id)
         {
-            IGenericEFository<DbSiteCategory> siteCategoryRepository =
-                this.repository.GetSiteCategoryRepository();
-            var dbSiteCategory = siteCategoryRepository.GetById(id);
-            if (dbSiteCategory != null)
-            {
-                using (var uw = this.unitOfWork())
-                {
-                    dbSiteCategory.IsDeleted = true;
-                    uw.Commit();
-                }
-            }
+            this.ChangeIsDeletedPropertyTo(id, true);
+        }
+
+        public void RecoverDeletedCategoryById(Guid id)
+        {
+            this.ChangeIsDeletedPropertyTo(id, false);
         }
 
         public void AddSiteCategory(string name, string description, byte[] imageFileData)
@@ -99,21 +94,12 @@ namespace Services.DataProviders
 
         public IEnumerable<ISiteCategory> GetAllSiteCategories()
         {
-            IGenericEFository<DbSiteCategory> siteCategoryRepository =
-                this.repository.GetSiteCategoryRepository();
-            var dbCategories = siteCategoryRepository.GetAll(c => (!c.IsDeleted));
-            if (dbCategories == null)
-            {
-                return null;
-            }
+            return this.GetCategoriesByIsDeletedProperty(false);
+        }
 
-            var categories = new List<ISiteCategory>();
-            foreach (var c in dbCategories)
-            {
-                categories.Add(ConvertToSiteCategory(c));
-            }
-
-            return categories;
+        public IEnumerable<ISiteCategory> GetDeletedSiteCategories()
+        {
+            return this.GetCategoriesByIsDeletedProperty(true);
         }
 
         public ISiteCategory GetSiteCategoryById(Guid id)
@@ -159,6 +145,40 @@ namespace Services.DataProviders
             dbCategory.Name = siteCategory.Name;
             dbCategory.Description = siteCategory.Description;
             dbCategory.Image = siteCategory.Image;
+        }
+
+        private IEnumerable<ISiteCategory> GetCategoriesByIsDeletedProperty(bool isDeleted)
+        {
+            IGenericEFository<DbSiteCategory> siteCategoryRepository =
+                this.repository.GetSiteCategoryRepository();
+            var dbCategories = siteCategoryRepository.GetAll(c => (c.IsDeleted == isDeleted));
+            if (dbCategories == null)
+            {
+                return null;
+            }
+
+            var categories = new List<ISiteCategory>();
+            foreach (var c in dbCategories)
+            {
+                categories.Add(ConvertToSiteCategory(c));
+            }
+
+            return categories;
+        }
+
+        private void ChangeIsDeletedPropertyTo(Guid id, bool isDeleted)
+        {
+            IGenericEFository<DbSiteCategory> siteCategoryRepository =
+                this.repository.GetSiteCategoryRepository();
+            var dbSiteCategory = siteCategoryRepository.GetById(id);
+            if (dbSiteCategory != null)
+            {
+                using (var uw = this.unitOfWork())
+                {
+                    dbSiteCategory.IsDeleted = isDeleted;
+                    uw.Commit();
+                }
+            }
         }
     }
 }

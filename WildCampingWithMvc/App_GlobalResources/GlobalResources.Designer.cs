@@ -259,6 +259,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Camping places.
+        /// </summary>
+        public static string TextCampingPlaces {
+            get {
+                return ResourceManager.GetString("TextCampingPlaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change password.
         /// </summary>
         public static string TextChangePassword {
@@ -345,6 +354,42 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextDelete {
             get {
                 return ResourceManager.GetString("TextDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted camping places.
+        /// </summary>
+        public static string TextDeletedCampingPlaces {
+            get {
+                return ResourceManager.GetString("TextDeletedCampingPlaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted categories.
+        /// </summary>
+        public static string TextDeletedCategories {
+            get {
+                return ResourceManager.GetString("TextDeletedCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted camping places.
+        /// </summary>
+        public static string TextDeletedPlaces {
+            get {
+                return ResourceManager.GetString("TextDeletedPlaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted site categories.
+        /// </summary>
+        public static string TextDeletedSiteCategories {
+            get {
+                return ResourceManager.GetString("TextDeletedSiteCategories", resourceCulture);
             }
         }
         
@@ -529,6 +574,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string TextLanguage {
+            get {
+                return ResourceManager.GetString("TextLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last name.
         /// </summary>
         public static string TextLastName {
@@ -570,6 +624,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextNewPassword {
             get {
                 return ResourceManager.GetString("TextNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no deleted categories.
+        /// </summary>
+        public static string TextNoDeletedCategories {
+            get {
+                return ResourceManager.GetString("TextNoDeletedCategories", resourceCulture);
             }
         }
         
@@ -651,6 +714,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextPlacesInCategory {
             get {
                 return ResourceManager.GetString("TextPlacesInCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recover.
+        /// </summary>
+        public static string TextRecover {
+            get {
+                return ResourceManager.GetString("TextRecover", resourceCulture);
             }
         }
         
@@ -768,6 +840,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextUseLocalProfile {
             get {
                 return ResourceManager.GetString("TextUseLocalProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string TextUsers {
+            get {
+                return ResourceManager.GetString("TextUsers", resourceCulture);
             }
         }
         

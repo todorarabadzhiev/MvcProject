@@ -41,6 +41,25 @@ namespace WildCampingWithMvc.Controllers
             return View(model);
         }
 
+        // GET: Deleted Categories
+        [Authorize(Roles ="Admin")]
+        public ActionResult DeletedCategories()
+        {
+            var categories = this.siteCategoryDataProvider.GetDeletedSiteCategories();
+            SiteCategoriesViewModel model = new SiteCategoriesViewModel();
+            model.SiteCategories = categories;
+
+            return View(model);
+        }
+
+        [Authorize(Roles ="Admin")]
+        public ActionResult RecoverSiteCategory(Guid id)
+        {
+            this.siteCategoryDataProvider.RecoverDeletedCategoryById(id);
+
+            return RedirectToAction("SiteCategoryDetails", new { id = id});
+        }
+        
         // GET: SiteCategoryDetails
         [HttpGet]
         public ActionResult SiteCategoryDetails(Guid? id)
@@ -120,7 +139,6 @@ namespace WildCampingWithMvc.Controllers
         }
 
         [Authorize(Roles ="Admin")]
-        //[ValidateAntiForgeryToken]
         public ActionResult DeleteSiteCategory(Guid id)
         {
             this.siteCategoryDataProvider.DeleteSiteCategory(id);

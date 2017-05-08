@@ -1,0 +1,14 @@
+﻿@using CommonUtilities.Utilities
+@model WildCampingWithMvc.Models.CampingPlace.MultipleCampingPlacesViewModel
+
+@foreach (var m in Model.CampingPlaces)
+{
+    string imgSource = Utilities.ConvertToImage(m.ImageFiles[0].Data);
+    string url = Url.Action("CampingPlaceDetails", "CampingPlace", new { id = m.Id });
+
+    <div class="col-md-4 text-center">
+        <img src='@imgSource' class="image-200px" /><br />
+        <a href='@url'>@m.Name</a>
+        <a class="btn btn-success" href="@Url.Action("RecoverCampingPlace", "CampingPlace", new { id = m.Id })">@GlobalResources.TextRecover</a>
+    </div>
+}

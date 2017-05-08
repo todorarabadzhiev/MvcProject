@@ -818,17 +818,20 @@
     <Content Include="Views\CampingPlace\_EditCampingPlace.cshtml" />
     <Content Include="Views\Shared\_MultipleCampingPlacesPartial.cshtml" />
     <Content Include="Views\CampingPlace\AllCampingPlaces.cshtml" />
-    <Content Include="Views\Shared\_LangPartial.cshtml" />
     <Content Include="Views\SiteCategory\Index.cshtml" />
     <Content Include="Views\SiteCategory\SiteCategoryDetails.cshtml" />
     <Content Include="Views\SiteCategory\AddSiteCategory.cshtml" />
     <Content Include="Views\SiteCategory\_EditSiteCategory.cshtml" />
     <Content Include="Views\SiteCategory\EditSiteCategory.cshtml" />
+    <Content Include="Views\SiteCategory\DeletedCategories.cshtml" />
+    <Content Include="Views\CampingPlace\DeletedCampingPlaces.cshtml" />
+    <Content Include="Views\Shared\_DeletedCampingPlacesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Category\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Views\Language\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

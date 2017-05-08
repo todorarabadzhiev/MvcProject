@@ -6,12 +6,13 @@ namespace Services.DataProviders
 {
     public interface ICampingPlaceDataProvider
     {
-        IEnumerable<ICampingPlace> GetUserCampingPlaces(string userName);
-        IEnumerable<ICampingPlace> GetSiteCategoryCampingPlaces(string categoryName);
-        IEnumerable<ICampingPlace> GetAllCampingPlaces();
-        IEnumerable<ICampingPlace> GetCampingPlacesBySearchName(string searchedName);
-        IEnumerable<ICampingPlace> GetLatestCampingPlaces(int count);
-        IEnumerable<ICampingPlace> GetCampingPlaceById(Guid id);
+        IEnumerable<ICampingPlace> GetUserCampingPlaces(string userName);// Not deleted only
+        IEnumerable<ICampingPlace> GetSiteCategoryCampingPlaces(string categoryName);// Not deleted only
+        IEnumerable<ICampingPlace> GetAllCampingPlaces();// Not deleted only
+        IEnumerable<ICampingPlace> GetDeletedCampingPlaces();
+        IEnumerable<ICampingPlace> GetCampingPlacesBySearchName(string searchedName);// Not deleted only
+        IEnumerable<ICampingPlace> GetLatestCampingPlaces(int count);// Not deleted only
+        IEnumerable<ICampingPlace> GetCampingPlaceById(Guid id);// Not deleted only
         void AddCampingPlace(string name, string addedBy, string description, string googleMapsUrl,
                 bool hasWater, IEnumerable<string> sightseeingNames, IEnumerable<string> siteCategoryNames,
                 IList<string> imageFileNames, IList<byte[]> imageFiles);
@@ -19,5 +20,6 @@ namespace Services.DataProviders
                 bool hasWater, IEnumerable<string> sightseeingNames, IEnumerable<string> siteCategoryNames,
                 IList<string> imageFileNames, IList<byte[]> imageFiles);
         void DeleteCampingPlace(Guid id);
+        void RecoverDeletedCampingPlaceById(Guid id);
     }
 }

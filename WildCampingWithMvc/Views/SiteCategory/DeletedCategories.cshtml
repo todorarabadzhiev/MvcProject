@@ -1,0 +1,55 @@
+﻿@using CommonUtilities.Utilities
+@model WildCampingWithMvc.Models.SiteCategory.SiteCategoriesViewModel
+@{
+    ViewBag.Title = GlobalResources.TextBegin;
+}
+
+<div class="jumbotron text-center">
+    <h1>@GlobalResources.TextTitle</h1>
+    <p class="lead">
+        @GlobalResources.TextHomeInit
+    </p>
+</div>
+
+<div class="row container">
+    <h2 class="text-center">@GlobalResources.TextDeletedSiteCategories</h2>
+
+    @if (Model.SiteCategories.Count() > 0)
+    {
+        foreach (var m in Model.SiteCategories)
+        {
+            string imgSource;
+            if (m.Image != null)
+            {
+                imgSource = Utilities.ConvertToImage(m.Image);
+            }
+            else
+            {
+                imgSource = string.Format(GlobalResources.TextNoImageFor, m.Name);
+            }
+            string url = Url.Action("SiteCategoryDetails", "SiteCategory", new { id = m.Id });
+
+            <div class="col-md-4 text-center">
+                @if (m.Image != null)
+                {
+                    <img src="@imgSource" class="image-200px" /><br />
+                }
+                else
+                {
+                    <div class="image-200px center-block">@imgSource</div>
+                }
+                <a href="@url">@m.Name</a><br />
+                <a class="btn btn-success" href="@Url.Action("RecoverSiteCategory", "SiteCategory", new { id = m.Id })">@GlobalResources.TextRecover</a>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="row text-center">
+            <p>@GlobalResources.TextNoDeletedCategories</p>
+        </div>
+    }
+</div>
+<div class="jumbotron text-center">
+    <a class="btn btn-default" href="@Url.Action("Index")">@GlobalResources.TextSiteCategories</a>
+</div>
