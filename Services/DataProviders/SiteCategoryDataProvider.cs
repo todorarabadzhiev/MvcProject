@@ -26,6 +26,55 @@ namespace Services.DataProviders
             this.unitOfWork = unitOfWork;
         }
 
+        public void UpdateSiteCategory(Guid id, string name, string description, byte[] imageFileData)
+        {
+            if (id == null)
+            {
+                throw new ArgumentNullException("Category Id");
+            }
+
+            if (name == null)
+            {
+                throw new ArgumentNullException("Category Name");
+            }
+
+            IGenericEFository<DbSiteCategory> siteCategoryRepository =
+                    this.repository.GetSiteCategoryRepository();
+            DbSiteCategory dbSiteCategory = siteCategoryRepository.GetById(id);
+            if (dbSiteCategory == null)
+            {
+                throw new ArgumentException("Invalid SiteCategory Id");
+            }
+
+            ISiteCategory updatedSiteCategory = new SiteCategory();
+            updatedSiteCategory.Id = id;
+            updatedSiteCategory.Name = name;
+            updatedSiteCategory.Description = description;
+            updatedSiteCategory.Image = imageFileData;
+            using (var uw = this.unitOfWork())
+            {
+                this.UpdateFromCategory(updatedSiteCategory, dbSiteCategory);
+
+                siteCategoryRepository.Update(dbSiteCategory);
+                uw.Commit();
+            }
+        }
+
+        public void DeleteSiteCategory(Guid id)
+        {
+            IGenericEFository<DbSiteCategory> siteCategoryRepository =
+                this.repository.GetSiteCategoryRepository();
+            var dbSiteCategory = siteCategoryRepository.GetById(id);
+            if (dbSiteCategory != null)
+            {
+                using (var uw = this.unitOfWork())
+                {
+                    dbSiteCategory.IsDeleted = true;
+                    uw.Commit();
+                }
+            }
+        }
+
         public void AddSiteCategory(string name, string description, byte[] imageFileData)
         {
             if (name == null)
@@ -52,7 +101,7 @@ namespace Services.DataProviders
         {
             IGenericEFository<DbSiteCategory> siteCategoryRepository =
                 this.repository.GetSiteCategoryRepository();
-            var dbCategories = siteCategoryRepository.GetAll();
+            var dbCategories = siteCategoryRepository.GetAll(c => (!c.IsDeleted));
             if (dbCategories == null)
             {
                 return null;
@@ -72,7 +121,7 @@ namespace Services.DataProviders
             IGenericEFository<DbSiteCategory> siteCategoryRepository =
                 this.repository.GetSiteCategoryRepository();
             DbSiteCategory dbCategory = siteCategoryRepository.GetById(id);
-            if (dbCategory == null)
+            if (dbCategory == null || dbCategory.IsDeleted == true)
             {
                 return null;
             }
@@ -88,6 +137,7 @@ namespace Services.DataProviders
             category.Name = c.Name;
             category.Id = c.Id;
             category.Description = c.Description;
+            category.IsDeleted = c.IsDeleted;
             category.Image = c.Image;
 
             return category;
@@ -98,9 +148,17 @@ namespace Services.DataProviders
             DbSiteCategory c = new DbSiteCategory();
             c.Name = category.Name;
             c.Description = category.Description;
+            c.IsDeleted = category.IsDeleted;
             c.Image = category.Image;
 
             return c;
+        }
+
+        private void UpdateFromCategory(ISiteCategory siteCategory, DbSiteCategory dbCategory)
+        {
+            dbCategory.Name = siteCategory.Name;
+            dbCategory.Description = siteCategory.Description;
+            dbCategory.Image = siteCategory.Image;
         }
     }
 }

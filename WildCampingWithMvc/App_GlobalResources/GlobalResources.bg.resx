@@ -360,4 +360,7 @@
   <data name="TextNoPlacesFor" xml:space="preserve">
     <value>Все още няма местенца в категория "{0}"</value>
   </data>
+  <data name="TextEditSiteCategory" xml:space="preserve">
+    <value>Редактиране на категория</value>
+  </data>
 </root>

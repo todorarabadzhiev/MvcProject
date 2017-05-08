@@ -403,6 +403,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit site category.
+        /// </summary>
+        public static string TextEditSiteCategory {
+            get {
+                return ResourceManager.GetString("TextEditSiteCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string TextEmail {

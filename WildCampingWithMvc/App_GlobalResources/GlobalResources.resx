@@ -357,4 +357,7 @@
   <data name="TextNoPlacesFor" xml:space="preserve">
     <value>There aren't any places in category "{0}"</value>
   </data>
+  <data name="TextEditSiteCategory" xml:space="preserve">
+    <value>Edit site category</value>
+  </data>
 </root>

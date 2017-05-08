@@ -51,3 +51,18 @@
         </div>
     }
 </div>
+<div class="row text-center">
+    <a class="btn btn-default" href="@Url.Action("Index", "Home")">@GlobalResources.TextLastPlaces</a>
+    @{
+        bool isAuthorized = User.IsInRole("Admin");
+        if (isAuthorized)
+        {
+            <a class="btn btn-warning" href="@Url.Action("EditSiteCategory", "SiteCategory", new { id = Model.Id })">@GlobalResources.TextEdit</a>
+            <a class="btn btn-danger" href="@Url.Action("DeleteSiteCategory", "SiteCategory", new { id = Model.Id })">@GlobalResources.TextDelete</a>
+        }
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

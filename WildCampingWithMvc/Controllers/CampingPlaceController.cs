@@ -140,7 +140,7 @@ namespace WildCampingWithMvc.Controllers
             return RedirectToAction("CampingPlaceDetails", new { id = id });
         }
 
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteCampingPlace(Guid id)
         {
             bool isAuthorized = (bool)TempData["isAuthorized"];
@@ -151,6 +151,7 @@ namespace WildCampingWithMvc.Controllers
 
             return RedirectToAction("Index");
         }
+
         public ActionResult Index()
         {
             return RedirectToAction("AllCampingPlaces");

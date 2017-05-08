@@ -823,6 +823,7 @@
     <Content Include="Views\SiteCategory\SiteCategoryDetails.cshtml" />
     <Content Include="Views\SiteCategory\AddSiteCategory.cshtml" />
     <Content Include="Views\SiteCategory\_EditSiteCategory.cshtml" />
+    <Content Include="Views\SiteCategory\EditSiteCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201705061917282_ImageNotRequiredInCategory.Designer.cs">
       <DependentUpon>201705061917282_ImageNotRequiredInCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705080245525_CategoryIsDeleted.cs" />
+    <Compile Include="Migrations\201705080245525_CategoryIsDeleted.Designer.cs">
+      <DependentUpon>201705080245525_CategoryIsDeleted.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DbCampingPlace.cs" />
     <Compile Include="Models\DbCampingUser.cs" />
@@ -103,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705061917282_ImageNotRequiredInCategory.resx">
       <DependentUpon>201705061917282_ImageNotRequiredInCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705080245525_CategoryIsDeleted.resx">
+      <DependentUpon>201705080245525_CategoryIsDeleted.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

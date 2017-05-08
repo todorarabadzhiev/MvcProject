@@ -23,7 +23,7 @@ namespace WildCampingWithMvc.Db.Models
 
         [MaxLength(500), MinLength(5)]
         public string Description { get; set; }
-
+        public bool IsDeleted { get; set; }
         public byte[] Image { get; set; }
         public virtual ICollection<DbCampingPlace> DbCampingPlaces
         {
