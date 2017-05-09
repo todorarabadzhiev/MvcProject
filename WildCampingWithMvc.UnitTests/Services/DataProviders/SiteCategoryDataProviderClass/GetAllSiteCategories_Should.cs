@@ -34,7 +34,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
 
             // Assert
             Mock.Assert(() => repository.GetSiteCategoryRepository()
-                .GetAll(), Occurs.Once());
+                .GetAll(c => c.IsDeleted == false), Occurs.Once());
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
             var provider = new SiteCategoryDataProvider(repository, unitOfWork);
             IEnumerable<DbSiteCategory> dbSiteCategories = null;
             Mock.Arrange(() => repository.GetSiteCategoryRepository()
-                .GetAll()).Returns(dbSiteCategories);
+                .GetAll(c => c.IsDeleted == false)).Returns(dbSiteCategories);
 
             // Act
             var siteCategories = provider.GetAllSiteCategories();
@@ -65,7 +65,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
             IEnumerable<DbSiteCategory> dbSiteCategories = this.GetDbSiteCategories();
 
             Mock.Arrange(() => repository.GetSiteCategoryRepository()
-                .GetAll()).Returns(dbSiteCategories);
+                .GetAll(c => c.IsDeleted == false)).Returns(dbSiteCategories);
 
             IEnumerable<ISiteCategory> expectedSiteCategories = this.GetSiteCategories();
 

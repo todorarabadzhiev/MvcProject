@@ -38,7 +38,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
 
             // Assert
             Mock.Assert(() => repository.GetCampingPlaceRepository()
-                .GetAll(p => !p.IsDeleted), Occurs.Once());
+                .GetAll(p => p.IsDeleted == false), Occurs.Once());
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new CampingPlaceDataProvider(repository, unitOfWork);
             Mock.Arrange(() => repository.GetCampingPlaceRepository()
-                .GetAll(p => !p.IsDeleted)).Returns((IEnumerable<DbCampingPlace>)null);
+                .GetAll(p => p.IsDeleted == false)).Returns((IEnumerable<DbCampingPlace>)null);
 
             // Act
             var places = provider.GetAllCampingPlaces();
@@ -68,7 +68,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             IEnumerable<DbCampingPlace> dbPlaces = this.GetDbCampingPlaces();
 
             Mock.Arrange(() => repository.GetCampingPlaceRepository()
-                .GetAll(p => !p.IsDeleted)).Returns(dbPlaces);
+                .GetAll(p => p.IsDeleted == false)).Returns(dbPlaces);
 
             // Act
             IEnumerable<ICampingPlace> places = provider.GetAllCampingPlaces();

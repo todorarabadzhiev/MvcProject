@@ -151,7 +151,7 @@ namespace Services.DataProviders
         {
             IGenericEFository<DbSiteCategory> siteCategoryRepository =
                 this.repository.GetSiteCategoryRepository();
-            var dbCategories = siteCategoryRepository.GetAll(c => (c.IsDeleted == isDeleted));
+            var dbCategories = siteCategoryRepository.GetAll(c => c.IsDeleted == isDeleted);
             if (dbCategories == null)
             {
                 return null;
