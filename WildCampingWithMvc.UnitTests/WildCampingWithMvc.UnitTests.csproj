@@ -138,10 +138,14 @@
     <Compile Include="Services\DataProviders\SightseeingDataProviderClass\Constructor_Should.cs" />
     <Compile Include="Services\DataProviders\SightseeingDataProviderClass\GetAllSightseeings_Should.cs" />
     <Compile Include="Services\DataProviders\SightseeingDataProviderClass\GetSightseeingById_Should.cs" />
+    <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\AddSiteCategory_Should.cs" />
     <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\Constructor_Should.cs" />
+    <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\RecoverDeletedCategoryById_Should.cs" />
+    <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\DeleteSiteCategory_Should.cs" />
     <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\GetDeletedSiteCategories_Should.cs" />
     <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\GetAllSiteCategories_Should.cs" />
     <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\GetSiteCategoryById_Should.cs" />
+    <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\UpdateSiteCategory_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

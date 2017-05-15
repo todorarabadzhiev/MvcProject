@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using EFositories;
+﻿using EFositories;
+using NUnit.Framework;
 using Services.DataProviders;
 using Services.Models;
 using System;
@@ -61,12 +61,12 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new SiteCategoryDataProvider(repository, unitOfWork);
-            IEnumerable<DbSiteCategory> dbSiteCategories = this.GetDbSiteCategories().Where(c => c.IsDeleted == true).ToList();
+            IEnumerable<DbSiteCategory> dbSiteCategories = this.GetDbSiteCategories().Where(c => c.IsDeleted).ToList();
 
             Mock.Arrange(() => repository.GetSiteCategoryRepository()
                 .GetAll(c => c.IsDeleted == true)).Returns(dbSiteCategories);
 
-            IEnumerable<ISiteCategory> expectedSiteCategories = this.GetSiteCategories().Where(c => c.IsDeleted == true).ToList();
+            IEnumerable<ISiteCategory> expectedSiteCategories = this.GetSiteCategories().Where(c => c.IsDeleted).ToList();
 
             // Act
             var siteCategories = provider.GetDeletedSiteCategories();
