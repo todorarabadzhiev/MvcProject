@@ -109,8 +109,14 @@
     <Compile Include="Controllers\CampingPlaceControllerClass\Index_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\Util.cs" />
     <Compile Include="Controllers\HomeControllerClass\Constructor_Should.cs" />
+    <Compile Include="Controllers\Mocked\SiteCategoryControllerMock.cs" />
     <Compile Include="Controllers\Mocked\CampingPlaceControllerMock.cs" />
     <Compile Include="Controllers\Mocked\HomeControllerMock.cs" />
+    <Compile Include="Controllers\SiteCategoryControllerClass\SiteCategoryDetails_Should.cs" />
+    <Compile Include="Controllers\SiteCategoryControllerClass\RecoverSiteCategory_Should.cs" />
+    <Compile Include="Controllers\SiteCategoryControllerClass\DeletedCategories_Should.cs" />
+    <Compile Include="Controllers\SiteCategoryControllerClass\Index_Should.cs" />
+    <Compile Include="Controllers\SiteCategoryControllerClass\Constructor_Should.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetDeletedCampingPlaces_Should.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\RecoverDeletedCampingPlaceById_Should.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetCampingPlacesBySearchName_Should.cs" />
