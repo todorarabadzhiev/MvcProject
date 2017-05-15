@@ -11,7 +11,7 @@ using WildCampingWithMvc.Db.Models;
 namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderClass
 {
     [TestFixture]
-    public class GetAllCampingPlaces_Should
+    public class GetDeletedCampingPlaces_Should
     {
         private Guid id_01 = Guid.NewGuid();
         private Guid id_02 = Guid.NewGuid();
@@ -37,44 +37,44 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
             var provider = new CampingPlaceDataProvider(repository, unitOfWork);
 
             // Act
-            provider.GetAllCampingPlaces();
+            provider.GetDeletedCampingPlaces();
 
             // Assert
             Mock.Assert(() => repository.GetCampingPlaceRepository()
-                .GetAll(p => p.IsDeleted == false), Occurs.Once());
+                .GetAll(p => p.IsDeleted == true), Occurs.Once());
         }
 
         [Test]
-        public void ReturnsNull_WhenThereArentAnyNonDeletedCampingPlacesInTheDB()
+        public void ReturnsNull_WhenThereArentAnyDeletedCampingPlacesInTheDB()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new CampingPlaceDataProvider(repository, unitOfWork);
             Mock.Arrange(() => repository.GetCampingPlaceRepository()
-                .GetAll(p => p.IsDeleted == false)).Returns((IEnumerable<DbCampingPlace>)null);
+                .GetAll(p => p.IsDeleted == true)).Returns((IEnumerable<DbCampingPlace>)null);
 
             // Act
-            var places = provider.GetAllCampingPlaces();
+            var places = provider.GetDeletedCampingPlaces();
 
             // Assert
             Assert.IsNull(places);
         }
 
         [Test]
-        public void ReturnsAllNonDeletedCampingPlaces_WhenSuchCampingPlacesExistInTheDB()
+        public void ReturnsAllDeletedCampingPlaces_WhenSuchCampingPlacesExistInTheDB()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new CampingPlaceDataProvider(repository, unitOfWork);
-            IEnumerable<DbCampingPlace> dbPlaces = this.GetDbCampingPlaces().Where(p => !p.IsDeleted).ToList();
+            IEnumerable<DbCampingPlace> dbPlaces = this.GetDbCampingPlaces().Where(p => p.IsDeleted).ToList();
 
             Mock.Arrange(() => repository.GetCampingPlaceRepository()
-                .GetAll(p => p.IsDeleted == false)).Returns(dbPlaces);
+                .GetAll(p => p.IsDeleted == true)).Returns(dbPlaces);
 
             // Act
-            IEnumerable<ICampingPlace> places = provider.GetAllCampingPlaces();
+            IEnumerable<ICampingPlace> places = provider.GetDeletedCampingPlaces();
 
             // Assert
             Assert.AreEqual(dbPlaces.Count(), places.Count());

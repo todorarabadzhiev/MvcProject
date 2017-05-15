@@ -11,7 +11,7 @@ using WildCampingWithMvc.Db.Models;
 namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderClass
 {
     [TestFixture]
-    public class GetAllSiteCategories_Should
+    public class GetDeletedSiteCategories_Should
     {
         private Guid id_01 = Guid.NewGuid();
         private Guid id_02 = Guid.NewGuid();
@@ -22,7 +22,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
         private string name_03 = "Name_03";
 
         [Test]
-        public void CallExactlyOnceSiteCategoryRepositoryMethodGetAllWithIsDeletedFalse()
+        public void CallExactlyOnceSiteCategoryRepositoryMethodGetAllWithIsDeletedTrue()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
@@ -30,46 +30,46 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
             var provider = new SiteCategoryDataProvider(repository, unitOfWork);
 
             // Act
-            provider.GetAllSiteCategories();
+            provider.GetDeletedSiteCategories();
 
             // Assert
             Mock.Assert(() => repository.GetSiteCategoryRepository()
-                .GetAll(c => c.IsDeleted == false), Occurs.Once());
+                .GetAll(c => c.IsDeleted == true), Occurs.Once());
         }
 
         [Test]
-        public void ReturnsNull_WhenThereArentAnyNonDeletedSiteCategoriesInTheDB()
+        public void ReturnsNull_WhenThereArentAnyDeletedSiteCategoriesInTheDB()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new SiteCategoryDataProvider(repository, unitOfWork);
             Mock.Arrange(() => repository.GetSiteCategoryRepository()
-                .GetAll(c => c.IsDeleted == false)).Returns((IEnumerable<DbSiteCategory>)null);
+                .GetAll(c => c.IsDeleted == true)).Returns((IEnumerable<DbSiteCategory>)null);
 
             // Act
-            var siteCategories = provider.GetAllSiteCategories();
+            var siteCategories = provider.GetDeletedSiteCategories();
 
             // Assert
             Assert.IsNull(siteCategories);
         }
 
         [Test]
-        public void ReturnsAllNonDeletedSiteCategories_WhenSuchSiteCategoriesExistInTheDB()
+        public void ReturnsAllDeletedSiteCategories_WhenSuchSiteCategoriesExistInTheDB()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new SiteCategoryDataProvider(repository, unitOfWork);
-            IEnumerable<DbSiteCategory> dbSiteCategories = this.GetDbSiteCategories().Where(c => c.IsDeleted == false).ToList();
+            IEnumerable<DbSiteCategory> dbSiteCategories = this.GetDbSiteCategories().Where(c => c.IsDeleted == true).ToList();
 
             Mock.Arrange(() => repository.GetSiteCategoryRepository()
-                .GetAll(c => c.IsDeleted == false)).Returns(dbSiteCategories);
+                .GetAll(c => c.IsDeleted == true)).Returns(dbSiteCategories);
 
-            IEnumerable<ISiteCategory> expectedSiteCategories = this.GetSiteCategories().Where(c => c.IsDeleted == false).ToList();
+            IEnumerable<ISiteCategory> expectedSiteCategories = this.GetSiteCategories().Where(c => c.IsDeleted == true).ToList();
 
             // Act
-            var siteCategories = provider.GetAllSiteCategories();
+            var siteCategories = provider.GetDeletedSiteCategories();
 
             // Assert
             Assert.AreEqual(expectedSiteCategories.Count(), siteCategories.Count());
@@ -87,13 +87,13 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
                 new SiteCategory()
                 {
                     Id = this.id_01,
-                    Name = this.name_01
+                    Name = this.name_01,
+                    IsDeleted = true
                 },
                 new SiteCategory()
                 {
                     Id = this.id_02,
-                    Name = this.name_02,
-                    IsDeleted = true
+                    Name = this.name_02
                 },
                 new SiteCategory()
                 {
@@ -113,13 +113,13 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
                 new DbSiteCategory()
                 {
                     Id = this.id_01,
-                    Name = this.name_01
+                    Name = this.name_01,
+                    IsDeleted = true
                 },
                 new DbSiteCategory()
                 {
                     Id = this.id_02,
-                    Name = this.name_02,
-                    IsDeleted = true
+                    Name = this.name_02
                 },
                 new DbSiteCategory()
                 {

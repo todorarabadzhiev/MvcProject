@@ -107,7 +107,7 @@ namespace Services.DataProviders
             IGenericEFository<DbSiteCategory> siteCategoryRepository =
                 this.repository.GetSiteCategoryRepository();
             DbSiteCategory dbCategory = siteCategoryRepository.GetById(id);
-            if (dbCategory == null || dbCategory.IsDeleted == true)
+            if (dbCategory == null || dbCategory.IsDeleted)
             {
                 return null;
             }

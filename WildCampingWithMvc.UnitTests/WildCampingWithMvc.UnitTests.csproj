@@ -111,6 +111,8 @@
     <Compile Include="Controllers\HomeControllerClass\Constructor_Should.cs" />
     <Compile Include="Controllers\Mocked\CampingPlaceControllerMock.cs" />
     <Compile Include="Controllers\Mocked\HomeControllerMock.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetDeletedCampingPlaces_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\RecoverDeletedCampingPlaceById_Should.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetCampingPlacesBySearchName_Should.cs" />
     <Compile Include="Services\DataProviders\CampingUserDataProviderClass\DeleteCampingUser_Should.cs" />
     <Compile Include="Services\DataProviders\CampingUserDataProviderClass\GetCampingUserById_Should.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="Services\DataProviders\SightseeingDataProviderClass\GetAllSightseeings_Should.cs" />
     <Compile Include="Services\DataProviders\SightseeingDataProviderClass\GetSightseeingById_Should.cs" />
     <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\Constructor_Should.cs" />
+    <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\GetDeletedSiteCategories_Should.cs" />
     <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\GetAllSiteCategories_Should.cs" />
     <Compile Include="Services\DataProviders\SiteCategoryDataProviderClass\GetSiteCategoryById_Should.cs" />
   </ItemGroup>
