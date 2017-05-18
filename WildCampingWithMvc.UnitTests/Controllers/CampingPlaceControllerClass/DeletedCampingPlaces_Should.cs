@@ -1,16 +1,16 @@
 ﻿using NUnit.Framework;
 using Services.DataProviders;
-using System;
 using System.Web;
 using System.Web.Mvc;
 using Telerik.JustMock;
 using TestStack.FluentMVCTesting;
+using WildCampingWithMvc.Models.CampingPlace;
 using WildCampingWithMvc.UnitTests.Controllers.Mocked;
 
 namespace WildCampingWithMvc.UnitTests.Controllers.CampingPlaceControllerClass
 {
     [TestFixture]
-    public class DeleteCampingPlace_Should
+    public class DeletedCampingPlaces_Should
     {
         private CampingPlaceControllerMock campingPlaceController;
 
@@ -32,32 +32,24 @@ namespace WildCampingWithMvc.UnitTests.Controllers.CampingPlaceControllerClass
             campingPlaceController.ControllerContext.HttpContext = httpContext;
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void RedirectToActionIndex(bool isAllowed)
+        [Test]
+        public void ReturnDefaultWithTheCorrectViewModel()
         {
-            // Arrange
-            this.campingPlaceController.TempData["isAuthorized"] = isAllowed;
-            Guid id = Guid.NewGuid();
-
             // Act & Assert
             campingPlaceController
-                .WithCallTo(c => c.DeleteCampingPlace(id))
-                .ShouldRedirectTo(c => c.Index);
+                .WithCallTo(c => c.DeletedCampingPlaces())
+                .ShouldRenderDefaultView()
+                .WithModel<MultipleCampingPlacesViewModel>();
         }
 
         [Test]
-        public void CallCampingPlaceProviderMethodDeleteCampingPlaceWithIdOnce_WhenUserIsAllowedToDelete()
+        public void CallCampingPlaceProviderMethodGetDeletedCampingPlacesOnce()
         {
-            // Arrange
-            this.campingPlaceController.TempData["isAuthorized"] = true;
-            Guid id = Guid.NewGuid();
-
             // Act
-            campingPlaceController.DeleteCampingPlace(id);
+            campingPlaceController.DeletedCampingPlaces();
 
             // Assert
-            Mock.Assert(() => campingPlaceController.CampingPlaceProvider.DeleteCampingPlace(id), Occurs.Once());
+            Mock.Assert(() => campingPlaceController.CampingPlaceProvider.GetDeletedCampingPlaces(), Occurs.Once());
         }
     }
 }

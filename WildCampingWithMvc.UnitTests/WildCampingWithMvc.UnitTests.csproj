@@ -103,6 +103,8 @@
     <Compile Include="Controllers\CampingPlaceControllerClass\AllCampingPlaces_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\CampingPlaceDetails_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\Constructor_Should.cs" />
+    <Compile Include="Controllers\CampingPlaceControllerClass\DeletedCampingPlaces_Should.cs" />
+    <Compile Include="Controllers\CampingPlaceControllerClass\RecoverCampingPlace_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\DeleteCampingPlace_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\EditCampingPlace_Should.cs" />
     <Compile Include="Controllers\CampingPlaceControllerClass\FilteredCampingPlaces_Should.cs" />

@@ -10,7 +10,7 @@ using WildCampingWithMvc.UnitTests.Controllers.Mocked;
 namespace WildCampingWithMvc.UnitTests.Controllers.CampingPlaceControllerClass
 {
     [TestFixture]
-    public class DeleteCampingPlace_Should
+    public class RecoverCampingPlace_Should
     {
         private CampingPlaceControllerMock campingPlaceController;
 
@@ -32,32 +32,29 @@ namespace WildCampingWithMvc.UnitTests.Controllers.CampingPlaceControllerClass
             campingPlaceController.ControllerContext.HttpContext = httpContext;
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void RedirectToActionIndex(bool isAllowed)
+        [Test]
+        public void RedirectToActionCampingPlaceDetailsWithTheSameIdAsArgument()
         {
             // Arrange
-            this.campingPlaceController.TempData["isAuthorized"] = isAllowed;
             Guid id = Guid.NewGuid();
 
             // Act & Assert
             campingPlaceController
-                .WithCallTo(c => c.DeleteCampingPlace(id))
-                .ShouldRedirectTo(c => c.Index);
+                .WithCallTo(c => c.RecoverCampingPlace(id))
+                .ShouldRedirectTo(c => c.CampingPlaceDetails(id));
         }
 
         [Test]
-        public void CallCampingPlaceProviderMethodDeleteCampingPlaceWithIdOnce_WhenUserIsAllowedToDelete()
+        public void CallCampingPlaceProviderMethodRecoverDeletedCampingPlaceByIdOnceWithTheSameIdAsArgument()
         {
             // Arrange
-            this.campingPlaceController.TempData["isAuthorized"] = true;
             Guid id = Guid.NewGuid();
 
             // Act
-            campingPlaceController.DeleteCampingPlace(id);
+            campingPlaceController.RecoverCampingPlace(id);
 
             // Assert
-            Mock.Assert(() => campingPlaceController.CampingPlaceProvider.DeleteCampingPlace(id), Occurs.Once());
+            Mock.Assert(() => campingPlaceController.CampingPlaceProvider.RecoverDeletedCampingPlaceById(id), Occurs.Once());
         }
     }
 }
