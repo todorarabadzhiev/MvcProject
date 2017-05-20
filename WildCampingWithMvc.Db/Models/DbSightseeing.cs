@@ -20,8 +20,10 @@ namespace WildCampingWithMvc.Db.Models
         [Required]
         [MaxLength(30), MinLength(2)]
         public string Name { get; set; }
-        //public Guid SightseeingTypeId { get; set; }
-        //public virtual SightseeingType Type { get; set; }
+        [MaxLength(500), MinLength(5)]
+        public string Description { get; set; }
+        public bool IsDeleted { get; set; }
+        public byte[] Image { get; set; }
         public virtual ICollection<DbCampingPlace> DbCampingPlaces
         {
             get

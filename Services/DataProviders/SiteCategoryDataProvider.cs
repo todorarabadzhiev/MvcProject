@@ -160,7 +160,7 @@ namespace Services.DataProviders
             var categories = new List<ISiteCategory>();
             foreach (var c in dbCategories)
             {
-                categories.Add(ConvertToSiteCategory(c));
+                categories.Add(this.ConvertToSiteCategory(c));
             }
 
             return categories;
