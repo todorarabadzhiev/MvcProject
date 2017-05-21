@@ -45,8 +45,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new SiteCategoryDataProvider(repository, unitOfWork);
             Guid id = this.id_01;
-            DbSiteCategory dbSiteCategory = null;
-            Mock.Arrange(() => repository.GetSiteCategoryRepository().GetById(id)).Returns(dbSiteCategory);
+            Mock.Arrange(() => repository.GetSiteCategoryRepository().GetById(id)).Returns((DbSiteCategory)null);
 
             // Act
             ISiteCategory foundCategory = provider.GetSiteCategoryById(id);

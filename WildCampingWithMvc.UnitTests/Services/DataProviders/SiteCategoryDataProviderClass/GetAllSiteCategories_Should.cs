@@ -38,7 +38,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
         }
 
         [Test]
-        public void ReturnsNull_WhenThereArentAnyNonDeletedSiteCategoriesInTheDB()
+        public void ReturnNull_WhenThereArentAnyNonDeletedSiteCategoriesInTheDB()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
@@ -55,7 +55,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
         }
 
         [Test]
-        public void ReturnsAllNonDeletedSiteCategories_WhenSuchSiteCategoriesExistInTheDB()
+        public void ReturnAllNonDeletedSiteCategories_WhenSuchSiteCategoriesExistInTheDB()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();

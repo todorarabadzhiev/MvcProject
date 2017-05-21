@@ -85,11 +85,6 @@ namespace Services.DataProviders
 
         public void UpdateSightseeing(Guid id, string name, string description, byte[] imageFileData)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException("Sightseeing Id");
-            }
-
             if (name == null)
             {
                 throw new ArgumentNullException("Sightseeing Name");

@@ -45,8 +45,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SightseeingDataProviderCl
             Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
             var provider = new SightseeingDataProvider(repository, unitOfWork);
             Guid id = this.id_01;
-            DbSightseeing dbSightseeing = null;
-            Mock.Arrange(() => repository.GetSightseeingRepository().GetById(id)).Returns(dbSightseeing);
+            Mock.Arrange(() => repository.GetSightseeingRepository().GetById(id)).Returns((DbSightseeing)null);
 
             // Act
             ISightseeing foundPlace = provider.GetSightseeingById(id);

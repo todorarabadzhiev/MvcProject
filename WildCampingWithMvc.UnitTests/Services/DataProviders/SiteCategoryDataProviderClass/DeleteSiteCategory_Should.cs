@@ -79,7 +79,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
             provider.DeleteSiteCategory(id);
 
             // Assert
-            Assert.AreEqual(true, dbCategory.IsDeleted);
+            Assert.IsTrue(dbCategory.IsDeleted);
         }
     }
 }

@@ -23,6 +23,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderC
             // Assert
             Assert.IsInstanceOf<SiteCategoryDataProvider>(provider);
         }
+
         [Test]
         public void ThrowArgumentNullExceptionWithMessageContainingCampingDBRepository_WhenProvidedRepositoryIsNull()
         {

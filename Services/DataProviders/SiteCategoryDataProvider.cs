@@ -28,11 +28,6 @@ namespace Services.DataProviders
 
         public void UpdateSiteCategory(Guid id, string name, string description, byte[] imageFileData)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException("Category Id");
-            }
-
             if (name == null)
             {
                 throw new ArgumentNullException("Category Name");

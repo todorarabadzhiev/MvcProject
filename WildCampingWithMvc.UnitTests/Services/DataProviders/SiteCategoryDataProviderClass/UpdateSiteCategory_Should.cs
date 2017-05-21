@@ -2,14 +2,13 @@
 using NUnit.Framework;
 using Services.DataProviders;
 using System;
-using System.Collections.Generic;
 using Telerik.JustMock;
 using WildCampingWithMvc.Db.Models;
 
 namespace CampingWebForms.Tests.Services.DataProviders.SiteCategoryDataProviderClass
 {
     [TestFixture]
-    public class UpdateCampingPlace_Should
+    public class UpdateSiteCategory_Should
     {
         private string siteCategoryName = "SomeName";
         private Guid id = Guid.NewGuid();
