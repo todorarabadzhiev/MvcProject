@@ -8,6 +8,7 @@ namespace Services.DataProviders
     {
         IEnumerable<ICampingPlace> GetUserCampingPlaces(string userName);// Not deleted only
         IEnumerable<ICampingPlace> GetSiteCategoryCampingPlaces(string categoryName);// Not deleted only
+        IEnumerable<ICampingPlace> GetSightseeingCampingPlaces(string sightseeingName);// Not deleted only
         IEnumerable<ICampingPlace> GetAllCampingPlaces();// Not deleted only
         IEnumerable<ICampingPlace> GetDeletedCampingPlaces();
         IEnumerable<ICampingPlace> GetCampingPlacesBySearchName(string searchedName);// Not deleted only

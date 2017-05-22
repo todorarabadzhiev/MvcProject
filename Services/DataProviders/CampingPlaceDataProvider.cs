@@ -85,6 +85,26 @@ namespace Services.DataProviders
             return places;
         }
 
+        public IEnumerable<ICampingPlace> GetSightseeingCampingPlaces(string sightseeingName)
+        {
+            if (sightseeingName == null)
+            {
+                return null;
+            }
+
+            IGenericEFository<DbCampingPlace> capmingPlaceRepository =
+                this.repository.GetCampingPlaceRepository();
+            var places = new List<ICampingPlace>();
+            var dbPlaces = capmingPlaceRepository.GetAll(p => (!p.IsDeleted) &&
+            (p.DbSightseeings.FirstOrDefault(s => s.Name == sightseeingName) != null));
+            foreach (var p in dbPlaces)
+            {
+                places.Add(this.ConvertToPlace(p));
+            }
+
+            return places;
+        }
+
         public void UpdateCampingPlace(
             Guid id, string name, string description, string googleMapsUrl, bool hasWater, 
             IEnumerable<string> sightseeingNames, IEnumerable<string> siteCategoryNames,

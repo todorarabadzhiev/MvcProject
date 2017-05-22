@@ -223,6 +223,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add sightseeing.
+        /// </summary>
+        public static string TextAddSightseeing {
+            get {
+                return ResourceManager.GetString("TextAddSightseeing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add site category.
         /// </summary>
         public static string TextAddSiteCategory {
@@ -385,6 +394,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deleted sightseeings.
+        /// </summary>
+        public static string TextDeletedSightseeings {
+            get {
+                return ResourceManager.GetString("TextDeletedSightseeings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deleted site categories.
         /// </summary>
         public static string TextDeletedSiteCategories {
@@ -444,6 +462,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextEditCampingPlace {
             get {
                 return ResourceManager.GetString("TextEditCampingPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit sightseeing.
+        /// </summary>
+        public static string TextEditSightseeing {
+            get {
+                return ResourceManager.GetString("TextEditSightseeing", resourceCulture);
             }
         }
         
@@ -718,6 +745,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Places in sightseeing.
+        /// </summary>
+        public static string TextPlacesInSightseeing {
+            get {
+                return ResourceManager.GetString("TextPlacesInSightseeing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recover.
         /// </summary>
         public static string TextRecover {
@@ -768,6 +804,24 @@ namespace WildCampingWithMvc.App_GlobalResources {
         public static string TextSearchByName {
             get {
                 return ResourceManager.GetString("TextSearchByName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sightseeing {0}.
+        /// </summary>
+        public static string TextSightseeing {
+            get {
+                return ResourceManager.GetString("TextSightseeing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sightseeing name.
+        /// </summary>
+        public static string TextSightseeingName {
+            get {
+                return ResourceManager.GetString("TextSightseeingName", resourceCulture);
             }
         }
         

@@ -38,7 +38,7 @@ else
         <h3>@GlobalResources.TextSightseeings</h3>
         @foreach (var sightseeing in Model.Sightseeings)
         {
-            <a href="@Url.Action("SightseeingPlaces", "Sightseeing", new { id = sightseeing.Id })">[@sightseeing.Name]</a>
+            <a href="@Url.Action("SightseeingDetails", "Sightseeing", new { id = sightseeing.Id })">[@sightseeing.Name]</a>
         }
     </div>
     <div class="row text-center">

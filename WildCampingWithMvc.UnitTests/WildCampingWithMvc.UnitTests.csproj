@@ -124,6 +124,7 @@
     <Compile Include="Controllers\SiteCategoryControllerClass\Constructor_Should.cs" />
     <Compile Include="Controllers\SiteCategoryControllerClass\Util.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetDeletedCampingPlaces_Should.cs" />
+    <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetSightseeingCampingPlaces_Should.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\RecoverDeletedCampingPlaceById_Should.cs" />
     <Compile Include="Services\DataProviders\CampingPlaceDataProviderClass\GetCampingPlacesBySearchName_Should.cs" />
     <Compile Include="Services\DataProviders\CampingUserDataProviderClass\DeleteCampingUser_Should.cs" />

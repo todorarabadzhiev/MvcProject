@@ -387,4 +387,22 @@
   <data name="TextDeletedPlaces" xml:space="preserve">
     <value>Deleted camping places</value>
   </data>
+  <data name="TextSightseeingName" xml:space="preserve">
+    <value>Sightseeing name</value>
+  </data>
+  <data name="TextAddSightseeing" xml:space="preserve">
+    <value>Add sightseeing</value>
+  </data>
+  <data name="TextDeletedSightseeings" xml:space="preserve">
+    <value>Deleted sightseeings</value>
+  </data>
+  <data name="TextEditSightseeing" xml:space="preserve">
+    <value>Edit sightseeing</value>
+  </data>
+  <data name="TextPlacesInSightseeing" xml:space="preserve">
+    <value>Places in sightseeing</value>
+  </data>
+  <data name="TextSightseeing" xml:space="preserve">
+    <value>Sightseeing {0}</value>
+  </data>
 </root>

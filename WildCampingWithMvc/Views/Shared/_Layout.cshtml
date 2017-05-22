@@ -42,6 +42,17 @@
                         </ul>
                     </li>
                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@GlobalResources.TextSightseeings<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink(GlobalResources.TextSightseeings, "Index", "Sightseeing", new { area = "" }, null)</li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li>@Html.ActionLink(GlobalResources.TextAddSightseeing, "AddSightseeing", "Sightseeing", new { area = "" }, null)</li>
+                                <li>@Html.ActionLink(GlobalResources.TextDeletedSightseeings, "DeletedSightseeings", "Sightseeing", new { area = "" }, null)</li>
+                            }
+                        </ul>
+                    </li>
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">@GlobalResources.TextCampingPlaces<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink(GlobalResources.TextLastPlaces, "Index", "Home", new { area = "" }, null)</li>

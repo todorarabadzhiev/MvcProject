@@ -390,4 +390,22 @@
   <data name="TextDeletedPlaces" xml:space="preserve">
     <value>Изтрити местенца</value>
   </data>
+  <data name="TextSightseeingName" xml:space="preserve">
+    <value>Име на забележителност</value>
+  </data>
+  <data name="TextAddSightseeing" xml:space="preserve">
+    <value>Добави забележителност</value>
+  </data>
+  <data name="TextDeletedSightseeings" xml:space="preserve">
+    <value>Изтрити забележителности</value>
+  </data>
+  <data name="TextEditSightseeing" xml:space="preserve">
+    <value>Редактиране на забележителност</value>
+  </data>
+  <data name="TextPlacesInSightseeing" xml:space="preserve">
+    <value>Местенца с този тип забележителност</value>
+  </data>
+  <data name="TextSightseeing" xml:space="preserve">
+    <value>Забележителност {0}</value>
+  </data>
 </root>

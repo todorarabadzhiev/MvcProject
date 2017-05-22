@@ -124,6 +124,9 @@ namespace Services.DataProviders
             ISightseeing sightseeing = new Sightseeing();
             sightseeing.Name = s.Name;
             sightseeing.Id = s.Id;
+            sightseeing.Description = s.Description;
+            sightseeing.Image = s.Image;
+            sightseeing.IsDeleted = s.IsDeleted;
 
             return sightseeing;
         }

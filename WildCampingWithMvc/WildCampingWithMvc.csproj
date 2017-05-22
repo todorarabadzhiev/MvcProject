@@ -252,6 +252,7 @@
     <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CampingPlaceController.cs" />
+    <Compile Include="Controllers\SightseeingController.cs" />
     <Compile Include="Controllers\SiteCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -280,6 +281,9 @@
     <Compile Include="Models\Manage\ManageLoginsViewModel.cs" />
     <Compile Include="Models\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Models\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="Models\Sightseeing\AddSightseeingViewModel.cs" />
+    <Compile Include="Models\Sightseeing\SightseeingsViewModel.cs" />
+    <Compile Include="Models\Sightseeing\SightseeingDetailsViewModel.cs" />
     <Compile Include="Models\SiteCategory\AddSiteCategoryViewModel.cs" />
     <Compile Include="Models\SiteCategory\SiteCategoriesViewModel.cs" />
     <Compile Include="Models\SiteCategory\SiteCategoryDetailsViewModel.cs" />
@@ -826,6 +830,12 @@
     <Content Include="Views\SiteCategory\DeletedCategories.cshtml" />
     <Content Include="Views\CampingPlace\DeletedCampingPlaces.cshtml" />
     <Content Include="Views\Shared\_DeletedCampingPlacesPartial.cshtml" />
+    <Content Include="Views\Sightseeing\_EditSightseeing.cshtml" />
+    <Content Include="Views\Sightseeing\AddSightseeing.cshtml" />
+    <Content Include="Views\Sightseeing\DeletedSightseeings.cshtml" />
+    <Content Include="Views\Sightseeing\EditSightseeing.cshtml" />
+    <Content Include="Views\Sightseeing\Index.cshtml" />
+    <Content Include="Views\Sightseeing\SightseeingDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
