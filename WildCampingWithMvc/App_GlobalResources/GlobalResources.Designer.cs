@@ -664,6 +664,15 @@ namespace WildCampingWithMvc.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no deleted sightseeings.
+        /// </summary>
+        public static string TextNoDeletedSightseeings {
+            get {
+                return ResourceManager.GetString("TextNoDeletedSightseeings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No description for &quot;{0}&quot;.
         /// </summary>
         public static string TextNoDescriptionFor {

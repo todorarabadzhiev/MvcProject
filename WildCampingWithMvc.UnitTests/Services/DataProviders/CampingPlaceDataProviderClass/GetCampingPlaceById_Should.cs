@@ -42,7 +42,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
         }
 
         [Test]
-        public void ReturnsNull_WhenCampingPlaceIsNotFound()
+        public void ReturnNull_WhenCampingPlaceIsNotFound()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
@@ -60,7 +60,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
         }
 
         [Test]
-        public void ReturnsNull_WhenCampingPlaceIsFoundButTheIsDeletedPropertyIsTrue()
+        public void ReturnNull_WhenCampingPlaceIsFoundButTheIsDeletedPropertyIsTrue()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
@@ -78,7 +78,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
         }
 
         [Test]
-        public void ReturnsCorrectCampingPlace_WhenCampingPlaceIsFoundByIdAndItsIsDeletedPropertyIsFalse()
+        public void ReturnCorrectCampingPlace_WhenCampingPlaceIsFoundByIdAndItsIsDeletedPropertyIsFalse()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();

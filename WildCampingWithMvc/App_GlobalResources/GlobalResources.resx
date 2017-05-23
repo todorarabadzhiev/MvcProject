@@ -405,4 +405,7 @@
   <data name="TextSightseeing" xml:space="preserve">
     <value>Sightseeing {0}</value>
   </data>
+  <data name="TextNoDeletedSightseeings" xml:space="preserve">
+    <value>There are no deleted sightseeings</value>
+  </data>
 </root>

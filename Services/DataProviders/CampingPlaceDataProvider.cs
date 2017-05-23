@@ -322,10 +322,10 @@ namespace Services.DataProviders
 
         private ICollection<DbImageFile> GetImageFiles(IList<string> imageFileNames, IList<byte[]> imageFilesData, Guid dBcampingPlaceId)
         {
-            if (imageFileNames == null || imageFilesData == null)
-            {
-                return null;
-            }
+            //if (imageFileNames == null || imageFilesData == null)
+            //{
+            //    return null;
+            //}
 
             ICollection<DbImageFile> dbFiles = new List<DbImageFile>();
             for (int i = 0; i < imageFileNames.Count; i++)

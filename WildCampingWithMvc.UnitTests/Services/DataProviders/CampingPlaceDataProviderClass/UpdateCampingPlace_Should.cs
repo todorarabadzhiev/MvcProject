@@ -3,6 +3,8 @@ using NUnit.Framework;
 using Services.DataProviders;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using Telerik.JustMock;
 using WildCampingWithMvc.Db.Models;
 
@@ -12,6 +14,18 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
     public class UpdateCampingPlace_Should
     {
         private string campingPlaceName = "SomeName";
+        private IEnumerable<string> sightseeingNames = new List<string>
+        {
+            "Sightseeing name 01",
+            "Sightseeing name 02",
+            "Sightseeing name 03"
+        };
+        private IEnumerable<string> siteCategoryNames = new List<string>
+        {
+            "SiteCategory name 01",
+            "SiteCategory name 02",
+            "SiteCategory name 03"
+        };
         private Guid id = Guid.NewGuid();
 
         [Test]
@@ -129,7 +143,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
         }
 
         [Test]
-        public void CallsExactlyOnceCampingPlaceRepositoryMethodUpdateWithValidArgument_WhenProvidedArgumentsAreValid()
+        public void CallExactlyOnceCampingPlaceRepositoryMethodUpdateWithValidArgument_WhenProvidedArgumentsAreValid()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
@@ -146,7 +160,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
         }
 
         [Test]
-        public void CallsExactlyOnceUnitOfWorkMethodCommit_WhenProvidedArgumentsAreValid()
+        public void CallExactlyOnceUnitOfWorkMethodCommit_WhenProvidedArgumentsAreValid()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
@@ -160,6 +174,40 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
 
             // Assert
             Mock.Assert(() => unitOfWork().Commit(), Occurs.Once());
+        }
+
+        [Test]
+        public void CallExactlyTwiceSightseeingRepositoryMethodGetAllWithCorrectExpressions_WhenProvidedArgumentsAreValid()
+        {
+            // Arrange
+            IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
+            Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
+            var provider = new CampingPlaceDataProvider(repository, unitOfWork);
+
+            // Act
+            provider.UpdateCampingPlace(this.id, this.campingPlaceName,
+                null, null, false, this.sightseeingNames, null,
+               this.GetImageFileNames(), this.GetImageFilesData());
+
+            // Assert
+            Mock.Assert(() => repository.GetSightseeingRepository().GetAll(Arg.IsAny<Expression<Func<DbSightseeing,bool>>>()), Occurs.Exactly(2));
+        }
+
+        [Test]
+        public void CallExactlyTwiceSiteCategoryRepositoryMethodGetAllWithCorrectExpressions_WhenProvidedArgumentsAreValid()
+        {
+            // Arrange
+            IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
+            Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
+            var provider = new CampingPlaceDataProvider(repository, unitOfWork);
+
+            // Act
+            provider.UpdateCampingPlace(this.id, this.campingPlaceName,
+                null, null, false, null, this.siteCategoryNames,
+               this.GetImageFileNames(), this.GetImageFilesData());
+
+            // Assert
+            Mock.Assert(() => repository.GetSiteCategoryRepository().GetAll(Arg.IsAny<Expression<Func<DbSiteCategory, bool>>>()), Occurs.Exactly(2));
         }
 
         private IList<string> GetImageFileNames()

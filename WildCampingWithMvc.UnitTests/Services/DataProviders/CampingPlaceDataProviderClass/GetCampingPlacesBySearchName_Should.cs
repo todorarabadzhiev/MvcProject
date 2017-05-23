@@ -41,6 +41,26 @@ namespace WildCampingWithMvc.UnitTests.Services.DataProviders.CampingPlaceDataPr
         }
 
         [Test]
+        public void CallGetImageFileRepositoryMethodGetAllWithCorrectExpressionAsArgumentOnceForEachFoundPlace()
+        {
+            // Arrange
+            IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
+            Func<IUnitOfWork> unitOfWork = Mock.Create<Func<IUnitOfWork>>();
+            var provider = new CampingPlaceDataProvider(repository, unitOfWork);
+            string searchName = this.placeName_01;
+
+            // Act
+            var places = provider.GetCampingPlacesBySearchName(searchName);
+
+            // Assert
+            foreach (var p in places)
+            {
+                Mock.Assert(() => repository.GetImageFileRepository()
+                    .GetAll(img => img.DbCampingPlaceId == p.Id), Occurs.Once());
+            }
+        }
+
+        [Test]
         public void ReturnCorrectCampingPlaces_WhenMatchesOfTheSearchTermExist()
         {
             // Arrange
@@ -62,6 +82,36 @@ namespace WildCampingWithMvc.UnitTests.Services.DataProviders.CampingPlaceDataPr
             {
                 Assert.AreEqual(doublePlace.Item1.Id, doublePlace.Item2.Id);
                 Assert.AreEqual(doublePlace.Item1.Name, doublePlace.Item2.Name);
+                Assert.AreEqual(doublePlace.Item1.Description, doublePlace.Item2.Description);
+                Assert.AreEqual(doublePlace.Item1.IsDeleted, doublePlace.Item2.IsDeleted);
+                Assert.AreEqual(doublePlace.Item1.WaterOnSite, doublePlace.Item2.HasWater);
+                Assert.AreEqual(doublePlace.Item1.GoogleMapsUrl, doublePlace.Item2.GoogleMapsUrl);
+                Assert.AreEqual(doublePlace.Item1.AddedOn, doublePlace.Item2.AddedOn);
+                Assert.AreEqual(doublePlace.Item1.AddedBy.UserName, doublePlace.Item2.AddedBy);
+
+                Assert.AreEqual(doublePlace.Item1.DbSightseeings.Count, doublePlace.Item2.SightseeingIds.Count());
+                Assert.AreEqual(doublePlace.Item1.DbSightseeings.Count, doublePlace.Item2.SightseeingNames.Count());
+                foreach (var s in doublePlace.Item1.DbSightseeings)
+                {
+                    CollectionAssert.Contains(doublePlace.Item2.SightseeingIds, s.Id);
+                    CollectionAssert.Contains(doublePlace.Item2.SightseeingNames, s.Name);
+                }
+
+                Assert.AreEqual(doublePlace.Item1.DbSiteCategories.Count, doublePlace.Item2.SiteCategoriesIds.Count());
+                Assert.AreEqual(doublePlace.Item1.DbSiteCategories.Count, doublePlace.Item2.SiteCategoriesNames.Count());
+                foreach (var s in doublePlace.Item1.DbSiteCategories)
+                {
+                    CollectionAssert.Contains(doublePlace.Item2.SiteCategoriesIds, s.Id);
+                    CollectionAssert.Contains(doublePlace.Item2.SiteCategoriesNames, s.Name);
+                }
+
+                Assert.AreEqual(doublePlace.Item1.DbImageFiles.Count, doublePlace.Item2.ImageFiles.Count);
+                foreach (var doubleImage in doublePlace.Item1.DbImageFiles.Zip(doublePlace.Item2.ImageFiles, Tuple.Create))
+                {
+                    Assert.AreEqual(doubleImage.Item1.Data, doubleImage.Item2.Data);
+                    Assert.AreEqual(doubleImage.Item1.FileName, doubleImage.Item2.FileName);
+                    Assert.AreEqual(doubleImage.Item1.DbCampingPlaceId, doubleImage.Item2.CampingPlaceId);
+                }
             }
 
         }

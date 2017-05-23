@@ -132,7 +132,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
         }
 
         [Test]
-        public void CallsExactlyOnceCampingPlaceRepositoryMethodAddWithValidArgument_WhenProvidedArgumentsAreValid()
+        public void CallExactlyOnceCampingPlaceRepositoryMethodAddWithValidArgument_WhenProvidedArgumentsAreValid()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
@@ -152,7 +152,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.CampingPlaceDataProviderC
         }
 
         [Test]
-        public void CallsExactlyOnceUnitOfWorkMethodCommit_WhenProvidedArgumentsAreValid()
+        public void CallExactlyOnceUnitOfWorkMethodCommit_WhenProvidedArgumentsAreValid()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();

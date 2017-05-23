@@ -408,4 +408,7 @@
   <data name="TextSightseeing" xml:space="preserve">
     <value>Забележителност {0}</value>
   </data>
+  <data name="TextNoDeletedSightseeings" xml:space="preserve">
+    <value>Липсват изтрити забележителности</value>
+  </data>
 </root>

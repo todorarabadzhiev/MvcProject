@@ -38,7 +38,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SightseeingDataProviderCl
         }
 
         [Test]
-        public void ReturnsNull_WhenSightseeingIsNotFound()
+        public void ReturnNull_WhenSightseeingIsNotFound()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
@@ -55,7 +55,7 @@ namespace CampingWebForms.Tests.Services.DataProviders.SightseeingDataProviderCl
         }
 
         [Test]
-        public void ReturnsCorrectSightseeing_WhenSightseeingIsFoundById()
+        public void ReturnCorrectSightseeing_WhenSightseeingIsFoundById()
         {
             // Arrange
             IWildCampingEFository repository = Mock.Create<IWildCampingEFository>();
@@ -76,6 +76,9 @@ namespace CampingWebForms.Tests.Services.DataProviders.SightseeingDataProviderCl
             // Assert
             Assert.AreEqual(foundSightseeing.Id, expectedSightseeing.Id);
             Assert.AreEqual(foundSightseeing.Name, expectedSightseeing.Name);
+            Assert.AreEqual(foundSightseeing.Description, expectedSightseeing.Description);
+            Assert.AreEqual(foundSightseeing.IsDeleted, expectedSightseeing.IsDeleted);
+            Assert.AreEqual(foundSightseeing.Image, expectedSightseeing.Image);
         }
 
         private IEnumerable<ISightseeing> GetSightseeings()
