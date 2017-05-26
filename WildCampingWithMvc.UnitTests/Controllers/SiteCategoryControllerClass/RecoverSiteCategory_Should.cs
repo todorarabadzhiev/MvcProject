@@ -3,7 +3,6 @@ using Services.DataProviders;
 using System;
 using Telerik.JustMock;
 using TestStack.FluentMVCTesting;
-using WildCampingWithMvc.Models.SiteCategory;
 using WildCampingWithMvc.UnitTests.Controllers.Mocked;
 
 namespace WildCampingWithMvc.UnitTests.Controllers.SiteCategoryControllerClass

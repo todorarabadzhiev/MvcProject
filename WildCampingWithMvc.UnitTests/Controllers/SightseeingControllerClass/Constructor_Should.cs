@@ -5,36 +5,36 @@ using Telerik.JustMock;
 using WildCampingWithMvc.Controllers;
 using WildCampingWithMvc.UnitTests.Controllers.Mocked;
 
-namespace WildCampingWithMvc.UnitTests.Controllers.SiteCategoryControllerClass
+namespace WildCampingWithMvc.UnitTests.Controllers.SightseeingControllerClass
 {
     [TestFixture]
     public class Constructor_Should
     {
         [Test]
-        public void CreateSiteCategoryControllerInstance_WhenProvidedArgumentsAreValid()
+        public void CreateSightseeingControllerInstance_WhenProvidedArgumentsAreValid()
         {
             // Arrange
             var campingPlaceProvider = Mock.Create<ICampingPlaceDataProvider>();
-            var siteCategoryProvider = Mock.Create<ISiteCategoryDataProvider>();
+            var sightseeingDataProvider = Mock.Create<ISightseeingDataProvider>();
 
             // Act
-            SiteCategoryController siteCategoryController = new SiteCategoryController(
-                siteCategoryProvider, campingPlaceProvider);
+            SightseeingController sightseeingController = new SightseeingController(
+                sightseeingDataProvider, campingPlaceProvider);
 
             // Assert
-            Assert.IsInstanceOf<SiteCategoryController>(siteCategoryController);
+            Assert.IsInstanceOf<SightseeingController>(sightseeingController);
         }
         
         [Test]
-        public void ThrowArgumentNullExceptionWithCorrectMessage_WhenProvidedSiteCategoryDataProviderIsNull()
+        public void ThrowArgumentNullExceptionWithCorrectMessage_WhenProvidedSightseeingDataProviderIsNull()
         {
             //Arrange
-            string expectedMessage = "SiteCategoryDataProvider";
+            string expectedMessage = "SightseeingDataProvider";
             var campingPlaceProvider = Mock.Create<ICampingPlaceDataProvider>();
 
             // Act && Assert
             var ex = Assert.Throws<ArgumentNullException>(() =>
-                new SiteCategoryController(null, campingPlaceProvider));
+                new SightseeingController(null, campingPlaceProvider));
             StringAssert.Contains(expectedMessage, ex.Message);
         }
 
@@ -43,11 +43,11 @@ namespace WildCampingWithMvc.UnitTests.Controllers.SiteCategoryControllerClass
         {
             //Arrange
             string expectedMessage = "CampingPlaceProvider";
-            var siteCategoryProvider = Mock.Create<ISiteCategoryDataProvider>();
+            var sightseeingDataProvider = Mock.Create<ISightseeingDataProvider>();
 
             // Act && Assert
             var ex = Assert.Throws<ArgumentNullException>(() =>
-                new SiteCategoryController(siteCategoryProvider, null));
+                new SightseeingController(sightseeingDataProvider, null));
             StringAssert.Contains(expectedMessage, ex.Message);
         }
 
@@ -56,15 +56,15 @@ namespace WildCampingWithMvc.UnitTests.Controllers.SiteCategoryControllerClass
         {
             // Arrange
             var campingPlaceProvider = Mock.Create<ICampingPlaceDataProvider>();
-            var siteCategoryProvider = Mock.Create<ISiteCategoryDataProvider>();
+            var sightseeingDataProvider = Mock.Create<ISightseeingDataProvider>();
 
             // Act
-            SiteCategoryControllerMock siteCategoryController = new SiteCategoryControllerMock(
-                siteCategoryProvider, campingPlaceProvider);
+            SightseeingControllerMock sightseeingController = new SightseeingControllerMock(
+                sightseeingDataProvider, campingPlaceProvider);
 
             // Assert
-            Assert.AreSame(campingPlaceProvider, siteCategoryController.CampingPlaceProvider);
-            Assert.AreSame(siteCategoryProvider, siteCategoryController.SiteCategoryDataProvider);
+            Assert.AreSame(campingPlaceProvider, sightseeingController.CampingPlaceProvider);
+            Assert.AreSame(sightseeingDataProvider, sightseeingController.SightseeingDataProvider);
         }
     }
 }

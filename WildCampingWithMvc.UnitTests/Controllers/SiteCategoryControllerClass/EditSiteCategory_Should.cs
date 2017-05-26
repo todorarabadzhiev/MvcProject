@@ -85,7 +85,7 @@ namespace WildCampingWithMvc.UnitTests.Controllers.SiteCategoryControllerClass
             this.siteCategoryController.ModelState.Clear();
 
             // Act
-            siteCategoryController.EditSiteCategory(model, id);
+            this.siteCategoryController.EditSiteCategory(model, id);
 
             // Assert
             Mock.Assert(() => this.siteCategoryController.SiteCategoryDataProvider.UpdateSiteCategory(

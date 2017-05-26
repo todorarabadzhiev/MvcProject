@@ -15,6 +15,24 @@ namespace WildCampingWithMvc.UnitTests.Controllers.CampingPlaceControllerClass
     public class CampingPlaceDetails_Should
     {
         [Test]
+        public void RedirectToActionIndexOfHomeController_WhenTheProvidedIdIsNull()
+        {
+            // Arrange
+            var campingPlaceProvider = Mock.Create<ICampingPlaceDataProvider>();
+            var sightseeingsProvider = Mock.Create<ISightseeingDataProvider>();
+            var siteCategoryProvider = Mock.Create<ISiteCategoryDataProvider>();
+            CampingPlaceController campingPlaceController = new CampingPlaceController(
+                campingPlaceProvider,
+                sightseeingsProvider,
+                siteCategoryProvider);
+
+            // Act & Assert
+            campingPlaceController
+                .WithCallTo(c => c.CampingPlaceDetails(null))
+                .ShouldRedirectTo<HomeController>(hc => hc.Index());
+        }
+
+        [Test]
         public void CallCampPlaceDataProviderMethodGetCampingPlaceByIdExactlyOnceWithCorrectParameter()
         {
             // Arrange
